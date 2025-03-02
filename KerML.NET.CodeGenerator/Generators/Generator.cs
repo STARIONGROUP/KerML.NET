@@ -60,6 +60,11 @@ namespace KerML.NET.CodeGenerator.Generators
         /// </returns>
         protected virtual string CodeCleanup(string generatedCode)
         {
+            if (string.IsNullOrEmpty(generatedCode))
+            {
+                throw new ArgumentException(nameof(generatedCode));
+            }
+
             generatedCode = generatedCode.Replace("&nbsp;", " ");
             var workspace = new AdhocWorkspace();
             var syntaxTree = CSharpSyntaxTree.ParseText(generatedCode);
@@ -87,6 +92,18 @@ namespace KerML.NET.CodeGenerator.Generators
         /// </returns>
         protected static async Task Write(string generatedCode, DirectoryInfo outputDirectory, string fileName)
         {
+            if (string.IsNullOrEmpty(generatedCode))
+            {
+                throw new ArgumentException(nameof(generatedCode));
+            }
+
+            ArgumentNullException.ThrowIfNull(outputDirectory);
+
+            if (string.IsNullOrEmpty(fileName))
+            {
+                throw new ArgumentException(nameof(fileName));
+            }
+
             var filePath = Path.Combine(outputDirectory.FullName, fileName);
 
             await File.WriteAllTextAsync(filePath, generatedCode, Encoding.UTF8);
