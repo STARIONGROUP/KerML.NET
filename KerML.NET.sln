@@ -11,6 +11,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerML.NET.CodeGenerator", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerML.NET.CodeGenerator.Tests", "KerML.NET.CodeGenerator.Tests\KerML.NET.CodeGenerator.Tests.csproj", "{FC8BDF68-B09D-4861-B8BE-D8826389BBB2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7377F6C2-EFB0-4AE7-893A-2BFDC8A3F5B7}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		cdp4-icon.png = cdp4-icon.png
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		coverlet.runsettings = coverlet.runsettings
+		dependabot.yml = dependabot.yml
+		LICENSE = LICENSE
+		NOTICE = NOTICE
+		Nuget.Config = Nuget.Config
+		README.md = README.md
+		release.bat = release.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
