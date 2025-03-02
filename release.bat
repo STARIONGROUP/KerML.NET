@@ -25,14 +25,14 @@ IF EXIST "%~dp0\ReleaseBuilds" (
 mkdir "%~dp0\ReleaseBuilds"
 
 rem Cleaning Builds...
-dotnet clean -c Release SysML2.NET.sln
+dotnet clean -c Release KerML.NET.sln
 
 ECHO.
 ECHO Packing nugets...
 ECHO.
 
 rem Packing New Versions...
-dotnet pack --include-source -c Release -o ReleaseBuilds SysML2.NET.sln
+dotnet pack --include-source -c Release -o ReleaseBuilds KerML.NET.sln
 
 ECHO.
 ECHO Pushing to nuget.org ...
