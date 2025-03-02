@@ -34,6 +34,7 @@
       <Folder Include="AutoGenEnum\" />
       <Folder Include="AutoGenPoco\" />
       <Folder Include="Decorators\" />
+      <Folder Include="Extend\" />
     </ItemGroup>
 
 </Project>

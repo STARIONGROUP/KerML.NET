@@ -17,6 +17,20 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Expected\UML\AutoGenEnum\FeatureDirectionKind.cs" />
+      <Compile Remove="Expected\UML\AutoGenEnum\VisibilityKind.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="Expected\UML\AutoGenEnum\FeatureDirectionKind.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenEnum\VisibilityKind.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.2" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
         <PackageReference Include="NUnit" Version="4.3.2" />
