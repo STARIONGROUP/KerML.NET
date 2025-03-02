@@ -26,9 +26,7 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
     using System.Threading.Tasks;
 
     using uml4net.Extensions;
-    using uml4net.Packages;
     using uml4net.SimpleClassifiers;
-    using uml4net.StructuredClassifiers;
     using uml4net.xmi.Readers;
 
     /// <summary>
