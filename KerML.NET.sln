@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerML.NET.Tests", "KerML.NE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerML.NET.CodeGenerator", "KerML.NET.CodeGenerator\KerML.NET.CodeGenerator.csproj", "{19C16FA4-54B8-439A-9938-71E039EA7B59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerML.NET.CodeGenerator.Tests", "KerML.NET.CodeGenerator.Tests\KerML.NET.CodeGenerator.Tests.csproj", "{FC8BDF68-B09D-4861-B8BE-D8826389BBB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{19C16FA4-54B8-439A-9938-71E039EA7B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19C16FA4-54B8-439A-9938-71E039EA7B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19C16FA4-54B8-439A-9938-71E039EA7B59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC8BDF68-B09D-4861-B8BE-D8826389BBB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC8BDF68-B09D-4861-B8BE-D8826389BBB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC8BDF68-B09D-4861-B8BE-D8826389BBB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC8BDF68-B09D-4861-B8BE-D8826389BBB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
