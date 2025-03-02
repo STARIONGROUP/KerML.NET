@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Company>Starion Group S.A.</Company>
+        <Authors>Sam Gerené</Authors>
+        <Description>Nunit test suite for the KerML.NET library</Description>
+        <Copyright>Copyright © Starion Group S.A.</Copyright>
+        <RepositoryUrl>https://github.com/STARIONGROUP/KerML.NET.git</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <Nullable>disable</Nullable>
+        <IsPackable>false</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="9.0.2" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+        <PackageReference Include="NUnit" Version="4.3.2" />
+        <PackageReference Include="NUnit.Console" Version="3.19.2" />
+        <PackageReference Include="NUnit3TestAdapter" Version="5.0.0" />
+
+        <PackageReference Include="coverlet.collector" Version="6.0.4">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.msbuild" Version="6.0.4">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\KerML.NET\KerML.NET.csproj" />
+    </ItemGroup>
+
+  
+
+</Project>

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerML.NET", "KerML.NET\KerML.NET.csproj", "{450B7A03-0502-4CF3-85B2-3EC2510A3CAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerML.NET.Tests", "KerML.NET.Tests\KerML.NET.Tests.csproj", "{BDC758B0-0966-42A1-AEA4-18436E54CDCB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KerML.NET.CodeGenerator", "KerML.NET.CodeGenerator\KerML.NET.CodeGenerator.csproj", "{19C16FA4-54B8-439A-9938-71E039EA7B59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{450B7A03-0502-4CF3-85B2-3EC2510A3CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{450B7A03-0502-4CF3-85B2-3EC2510A3CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{450B7A03-0502-4CF3-85B2-3EC2510A3CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{450B7A03-0502-4CF3-85B2-3EC2510A3CAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC758B0-0966-42A1-AEA4-18436E54CDCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC758B0-0966-42A1-AEA4-18436E54CDCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC758B0-0966-42A1-AEA4-18436E54CDCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC758B0-0966-42A1-AEA4-18436E54CDCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19C16FA4-54B8-439A-9938-71E039EA7B59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19C16FA4-54B8-439A-9938-71E039EA7B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19C16FA4-54B8-439A-9938-71E039EA7B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19C16FA4-54B8-439A-9938-71E039EA7B59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
