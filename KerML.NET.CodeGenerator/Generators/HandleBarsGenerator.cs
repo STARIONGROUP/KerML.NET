@@ -20,6 +20,7 @@
 
 namespace KerML.NET.CodeGenerator.Generators
 {
+    using System;
     using System.Collections.Generic;
     using System.IO;
 
@@ -74,6 +75,11 @@ namespace KerML.NET.CodeGenerator.Generators
         /// </param>
         protected void RegisterTemplate(string name)
         {
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException($"{nameof(name)} may not be null or empty", nameof(name));
+            }
+
             var templatePath = Path.Combine(TemplateFolderPath, $"{name}.hbs");
 
             var template = File.ReadAllText(templatePath);

@@ -62,7 +62,7 @@ namespace KerML.NET.CodeGenerator.Generators
         {
             if (string.IsNullOrEmpty(generatedCode))
             {
-                throw new ArgumentException(nameof(generatedCode));
+                throw new ArgumentException($"{nameof(generatedCode)} may not be null or empty", nameof(generatedCode));
             }
 
             generatedCode = generatedCode.Replace("&nbsp;", " ");
@@ -94,7 +94,7 @@ namespace KerML.NET.CodeGenerator.Generators
         {
             if (string.IsNullOrEmpty(generatedCode))
             {
-                throw new ArgumentException(nameof(generatedCode));
+                throw new ArgumentException($"{nameof(generatedCode)} may not be null or empty", nameof(generatedCode));
             }
 
             ArgumentNullException.ThrowIfNull(outputDirectory);
@@ -128,7 +128,7 @@ namespace KerML.NET.CodeGenerator.Generators
         {
             if (string.IsNullOrEmpty(generatedCode))
             {
-                throw new ArgumentException(nameof(generatedCode));
+                throw new ArgumentException($"{nameof(generatedCode)} may not be null or empty", nameof(generatedCode));
             }
 
             ArgumentNullException.ThrowIfNull(outputDirectory);
