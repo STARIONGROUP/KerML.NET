@@ -17,11 +17,71 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Expected\UML\AutoGenDto\Annotation.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\Comment.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\Dependency.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\Feature.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\IAnnotation.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\IComment.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\IDependency.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\IElement.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\IFeature.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\IImport.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\ILiteralInteger.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\ILiteralRational.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\IRelationship.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\LiteralInteger.cs" />
+      <Compile Remove="Expected\UML\AutoGenDto\LiteralRational.cs" />
       <Compile Remove="Expected\UML\AutoGenEnum\FeatureDirectionKind.cs" />
       <Compile Remove="Expected\UML\AutoGenEnum\VisibilityKind.cs" />
     </ItemGroup>
 
     <ItemGroup>
+      <Content Include="Expected\UML\AutoGenDto\Annotation.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\Comment.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\Dependency.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\Feature.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\IAnnotation.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\IComment.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\IDependency.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\IElement.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\IFeature.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\IImport.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\ILiteralInteger.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\ILiteralRational.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\IRelationship.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\LiteralInteger.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <Content Include="Expected\UML\AutoGenDto\LiteralRational.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
       <Content Include="Expected\UML\AutoGenEnum\FeatureDirectionKind.cs">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
@@ -50,6 +110,7 @@
         <PackageReference Include="Serilog" Version="4.2.0" />
         <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.0" />
         <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+        <PackageReference Include="uml4net.Reporting" Version="3.0.4" />
     </ItemGroup>
 
     <ItemGroup>

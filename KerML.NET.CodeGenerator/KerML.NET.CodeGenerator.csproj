@@ -28,6 +28,7 @@
 
     <ItemGroup>
       <Folder Include="datamodel\" />
+      <Folder Include="HandleBarHelpers\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -40,6 +41,12 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Update="Templates\dto-class-uml-template.hbs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Update="Templates\dto-interface-uml-template.hbs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
       <None Update="Templates\enumeration-uml-template.hbs">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
