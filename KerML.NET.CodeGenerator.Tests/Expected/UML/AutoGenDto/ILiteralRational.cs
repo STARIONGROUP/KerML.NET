@@ -28,8 +28,10 @@ namespace KerML.NET.DTO.Kernel.Expressions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
-    using KerML.NET.DTO;
+    using KerML.NET.DTO.Kernel.Expressions;
     using KerML.NET.Decorators;
+    using KerML.NET.Namespaces;
+    using KerML.NET.Types;
 
     /// <summary>
     /// A LiteralRational is a LiteralExpression that provides a Rational value as a result. Its result

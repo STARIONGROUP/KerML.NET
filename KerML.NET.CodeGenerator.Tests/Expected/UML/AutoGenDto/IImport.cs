@@ -28,8 +28,10 @@ namespace KerML.NET.DTO.Root.Namespaces
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
-    using KerML.NET.DTO;
+    using KerML.NET.DTO.Root.Elements;
     using KerML.NET.Decorators;
+    using KerML.NET.Namespaces;
+    using KerML.NET.Types;
 
     /// <summary>
     /// An Import is an Relationship between its importOwningNamespace and either a Membership (for a

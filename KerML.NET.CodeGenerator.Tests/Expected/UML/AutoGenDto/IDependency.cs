@@ -28,8 +28,10 @@ namespace KerML.NET.DTO.Root.Dependencies
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
-    using KerML.NET.DTO;
+    using KerML.NET.DTO.Root.Elements;
     using KerML.NET.Decorators;
+    using KerML.NET.Namespaces;
+    using KerML.NET.Types;
 
     /// <summary>
     /// A Dependency is a Relationship that indicates that one or more client Elements require one more

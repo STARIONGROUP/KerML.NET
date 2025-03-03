@@ -28,8 +28,10 @@ namespace KerML.NET.DTO.Root.Elements
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
-    using KerML.NET.DTO;
+    using KerML.NET.DTO.Root.Elements;
     using KerML.NET.Decorators;
+    using KerML.NET.Namespaces;
+    using KerML.NET.Types;
 
     /// <summary>
     /// A Relationship is an Element that relates other Element. Some of its relatedElements may be owned,

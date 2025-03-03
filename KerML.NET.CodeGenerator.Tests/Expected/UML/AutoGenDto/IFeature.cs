@@ -28,8 +28,10 @@ namespace KerML.NET.DTO.Core.Features
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
-    using KerML.NET.DTO;
+    using KerML.NET.DTO.Core.Types;
     using KerML.NET.Decorators;
+    using KerML.NET.Namespaces;
+    using KerML.NET.Types;
 
     /// <summary>
     /// A Feature is a Type that classifies relations between multiple things (in the universe). The domain
