@@ -28,7 +28,16 @@ namespace KerML.NET.DTO.Kernel.Connectors
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Associations;
+    using KerML.NET.DTO.Kernel.Behaviors;
     using KerML.NET.DTO.Kernel.Connectors;
+    using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -40,6 +49,33 @@ namespace KerML.NET.DTO.Kernel.Connectors
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface ISuccession : IConnector
     {
+        /// <summary>
+        /// Steps that represent occurrences that are side effects of the transitionStep occurring.
+        /// </summary>
+        [Property(xmiId: "d65132c3-ec1f-4255-aece-84e82c352f74", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        List<string> GetEffectStep { get; }
+
+        /// <summary>
+        /// Expressions that must evaluate to true before the transitionStep can occur.
+        /// </summary>
+        [Property(xmiId: "e92a9775-4ff0-42f9-b08e-72d5dcc5935d", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        List<string> GetGuardExpression { get; }
+
+        /// <summary>
+        /// A Step that is typed by the Behavior TransitionPerformances::TransitionPerformance (from the Kernel
+        /// Semantic Library) that has this Succession as its transitionLink.
+        /// </summary>
+        [Property(xmiId: "e338aa69-6d9d-4159-8de9-a46e3ab98cfd", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        string? GetTransitionStep { get; }
+
+        /// <summary>
+        /// Steps that map incoming events to the timing of occurrences of the transitionStep. The values of
+        /// triggerStep subset the list of acceptable events to be received by a Behavior or the object that
+        /// performs it.
+        /// </summary>
+        [Property(xmiId: "b9cac2ff-307f-40d6-8340-901d3e2af1ca", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        List<string> GetTriggerStep { get; }
+
     }
 }
 

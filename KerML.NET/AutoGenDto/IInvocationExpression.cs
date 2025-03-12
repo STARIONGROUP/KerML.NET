@@ -28,7 +28,14 @@ namespace KerML.NET.DTO.Kernel.Expressions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Behaviors;
     using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -41,6 +48,14 @@ namespace KerML.NET.DTO.Kernel.Expressions
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IInvocationExpression : IExpression
     {
+        /// <summary>
+        /// The value Expressions of the FeatureValues of the owned input parameters of the
+        /// InvocationExpression.
+        /// </summary>
+        [Property(xmiId: "6e8b8432-4206-42df-992e-3e689d6a0853", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "f062fa83-0335-40e0-8652-a22e6a8b3b11")]
+        List<string> GetArgument { get; }
+
     }
 }
 

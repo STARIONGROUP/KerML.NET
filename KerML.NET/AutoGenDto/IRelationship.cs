@@ -28,7 +28,10 @@ namespace KerML.NET.DTO.Root.Elements
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -56,35 +59,42 @@ namespace KerML.NET.DTO.Root.Elements
         /// directly created by a modeler.
         /// </summary>
         [Property(xmiId: "75499eaa-ac5b-429c-ba15-f18886cd2817", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: "false")]
-        public bool IsImplied { get; set; }
+        bool IsImplied { get; set; }
 
         /// <summary>
         /// The relatedElements of this Relationship that are owned by the Relationship.
         /// </summary>
         [Property(xmiId: "27fc72b3-57ec-4aa5-a656-1e902c5d768a", aggregation: AggregationKind.Composite, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [SubsettedProperty(propertyName: "0d55f45c-0032-4618-9131-61ed58c3b8e2")]
-        public List<string> OwnedRelatedElement { get; set; }
+        List<string> OwnedRelatedElement { get; set; }
 
         /// <summary>
         /// The relatedElement of this Relationship that owns the Relationship, if any.
         /// </summary>
         [Property(xmiId: "c81d146c-d738-40a0-ab80-8526beac3673", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [SubsettedProperty(propertyName: "0d55f45c-0032-4618-9131-61ed58c3b8e2")]
-        public string? OwningRelatedElement { get; set; }
+        string? OwningRelatedElement { get; set; }
+
+        /// <summary>
+        /// The Elements that are related by this Relationship, derived as the union of the source and target
+        /// Elements of the Relationship.
+        /// </summary>
+        [Property(xmiId: "0d55f45c-0032-4618-9131-61ed58c3b8e2", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        List<string> GetRelatedElement { get; }
 
         /// <summary>
         /// The relatedElements from which this Relationship is considered to be directed.
         /// </summary>
         [Property(xmiId: "cd83f43d-3885-4b41-8f03-f02255e6a5da", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [SubsettedProperty(propertyName: "0d55f45c-0032-4618-9131-61ed58c3b8e2")]
-        public List<string> Source { get; set; }
+        List<string> Source { get; set; }
 
         /// <summary>
         /// The relatedElements to which this Relationship is considered to be directed.
         /// </summary>
         [Property(xmiId: "4c7374f5-78f8-42ab-ae42-672ad9c80902", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [SubsettedProperty(propertyName: "0d55f45c-0032-4618-9131-61ed58c3b8e2")]
-        public List<string> Target { get; set; }
+        List<string> Target { get; set; }
 
     }
 }

@@ -29,6 +29,11 @@ namespace KerML.NET.DTO.Core.Features
     using System.Collections.Generic;
 
     using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -56,14 +61,14 @@ namespace KerML.NET.DTO.Core.Features
         /// </summary>
         [Property(xmiId: "c30433b4-031a-4ee7-8b11-9d39cbb35d39", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "b8bb3b86-cf2d-451e-b3c1-6a3aecac5aa4")]
-        public new string RedefinedFeature { get; set; }
+        string RedefinedFeature { get; set; }
 
         /// <summary>
         /// The Feature that is redefining the redefinedFeature of this Redefinition.
         /// </summary>
         [Property(xmiId: "f5092d04-2553-4bcd-9c80-2e0e8d70d2fc", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "20d11fe1-16c0-41fb-8823-559ce4084ebf")]
-        public new string RedefiningFeature { get; set; }
+        string RedefiningFeature { get; set; }
 
     }
 }

@@ -1,4 +1,4 @@
-// -------------------------------------------------------------------------------------------------
+﻿// -------------------------------------------------------------------------------------------------
 // <copyright file="ILiteralRational.cs" company="Starion Group S.A.">
 //
 //   Copyright (C) 2022-2025 Starion Group S.A.
@@ -28,7 +28,15 @@ namespace KerML.NET.DTO.Kernel.Expressions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Behaviors;
     using KerML.NET.DTO.Kernel.Expressions;
+    using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -45,7 +53,7 @@ namespace KerML.NET.DTO.Kernel.Expressions
         /// The value whose rational approximation is the result of evaluating this LiteralRational.
         /// </summary>
         [Property(xmiId: "90c4afa5-39a7-4aee-8639-26bb684ba6f5", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
-        public double Value { get; set; }
+        double Value { get; set; }
 
     }
 }

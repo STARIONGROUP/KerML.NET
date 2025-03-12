@@ -29,6 +29,9 @@ namespace KerML.NET.DTO.Root.Annotations
     using System.Collections.Generic;
 
     using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -67,13 +70,21 @@ namespace KerML.NET.DTO.Root.Annotations
         /// The textual representation of the representedElement in the given language.
         /// </summary>
         [Property(xmiId: "a58b6080-248a-433e-9178-f0b58d7179d1", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
-        public string Body { get; set; }
+        string Body { get; set; }
 
         /// <summary>
         /// The natural or artifical language in which the body text is written.
         /// </summary>
         [Property(xmiId: "bc93f8c6-215d-4e59-811a-4c28c5c5cb21", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
-        public string Language { get; set; }
+        string Language { get; set; }
+
+        /// <summary>
+        /// The Element that is represented by this TextualRepresentation.
+        /// </summary>
+        [Property(xmiId: "94b41a6b-aa1f-4950-9fb3-34a3a8c7ce79", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "62034bc0-cc6e-41a0-b2b7-09f6bb604c5e")]
+        [RedefinedProperty(propertyName: "d0221b66-75b1-4727-90da-636288f9d289")]
+        string GetRepresentedElement { get; }
 
     }
 }

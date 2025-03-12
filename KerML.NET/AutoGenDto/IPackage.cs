@@ -28,7 +28,11 @@ namespace KerML.NET.DTO.Kernel.Packages
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
     using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -42,6 +46,14 @@ namespace KerML.NET.DTO.Kernel.Packages
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IPackage : INamespace
     {
+        /// <summary>
+        /// The model-level evaluable Boolean-valued Expression used to filter the members of this Package,
+        /// which are owned by the Package are via ElementFilterMemberships.
+        /// </summary>
+        [Property(xmiId: "e1210077-5699-4474-9ea5-70f6d0aa1e02", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "e77d17fa-39f5-4493-b101-5630bea6df70")]
+        List<string> GetFilterCondition { get; }
+
     }
 }
 

@@ -28,7 +28,12 @@ namespace KerML.NET.DTO.Core.Features
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -41,6 +46,12 @@ namespace KerML.NET.DTO.Core.Features
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IEndFeatureMembership : IFeatureMembership
     {
+        /// <summary>
+        /// </summary>
+        [Property(xmiId: "6f8c7cac-e36c-4a29-85c2-dda5538e2e05", aggregation: AggregationKind.Composite, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "6bf83eae-2d89-4ea9-8c7b-92d8ef26bfaa")]
+        string GetOwnedMemberFeature { get; }
+
     }
 }
 

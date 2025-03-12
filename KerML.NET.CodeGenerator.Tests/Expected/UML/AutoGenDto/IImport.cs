@@ -1,4 +1,4 @@
-// -------------------------------------------------------------------------------------------------
+﻿// -------------------------------------------------------------------------------------------------
 // <copyright file="IImport.cs" company="Starion Group S.A.">
 //
 //   Copyright (C) 2022-2025 Starion Group S.A.
@@ -28,7 +28,10 @@ namespace KerML.NET.DTO.Root.Namespaces
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -47,23 +50,39 @@ namespace KerML.NET.DTO.Root.Namespaces
     public partial interface IImport : IRelationship
     {
         /// <summary>
+        /// The effectively imported Element for this Import. For a MembershipImport, this is the memberElement
+        /// of the importedMembership. For a NamespaceImport, it is the importedNamespace.
+        /// </summary>
+        [Property(xmiId: "fc380ea3-2822-4ee3-84e8-c8bd84e1b793", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        string GetImportedElement { get; }
+
+        /// <summary>
+        /// The Namespace into which Memberships are imported by this Import, which must be the
+        /// owningRelatedElement of the Import.
+        /// </summary>
+        [Property(xmiId: "271bd60d-3a80-49f3-9104-4657faeea3ff", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
+        string GetImportOwningNamespace { get; }
+
+        /// <summary>
         /// Whether to import memberships without regard to declared visibility.
         /// </summary>
         [Property(xmiId: "6f60838b-0e5b-44f0-af95-718a85fb22eb", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: "false")]
-        public bool IsImportAll { get; set; }
+        bool IsImportAll { get; set; }
 
         /// <summary>
         /// Whether to recursively import Memberships from visible, owned sub-Namespaces.
         /// </summary>
         [Property(xmiId: "f3532740-fb74-407d-92e3-037e7bb482a1", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: "false")]
-        public bool IsRecursive { get; set; }
+        bool IsRecursive { get; set; }
 
         /// <summary>
         /// The visibility level of the imported members from this Import relative to the importOwningNamespace.
         /// The default is private.
         /// </summary>
         [Property(xmiId: "58d5073c-91b9-4051-ba14-ea60c17342a8", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: "private")]
-        public VisibilityKind Visibility { get; set; }
+        VisibilityKind Visibility { get; set; }
 
     }
 }

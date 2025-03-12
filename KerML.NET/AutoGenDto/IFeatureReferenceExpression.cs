@@ -28,7 +28,14 @@ namespace KerML.NET.DTO.Kernel.Expressions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Behaviors;
     using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -40,6 +47,14 @@ namespace KerML.NET.DTO.Kernel.Expressions
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IFeatureReferenceExpression : IExpression
     {
+        /// <summary>
+        /// The Feature that is referenced by this FeatureReferenceExpression, which is its first non-parameter
+        /// member.
+        /// </summary>
+        [Property(xmiId: "042cce2f-3f72-4163-869d-f0dd56bee523", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "9098f21e-06d6-46cd-b1c6-3ccde8f5d8bb")]
+        string GetReferent { get; }
+
     }
 }
 

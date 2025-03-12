@@ -28,7 +28,15 @@ namespace KerML.NET.DTO.Kernel.Expressions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Behaviors;
     using KerML.NET.DTO.Kernel.Expressions;
+    using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -45,7 +53,7 @@ namespace KerML.NET.DTO.Kernel.Expressions
         /// The String value that is the result of evaluating this Expression.
         /// </summary>
         [Property(xmiId: "86d8333d-4a56-4ff3-8a3e-465e7454d52a", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
-        public string Value { get; set; }
+        string Value { get; set; }
 
     }
 }

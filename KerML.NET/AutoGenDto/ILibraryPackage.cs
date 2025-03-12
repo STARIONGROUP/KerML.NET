@@ -28,7 +28,12 @@ namespace KerML.NET.DTO.Kernel.Packages
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Kernel.Functions;
     using KerML.NET.DTO.Kernel.Packages;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -47,7 +52,7 @@ namespace KerML.NET.DTO.Kernel.Packages
         /// language built on KerML.
         /// </summary>
         [Property(xmiId: "24d847c2-8227-41f1-865e-4bd5d1e5e8f7", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: "false")]
-        public bool IsStandard { get; set; }
+        bool IsStandard { get; set; }
 
     }
 }

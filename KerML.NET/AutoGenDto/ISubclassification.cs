@@ -28,7 +28,12 @@ namespace KerML.NET.DTO.Core.Classifiers
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Classifiers;
     using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -42,18 +47,25 @@ namespace KerML.NET.DTO.Core.Classifiers
     public partial interface ISubclassification : ISpecialization
     {
         /// <summary>
+        /// The Classifier that owns this Subclassification relationship, which must also be its subclassifier.
+        /// </summary>
+        [Property(xmiId: "ebcaa492-26d8-4f8d-ab2a-0778964d3900", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "adeb1ff1-cb20-496c-b832-6ae775e10fd9")]
+        string? GetOwningClassifier { get; }
+
+        /// <summary>
         /// The more specific Classifier in this Subclassification.
         /// </summary>
         [Property(xmiId: "8d95c5c6-badf-420d-be23-73bbe915a016", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "f45c204e-a88a-4382-9701-ccc842d4a68a")]
-        public new string Subclassifier { get; set; }
+        string Subclassifier { get; set; }
 
         /// <summary>
         /// The more general Classifier in this Subclassification.
         /// </summary>
         [Property(xmiId: "63d72dd5-812d-41f7-9669-ffc82d00072a", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "6dd5c0f9-10e8-4361-90d4-723016f969f5")]
-        public new string Superclassifier { get; set; }
+        string Superclassifier { get; set; }
 
     }
 }

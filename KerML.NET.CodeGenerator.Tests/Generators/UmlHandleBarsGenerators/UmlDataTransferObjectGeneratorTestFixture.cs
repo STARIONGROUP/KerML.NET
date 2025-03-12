@@ -107,5 +107,20 @@ namespace KerML.NET.CodeGenerator.Tests.Generators.UmlHandleBarsGenerators
 
             Assert.That(generatedCode, Is.EqualTo(expected));
         }
+
+        [Test]
+        public async Task Verify_that_expected_Classes_are_generated(
+            [Values("Annotation", "Comment", "Dependency", "Feature",
+                 "LiteralInteger", "LiteralRational")] string className)
+        {
+            var generatedCode = await this.umlDataTransferObjectGenerator.GenerateDataTransferObjectClassAsync(xmiReaderResult,
+                this.dataTransfoerObjectDirectoryInfo,
+                className);
+
+            var expected = await File.ReadAllTextAsync(Path.Combine(TestContext.CurrentContext.TestDirectory,
+                $"Expected/UML/AutoGenDto/{className}.cs"));
+
+            Assert.That(generatedCode, Is.EqualTo(expected));
+        }
     }
 }

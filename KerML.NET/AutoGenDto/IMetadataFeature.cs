@@ -29,7 +29,12 @@ namespace KerML.NET.DTO.Kernel.Metadata
     using System.Collections.Generic;
 
     using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Metadata;
     using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -43,6 +48,13 @@ namespace KerML.NET.DTO.Kernel.Metadata
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IMetadataFeature : IAnnotatingElement, IFeature
     {
+        /// <summary>
+        /// The type of this MetadataFeature, which must be a Metaclass.
+        /// </summary>
+        [Property(xmiId: "45b349b2-f7df-45f9-9189-04d6fd174d0f", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "2dd9a8a5-bc46-421d-bc22-89f91e4b6ffe")]
+        string? GetMetaclass { get; }
+
     }
 }
 

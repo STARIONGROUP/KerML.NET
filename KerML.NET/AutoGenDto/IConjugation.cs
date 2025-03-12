@@ -28,7 +28,11 @@ namespace KerML.NET.DTO.Core.Types
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -52,14 +56,22 @@ namespace KerML.NET.DTO.Core.Types
         /// </summary>
         [Property(xmiId: "416f9595-3386-4e1b-b01e-57e62a6b49a4", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
-        public new string ConjugatedType { get; set; }
+        string ConjugatedType { get; set; }
 
         /// <summary>
         /// The Type to be conjugated.
         /// </summary>
         [Property(xmiId: "25a6f648-493b-4a49-bebd-401e893df0f3", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
-        public new string OriginalType { get; set; }
+        string OriginalType { get; set; }
+
+        /// <summary>
+        /// The conjugatedType of this Conjugation that is also its owningRelatedElement.
+        /// </summary>
+        [Property(xmiId: "ac96d8b3-4339-4e70-964b-d4be9f0fcc81", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "416f9595-3386-4e1b-b01e-57e62a6b49a4")]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        string? GetOwningType { get; }
 
     }
 }

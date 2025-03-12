@@ -28,7 +28,14 @@ namespace KerML.NET.DTO.Kernel.Functions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Behaviors;
     using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -46,7 +53,7 @@ namespace KerML.NET.DTO.Kernel.Functions
         /// Whether this Invariant is asserted to be false rather than true.
         /// </summary>
         [Property(xmiId: "30bc499c-2f9e-4372-b136-43b10076f1ad", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: "false")]
-        public bool IsNegated { get; set; }
+        bool IsNegated { get; set; }
 
     }
 }

@@ -41,6 +41,18 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
         /// </param>
         public static void RegisterClassHelper(this IHandlebars handlebars)
         {
+            handlebars.RegisterHelper("Class.QueryOwnedAttributeOrdered", (context, _) =>
+            {
+                if (!(context.Value is IClass @class))
+                {
+                    throw new ArgumentException("supposed to be IClass");
+                }
+
+                var properties = @class.OwnedAttribute.OrderBy(x => x.Name);
+
+                return properties;
+            });
+
             handlebars.RegisterHelper("Class.QueryOwnedNonDerivedNonReadOnlyProperties", (context, _) =>
             {
                 if (!(context.Value is IClass @class))
@@ -109,13 +121,14 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
                     uniqueNamespaces.Add(nameSpace);
                 }
 
-                var properties = @class.OwnedAttribute
-                    .Where(x => !x.IsDerived)
-                    .Where(x => !x.IsDerivedUnion)
-                    .Where(x => !x.IsReadOnly)
-                    .OrderBy(x => x.Name)
-                    .Where(x => x.QueryIsEnum())
-                    .ToList();
+                var allProperties = @class.QueryAllProperties();
+                foreach (var prop in allProperties.Where(x => x.QueryIsReferenceProperty()))
+                {
+                    var qualifiedNameSpaces = prop.Type.QualifiedName.Split("::");
+                    var namespaces = qualifiedNameSpaces.Skip(1).Take(qualifiedNameSpaces.Length - 2);
+                    var nameSpace = string.Join('.', namespaces);
+                    uniqueNamespaces.Add(nameSpace);
+                }
 
                 var orderedNamespaces = uniqueNamespaces.Order().ToList();
                 foreach (var orderedNamespace in orderedNamespaces)

@@ -29,6 +29,9 @@ namespace KerML.NET.DTO.Root.Annotations
     using System.Collections.Generic;
 
     using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -40,6 +43,14 @@ namespace KerML.NET.DTO.Root.Annotations
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IDocumentation : IComment
     {
+        /// <summary>
+        /// The Element that is documented by this Documentation.
+        /// </summary>
+        [Property(xmiId: "583a6860-b6e7-432d-bfcd-eabf9dc3e675", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "62034bc0-cc6e-41a0-b2b7-09f6bb604c5e")]
+        [RedefinedProperty(propertyName: "d0221b66-75b1-4727-90da-636288f9d289")]
+        string GetDocumentedElement { get; }
+
     }
 }
 

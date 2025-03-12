@@ -29,6 +29,12 @@ namespace KerML.NET.DTO.Kernel.Behaviors
     using System.Collections.Generic;
 
     using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Behaviors;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -43,6 +49,21 @@ namespace KerML.NET.DTO.Kernel.Behaviors
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IStep : IFeature
     {
+        /// <summary>
+        /// The Behaviors that type this Step.
+        /// </summary>
+        [Property(xmiId: "4f6477ef-2deb-4f17-a41e-e2aa01f6bb7e", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "2dd9a8a5-bc46-421d-bc22-89f91e4b6ffe")]
+        List<string> GetBehavior { get; }
+
+        /// <summary>
+        /// The parameters of this Step, which are defined as its directedFeatures, whose values are passed into
+        /// and/or out of a performance of the Step.
+        /// </summary>
+        [Property(xmiId: "5568f668-7e98-4b99-a40f-7c2eecde3db2", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "5b298b23-243e-4a34-afc9-15236eca08a8")]
+        List<string> GetParameter { get; }
+
     }
 }
 

@@ -28,7 +28,11 @@ namespace KerML.NET.DTO.Core.Types
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -47,7 +51,16 @@ namespace KerML.NET.DTO.Core.Types
         /// </summary>
         [Property(xmiId: "fdf0f94a-d20b-4597-a464-5c0b1a98b56c", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
-        public new string DifferencingType { get; set; }
+        string DifferencingType { get; set; }
+
+        /// <summary>
+        /// Type with interpretations partly determined by differencingType, as described in
+        /// Type::differencingType.
+        /// </summary>
+        [Property(xmiId: "52af1f1f-e0ab-47c8-8aae-0da34ec51d4f", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
+        string GetTypeDifferenced { get; }
 
     }
 }

@@ -28,7 +28,15 @@ namespace KerML.NET.DTO.Kernel.Expressions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Behaviors;
     using KerML.NET.DTO.Kernel.Expressions;
+    using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -45,7 +53,7 @@ namespace KerML.NET.DTO.Kernel.Expressions
         /// The Boolean value that is the result of evaluating this LiteralBoolean.
         /// </summary>
         [Property(xmiId: "3c4c6fc9-246c-4ab4-8822-494b5b3bc72d", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
-        public bool Value { get; set; }
+        bool Value { get; set; }
 
     }
 }

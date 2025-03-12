@@ -28,7 +28,11 @@ namespace KerML.NET.DTO.Core.Features
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -49,14 +53,22 @@ namespace KerML.NET.DTO.Core.Features
         /// </summary>
         [Property(xmiId: "f4c5ac7d-9ed1-46da-a787-c595dfc5eeb0", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
-        public new string FeatureInverted { get; set; }
+        string FeatureInverted { get; set; }
 
         /// <summary>
         /// The Feature that is an inverse of the invertedFeature.
         /// </summary>
         [Property(xmiId: "36f71aed-a12e-4332-8ca1-7000d7b4571f", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
-        public new string InvertingFeature { get; set; }
+        string InvertingFeature { get; set; }
+
+        /// <summary>
+        /// A featureInverted that is also the owningRelatedElement of this FeatureInverting.
+        /// </summary>
+        [Property(xmiId: "b893a139-4098-4e9d-8794-d7ba21da6687", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "f4c5ac7d-9ed1-46da-a787-c595dfc5eeb0")]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        string? GetOwningFeature { get; }
 
     }
 }

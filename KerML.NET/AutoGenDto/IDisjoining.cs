@@ -28,7 +28,11 @@ namespace KerML.NET.DTO.Core.Types
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -48,14 +52,22 @@ namespace KerML.NET.DTO.Core.Types
         /// </summary>
         [Property(xmiId: "70acb736-8e2e-4d5e-a8c4-ba326a62859c", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
-        public new string DisjoiningType { get; set; }
+        string DisjoiningType { get; set; }
+
+        /// <summary>
+        /// A typeDisjoined that is also an owningRelatedElement.
+        /// </summary>
+        [Property(xmiId: "3b784da1-5a29-451c-83a0-fea18d2b9292", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        [SubsettedProperty(propertyName: "f0a587d0-f650-4482-8f65-c1ff8512d614")]
+        string? GetOwningType { get; }
 
         /// <summary>
         /// Type asserted to be disjoint with the disjoiningType.
         /// </summary>
         [Property(xmiId: "f0a587d0-f650-4482-8f65-c1ff8512d614", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
-        public new string TypeDisjoined { get; set; }
+        string TypeDisjoined { get; set; }
 
     }
 }

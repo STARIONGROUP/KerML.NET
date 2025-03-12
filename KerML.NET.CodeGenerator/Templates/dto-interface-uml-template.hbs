@@ -29,6 +29,7 @@ namespace KerML.NET.DTO.{{ #NamedElement.WriteNameSpace this }}
     using System.Collections.Generic;
 
     {{ #Class.WriteDTONameSpaces this}}
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -38,11 +39,12 @@ namespace KerML.NET.DTO.{{ #NamedElement.WriteNameSpace this }}
     [GeneratedCode("KerML.NET", "latest")]
     {{ Enum.ToString this.Visibility }} partial interface I{{this.Name}} {{ #Generalization.Interfaces this }}
     {
-        {{ #each (Class.QueryOwnedNonDerivedNonReadOnlyProperties this) as | property | }}
+        {{ #each (Class.QueryOwnedAttributeOrdered this) as | property | }}
         {{ #Documentation property }}
         {{ #Decorator.WritePropertyAttribute property }}
         {{ #Decorator.WriteSubsettedPropertyAttribute property }}
         {{ #Decorator.WriteRedefinedPropertyAttribute property }}
+        {{ #Decorator.WriteRedefinedByPropertyAttribute property ../ }}
         {{ #Property.WriteForDTOInterface property }}
 
         {{/each}}

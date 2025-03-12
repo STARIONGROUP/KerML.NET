@@ -28,7 +28,13 @@ namespace KerML.NET.DTO.Core.Classifiers
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Classifiers;
+    using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -45,6 +51,14 @@ namespace KerML.NET.DTO.Core.Classifiers
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IClassifier : IType
     {
+        /// <summary>
+        /// The ownedSpecializations of this Classifier that are Subclassifications, for which this Classifier
+        /// is the subclassifier.
+        /// </summary>
+        [Property(xmiId: "b1a104db-4783-45af-92ff-e88deb9f6fc7", aggregation: AggregationKind.Composite, lowerValue: 0, upperValue: int.MaxValue, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "7746c947-3bd4-4cb9-98b7-cc9dddda5261")]
+        List<string> GetOwnedSubclassification { get; }
+
     }
 }
 

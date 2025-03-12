@@ -29,6 +29,11 @@ namespace KerML.NET.DTO.Core.Features
     using System.Collections.Generic;
 
     using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -58,7 +63,15 @@ namespace KerML.NET.DTO.Core.Features
         /// </summary>
         [Property(xmiId: "85d67f6e-f14c-465d-8203-ca1a51687c04", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "b8bb3b86-cf2d-451e-b3c1-6a3aecac5aa4")]
-        public new string CrossedFeature { get; set; }
+        string CrossedFeature { get; set; }
+
+        /// <summary>
+        /// The end Feature that owns this CrossSubsetting relationship and is also its subsettingFeature.
+        /// </summary>
+        [Property(xmiId: "b5ebd305-151c-408a-926e-7500d61f674b", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "43a01c3e-8273-4941-b616-2f8edcc0ac17")]
+        [RedefinedProperty(propertyName: "20d11fe1-16c0-41fb-8823-559ce4084ebf")]
+        string GetCrossingFeature { get; }
 
     }
 }

@@ -28,7 +28,15 @@ namespace KerML.NET.DTO.Kernel.Expressions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Behaviors;
     using KerML.NET.DTO.Kernel.Expressions;
+    using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -46,7 +54,15 @@ namespace KerML.NET.DTO.Kernel.Expressions
         /// </summary>
         [Property(xmiId: "553a107a-ef1a-475e-a210-a02aa4b4f67c", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: ".")]
         [RedefinedProperty(propertyName: "70aa2b17-758f-4426-8b45-52253479ca7c")]
-        public new string Operator { get; set; }
+        string Operator { get; set; }
+
+        /// <summary>
+        /// The Feature that is accessed by this FeatureChainExpression, which is its first non-parameter
+        /// member.
+        /// </summary>
+        [Property(xmiId: "ac7c4937-8e0b-4f9a-8ba5-f645f90afc49", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "9098f21e-06d6-46cd-b1c6-3ccde8f5d8bb")]
+        string GetTargetFeature { get; }
 
     }
 }

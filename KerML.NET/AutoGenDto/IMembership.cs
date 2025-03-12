@@ -28,7 +28,10 @@ namespace KerML.NET.DTO.Root.Namespaces
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -51,26 +54,41 @@ namespace KerML.NET.DTO.Root.Namespaces
         /// </summary>
         [Property(xmiId: "ea691af8-fe94-4d70-8a6f-7433b40c3398", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
-        public new string MemberElement { get; set; }
+        string MemberElement { get; set; }
+
+        /// <summary>
+        /// The elementId of the memberElement.
+        /// </summary>
+        [Property(xmiId: "867c63ec-3922-4eaa-8c78-47ca3f9d04b8", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        string GetMemberElementId { get; }
 
         /// <summary>
         /// The name of the memberElement relative to the membershipOwningNamespace.
         /// </summary>
         [Property(xmiId: "edd22f54-2750-4e4f-bdf3-96edc70b3ca1", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
-        public string? MemberName { get; set; }
+        string? MemberName { get; set; }
+
+        /// <summary>
+        /// The Namespace of which the memberElement becomes a member due to this Membership.
+        /// </summary>
+        [Property(xmiId: "67aded9a-ae8a-4191-8053-2df04cce9c8c", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "84afb4bc-eed8-491b-bcf4-169870b700a8")]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
+        string GetMembershipOwningNamespace { get; }
 
         /// <summary>
         /// The short name of the memberElement relative to the membershipOwningNamespace.
         /// </summary>
         [Property(xmiId: "d9a35a1e-b312-4566-a773-c1a0897341c8", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
-        public string? MemberShortName { get; set; }
+        string? MemberShortName { get; set; }
 
         /// <summary>
         /// Whether or not the Membership of the memberElement in the membershipOwningNamespace is publicly
         /// visible outside that Namespace.
         /// </summary>
         [Property(xmiId: "5901151e-f794-4fe3-bda3-fda18dd23c41", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: "public")]
-        public VisibilityKind Visibility { get; set; }
+        VisibilityKind Visibility { get; set; }
 
     }
 }

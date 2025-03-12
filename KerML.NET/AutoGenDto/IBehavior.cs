@@ -28,7 +28,15 @@ namespace KerML.NET.DTO.Kernel.Behaviors
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Classifiers;
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Behaviors;
     using KerML.NET.DTO.Kernel.Classes;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -41,6 +49,21 @@ namespace KerML.NET.DTO.Kernel.Behaviors
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IBehavior : IClass
     {
+        /// <summary>
+        /// The parameters of this Behavior, which are defined as its directedFeatures, whose values are passed
+        /// into and/or out of a performance of the Behavior.
+        /// </summary>
+        [Property(xmiId: "d425d748-88fa-4431-8ae7-760c6945a9d0", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "5b298b23-243e-4a34-afc9-15236eca08a8")]
+        List<string> GetParameter { get; }
+
+        /// <summary>
+        /// The Steps that make up this Behavior.
+        /// </summary>
+        [Property(xmiId: "2c467a8c-0933-4cd4-a26d-43970229f665", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "42941304-02d9-4962-b118-95860c17236a")]
+        List<string> GetStep { get; }
+
     }
 }
 

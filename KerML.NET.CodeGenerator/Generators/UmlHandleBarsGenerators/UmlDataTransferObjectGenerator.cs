@@ -24,9 +24,8 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
-    using HandleBarHelpers;
+    
     using uml4net.Extensions;
-    using uml4net.SimpleClassifiers;
     using uml4net.StructuredClassifiers;
     using uml4net.xmi.Readers;
 
@@ -50,6 +49,7 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
         public override async Task GenerateAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
         {
             await this.GenerateDataTransferObjectInterfacesAsync(xmiReaderResult, outputDirectory);
+            await this.GenerateDataTransferObjectClassesAsync(xmiReaderResult, outputDirectory);
         }
 
         /// <summary>
@@ -144,7 +144,7 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
         /// The target <see cref="DirectoryInfo"/>
         /// </param>
         /// <param name="name">
-        /// The name of the DTO to generate
+        /// The name of the DTO interface to generate
         /// </param>
         /// <returns>
         /// an awaitable task
@@ -168,6 +168,125 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
             await WriteAsync(generatedDataTransferObjectInterface, outputDirectory, fileName);
 
             return generatedDataTransferObjectInterface;
+        }
+
+        /// <summary>
+        /// Generates DTO classes
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <returns>
+        /// an awaitable task
+        /// </returns>
+        public Task GenerateDataTransferObjectClassesAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        {
+            ArgumentNullException.ThrowIfNull(xmiReaderResult);
+
+            ArgumentNullException.ThrowIfNull(outputDirectory);
+
+            return this.GenerateDataTransferObjectClassesInternalAsync(xmiReaderResult, outputDirectory);
+        }
+
+        /// <summary>
+        /// Generates DTO classes
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <returns>
+        /// an awaitable task
+        /// </returns>
+        private async Task GenerateDataTransferObjectClassesInternalAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        {
+            var template = this.Templates["dto-class-uml-template"];
+
+            var classes = xmiReaderResult.Root.QueryPackages()
+                .SelectMany(x => x.PackagedElement.OfType<IClass>())
+                .Where(x => !x.IsAbstract)
+                .ToList();
+
+            foreach (var @class in classes)
+            {
+                var generatedDto = template(@class);
+
+                generatedDto = CodeCleanup(generatedDto);
+
+                var fileName = $"{@class.Name.CapitalizeFirstLetter()}.cs";
+
+                await WriteAsync(generatedDto, outputDirectory, fileName);
+            }
+        }
+
+        /// <summary>
+        /// Generates DTO class
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <param name="name">
+        /// The name of the DTO class to generate
+        /// </param>
+        /// <returns>
+        /// an awaitable task
+        /// </returns>
+        public Task<string> GenerateDataTransferObjectClassAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory, string name)
+        {
+            ArgumentNullException.ThrowIfNull(xmiReaderResult);
+
+            ArgumentNullException.ThrowIfNull(outputDirectory);
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException(nameof(name));
+            }
+
+            return this.GenerateDataTransferObjectClassInternalAsync(xmiReaderResult, outputDirectory, name);
+        }
+
+        /// <summary>
+        /// Generates DTO classes
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <param name="name">
+        /// The name of the DTO class to generate
+        /// </param>
+        /// <returns>
+        /// an awaitable task
+        /// </returns>
+        private async Task<string> GenerateDataTransferObjectClassInternalAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory, string name)
+        {
+            var template = this.Templates["dto-class-uml-template"];
+
+            var classes = xmiReaderResult.Root.QueryPackages()
+                .SelectMany(x => x.PackagedElement.OfType<IClass>())
+                .ToList();
+
+            var @class = classes.Single(x => x.Name == name);
+
+            var generatedDataTransferObjectClass = template(@class);
+
+            generatedDataTransferObjectClass = CodeCleanup(generatedDataTransferObjectClass);
+
+            var fileName = $"{@class.Name.CapitalizeFirstLetter()}.cs";
+
+            await WriteAsync(generatedDataTransferObjectClass, outputDirectory, fileName);
+
+            return generatedDataTransferObjectClass;
         }
 
         /// <summary>

@@ -28,7 +28,12 @@ namespace KerML.NET.DTO.Core.Features
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -49,14 +54,14 @@ namespace KerML.NET.DTO.Core.Features
         /// </summary>
         [Property(xmiId: "e3585351-105e-4e50-9547-2974f25f09a4", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [SubsettedProperty(propertyName: "0d55f45c-0032-4618-9131-61ed58c3b8e2")]
-        public string Feature { get; set; }
+        string Feature { get; set; }
 
         /// <summary>
         /// The Type that features the featureOfType.
         /// </summary>
         [Property(xmiId: "35ddd42a-b8a5-4ea6-b2d1-ab7d0a827a00", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [SubsettedProperty(propertyName: "0d55f45c-0032-4618-9131-61ed58c3b8e2")]
-        public string Type { get; set; }
+        string Type { get; set; }
 
     }
 }

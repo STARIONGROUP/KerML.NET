@@ -28,7 +28,11 @@ namespace KerML.NET.DTO.Core.Features
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -47,7 +51,16 @@ namespace KerML.NET.DTO.Core.Features
         /// </summary>
         [Property(xmiId: "23d97038-3261-4f93-b9d0-5790d5196ebe", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
-        public new string ChainingFeature { get; set; }
+        string ChainingFeature { get; set; }
+
+        /// <summary>
+        /// The Feature whose values are partly determined by values of the chainingFeature, as described in
+        /// Feature::chainingFeature.
+        /// </summary>
+        [Property(xmiId: "ee3fb20e-db26-476c-817f-4ac6c72cf594", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
+        string GetFeatureChained { get; }
 
     }
 }

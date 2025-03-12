@@ -28,7 +28,13 @@ namespace KerML.NET.DTO.Kernel.Functions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -43,6 +49,13 @@ namespace KerML.NET.DTO.Kernel.Functions
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IResultExpressionMembership : IFeatureMembership
     {
+        /// <summary>
+        /// The Expression that provides the result for the owner of the ResultExpressionMembership.
+        /// </summary>
+        [Property(xmiId: "0d528a3e-f48c-474f-85d4-d4abfd5a8f34", aggregation: AggregationKind.Composite, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "6bf83eae-2d89-4ea9-8c7b-92d8ef26bfaa")]
+        string GetOwnedResultExpression { get; }
+
     }
 }
 

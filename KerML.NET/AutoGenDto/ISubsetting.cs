@@ -28,7 +28,12 @@ namespace KerML.NET.DTO.Core.Features
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -46,18 +51,26 @@ namespace KerML.NET.DTO.Core.Features
     public partial interface ISubsetting : ISpecialization
     {
         /// <summary>
+        /// A subsettingFeature that is also the owningRelatedElement of this Subsetting.
+        /// </summary>
+        [Property(xmiId: "43a01c3e-8273-4941-b616-2f8edcc0ac17", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "20d11fe1-16c0-41fb-8823-559ce4084ebf")]
+        [RedefinedProperty(propertyName: "adeb1ff1-cb20-496c-b832-6ae775e10fd9")]
+        string? GetOwningFeature { get; }
+
+        /// <summary>
         /// The Feature that is subsetted by the subsettingFeature of this Subsetting.
         /// </summary>
         [Property(xmiId: "b8bb3b86-cf2d-451e-b3c1-6a3aecac5aa4", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "6dd5c0f9-10e8-4361-90d4-723016f969f5")]
-        public new string SubsettedFeature { get; set; }
+        string SubsettedFeature { get; set; }
 
         /// <summary>
         /// The Feature that is a subset of the subsettedFeature of this Subsetting.
         /// </summary>
         [Property(xmiId: "20d11fe1-16c0-41fb-8823-559ce4084ebf", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "f45c204e-a88a-4382-9701-ccc842d4a68a")]
-        public new string SubsettingFeature { get; set; }
+        string SubsettingFeature { get; set; }
 
     }
 }

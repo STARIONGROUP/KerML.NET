@@ -28,7 +28,11 @@ namespace KerML.NET.DTO.Core.Types
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -47,14 +51,22 @@ namespace KerML.NET.DTO.Core.Types
         /// </summary>
         [Property(xmiId: "6dd5c0f9-10e8-4361-90d4-723016f969f5", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
-        public new string General { get; set; }
+        string General { get; set; }
+
+        /// <summary>
+        /// The Type that is the specific Type of this Specialization and owns it as its owningRelatedElement.
+        /// </summary>
+        [Property(xmiId: "adeb1ff1-cb20-496c-b832-6ae775e10fd9", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        [SubsettedProperty(propertyName: "f45c204e-a88a-4382-9701-ccc842d4a68a")]
+        string? GetOwningType { get; }
 
         /// <summary>
         /// A Type with a subset of all instances of the general Type, which might be the same set.
         /// </summary>
         [Property(xmiId: "f45c204e-a88a-4382-9701-ccc842d4a68a", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
-        public new string Specific { get; set; }
+        string Specific { get; set; }
 
     }
 }

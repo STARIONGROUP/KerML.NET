@@ -28,7 +28,15 @@ namespace KerML.NET.DTO.Kernel.Functions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Classifiers;
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
     using KerML.NET.DTO.Kernel.Behaviors;
+    using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -42,6 +50,31 @@ namespace KerML.NET.DTO.Kernel.Functions
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IFunction : IBehavior
     {
+        /// <summary>
+        /// The Expressions that are steps in the calculation of the result of this Function.
+        /// </summary>
+        [Property(xmiId: "3d432c24-7906-4789-8045-e6680f82a73a", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "2c467a8c-0933-4cd4-a26d-43970229f665")]
+        List<string> GetExpression { get; }
+
+        /// <summary>
+        /// Whether this Function can be used as the function of a model-level evaluable InvocationExpression.
+        /// Certain Functions from the Kernel Functions Library are considered to have isModelLevelEvaluable =
+        /// true. For all other Functions it is false.<strong>Note:</strong> See the specification of the KerML
+        /// concrete syntax notation for Expressions for an identification of which library Functions are
+        /// model-level evaluable.
+        /// </summary>
+        [Property(xmiId: "1dd6f94c-218a-43c4-95e5-898ffe7bbd35", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        bool GetIsModelLevelEvaluable { get; }
+
+        /// <summary>
+        /// The object or value that is the result of evaluating the Function.
+        /// </summary>
+        [Property(xmiId: "eb936218-1650-422d-a48d-efd692684fc2", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "f33f29d7-3216-4ab5-9298-4fd27cf976f2")]
+        [SubsettedProperty(propertyName: "d425d748-88fa-4431-8ae7-760c6945a9d0")]
+        string GetResult { get; }
+
     }
 }
 

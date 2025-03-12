@@ -29,7 +29,12 @@ namespace KerML.NET.DTO.Kernel.Associations
     using System.Collections.Generic;
 
     using KerML.NET.DTO.Core.Classifiers;
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -43,6 +48,40 @@ namespace KerML.NET.DTO.Kernel.Associations
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IAssociation : IClassifier, IRelationship
     {
+        /// <summary>
+        /// The features of the Association that identify the things that can be related by it. A concrete
+        /// Association must have at least two associationEnds. When it has exactly two, the Association is
+        /// called a binary Association.
+        /// </summary>
+        [Property(xmiId: "cb5ec957-dd8f-4ab9-b1ae-7768db7bcb93", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "5979d447-4d72-4ffb-a569-ddbe6aacc8dd")]
+        List<string> GetAssociationEnd { get; }
+
+        /// <summary>
+        /// The types of the associationEnds of the Association, which are the relatedElements of the
+        /// Association considered as a Relationship.
+        /// </summary>
+        [Property(xmiId: "b578f2b2-1cc1-4ee3-b10e-0fb07bf7f558", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "0d55f45c-0032-4618-9131-61ed58c3b8e2")]
+        List<string> GetRelatedType { get; }
+
+        /// <summary>
+        /// The source relatedType for this Association. It is the first relatedType of the Association.
+        /// </summary>
+        [Property(xmiId: "d770302d-1f5d-445b-88a4-3029c2c09e83", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "b578f2b2-1cc1-4ee3-b10e-0fb07bf7f558")]
+        [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
+        string? GetSourceType { get; }
+
+        /// <summary>
+        /// The target relatedTypes for this Association. This includes all the relatedTypes other than the
+        /// sourceType.
+        /// </summary>
+        [Property(xmiId: "b3337e06-c4a1-4c51-8d4a-f1c9b503ca4a", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "b578f2b2-1cc1-4ee3-b10e-0fb07bf7f558")]
+        [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
+        List<string> GetTargetType { get; }
+
     }
 }
 

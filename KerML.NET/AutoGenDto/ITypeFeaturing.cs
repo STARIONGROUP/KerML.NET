@@ -29,6 +29,11 @@ namespace KerML.NET.DTO.Core.Features
     using System.Collections.Generic;
 
     using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -47,7 +52,7 @@ namespace KerML.NET.DTO.Core.Features
         [Property(xmiId: "02d8e7c6-f578-46e2-8b60-8f6781e3c76a", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
         [RedefinedProperty(propertyName: "e3585351-105e-4e50-9547-2974f25f09a4")]
-        public new string FeatureOfType { get; set; }
+        string FeatureOfType { get; set; }
 
         /// <summary>
         /// The Type that features the featureOfType. It is the target of the TypeFeaturing.
@@ -55,7 +60,15 @@ namespace KerML.NET.DTO.Core.Features
         [Property(xmiId: "fd727563-b8f6-4727-b5a1-ec338e551951", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
         [RedefinedProperty(propertyName: "35ddd42a-b8a5-4ea6-b2d1-ab7d0a827a00")]
-        public new string FeaturingType { get; set; }
+        string FeaturingType { get; set; }
+
+        /// <summary>
+        /// A featureOfType that is also the owningRelatedElement of this TypeFeaturing.
+        /// </summary>
+        [Property(xmiId: "5b10450f-fcde-4a1a-8688-24625e1b6dd0", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        [SubsettedProperty(propertyName: "02d8e7c6-f578-46e2-8b60-8f6781e3c76a")]
+        string? GetOwningFeatureOfType { get; }
 
     }
 }

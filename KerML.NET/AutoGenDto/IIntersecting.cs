@@ -28,7 +28,11 @@ namespace KerML.NET.DTO.Core.Types
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -47,7 +51,16 @@ namespace KerML.NET.DTO.Core.Types
         /// </summary>
         [Property(xmiId: "fd763102-8889-4081-9ac6-9e9598ec557e", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
-        public new string IntersectingType { get; set; }
+        string IntersectingType { get; set; }
+
+        /// <summary>
+        /// Type with interpretations partly determined by intersectingType, as described in
+        /// Type::intersectingType.
+        /// </summary>
+        [Property(xmiId: "fabdf9d7-d076-4f01-87cb-9bd0a48effbf", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
+        string GetTypeIntersected { get; }
 
     }
 }

@@ -27,7 +27,7 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
     using System.Text;
 
     using HandlebarsDotNet;
-
+    using Microsoft.CodeAnalysis.CSharp.Syntax;
     using uml4net.SimpleClassifiers;
     using uml4net.Extensions;
     using uml4net.Classification;
@@ -54,13 +54,6 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
                 }
 
                 var sb = new StringBuilder();
-                sb.Append(property.Visibility.ToString().ToLower());
-                sb.Append(" ");
-
-                if (property.RedefinedProperty.Any())
-                {
-                    sb.Append("new ");
-                }
 
                 if (property.Type is IDataType)
                 {
@@ -101,23 +94,128 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
 
                 var propertyName = property.Name.CapitalizeFirstLetter();
 
-                var owner = property.Owner as IClass;
-                if (owner.Name.ToLowerInvariant() == property.Name.ToLowerInvariant())
+                if (property.IsReadOnly || property.IsDerived || property.IsDerivedUnion)
                 {
-                    throw new InvalidDataException();
-                    //propertyName = propertyName + "s";
+                    propertyName = $"Get{propertyName}";
                 }
 
                 sb.Append(propertyName);
                 sb.Append(" ");
 
-                if (property.IsReadOnly || property.IsDerived)
+                if (property.IsReadOnly || property.IsDerived || property.IsDerivedUnion)
+                {
+                    sb.Append("{ get; }");
+                }
+                else
+                {
+                    sb.Append("{ get; set; }");
+                }
+
+                writer.WriteSafeString(sb + Environment.NewLine);
+            });
+
+            handlebars.RegisterHelper("Property.WriteForDTOClass", (writer, _, parameters) =>
+            {
+                if (parameters.Length != 2)
+                {
+                    throw new HandlebarsException("{{#Property.WriteForDTOClass}} helper must have exactly two arguments");
+                }
+
+                var property = parameters[0] as IProperty;
+                var @class = parameters[1] as IClass;
+
+                var sb = new StringBuilder();
+
+                var isRedefinedByProperty = property.TryQueryRedefinedByProperty(@class, out var redefiningProperty);
+
+                if (!isRedefinedByProperty)
+                {
+                    sb.Append(property.Visibility.ToString().ToLower(CultureInfo.InvariantCulture));
+                    sb.Append(" ");
+                }
+
+                if (property.Type is IDataType)
+                {
+                    if (property.QueryIsEnumerable())
+                    {
+                        sb.Append($"List<{property.QueryCSharpTypeName()}>");
+                        sb.Append(" ");
+                    }
+                    else
+                    {
+                        sb.Append($"{property.QueryCSharpTypeName()}");
+                        if (property.Lower == 0)
+                        {
+                            sb.Append("?");
+                        }
+                        sb.Append(" ");
+                    }
+                }
+                else
+                {
+                    if (property.QueryIsEnumerable())
+                    {
+                        sb.Append("List<string>");
+                        sb.Append(" ");
+                    }
+                    else
+                    {
+                        sb.Append("string");
+
+                        if (property.Lower == 0)
+                        {
+                            sb.Append("?");
+                        }
+
+                        sb.Append(" ");
+                    }
+                }
+
+                var owner = property.Owner as IClass;
+
+                if (isRedefinedByProperty)
+                {
+                    sb.Append($"I{owner.Name}.");
+                }
+
+                var propertyName = property.Name.CapitalizeFirstLetter();
+
+                if (property.IsReadOnly || property.IsDerived || property.IsDerivedUnion)
+                {
+                    propertyName = $"Get{propertyName}";
+                }
+
+                sb.Append(propertyName);
+                sb.Append(" ");
+
+                if (isRedefinedByProperty)
+                {
+                    var redefinedByPropertyOwner = redefiningProperty.Owner as IClass;
+
+                    if (property.IsReadOnly || property.IsDerived || property.IsDerivedUnion)
+                    {
+                        sb.Append($" => throw new NotSupportedException(\"I{owner.Name}.{propertyName} has been redefined by I{redefinedByPropertyOwner.Name}.{redefiningProperty.Name.CapitalizeFirstLetter()}\");");
+                    }
+                    else
+                    {
+                        sb.AppendLine("{");
+                        sb.AppendLine($"    get => throw new NotSupportedException(\"I{owner.Name}.{propertyName} has been redefined by I{redefinedByPropertyOwner.Name}.{redefiningProperty.Name.CapitalizeFirstLetter()}\");");
+                        sb.AppendLine($"    set => throw new NotSupportedException(\"I{owner.Name}.{propertyName} has been redefined by I{redefinedByPropertyOwner.Name}.{redefiningProperty.Name.CapitalizeFirstLetter()}\");");
+                        sb.AppendLine("}");
+                    }
+                }
+                else if (property.IsReadOnly || property.IsDerived || property.IsDerivedUnion)
                 {
                     sb.Append("{ get; internal set; }");
                 }
                 else
                 {
                     sb.Append("{ get; set; }");
+
+                    if (property.QueryIsEnumerable())
+                    {
+                        sb.Append(" = [];");
+                    }
                 }
 
                 writer.WriteSafeString(sb + Environment.NewLine);

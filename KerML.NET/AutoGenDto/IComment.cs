@@ -29,6 +29,9 @@ namespace KerML.NET.DTO.Root.Annotations
     using System.Collections.Generic;
 
     using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -44,7 +47,7 @@ namespace KerML.NET.DTO.Root.Annotations
         /// The annotation text for the Comment.
         /// </summary>
         [Property(xmiId: "8f8b0fa4-5d0c-4c35-9223-c61e5b3c117b", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
-        public string Body { get; set; }
+        string Body { get; set; }
 
         /// <summary>
         /// Identification of the language of the body text and, optionally, the region and/or encoding. The
@@ -52,7 +55,7 @@ namespace KerML.NET.DTO.Root.Annotations
         /// [language[_territory][.codeset][@modifier]].
         /// </summary>
         [Property(xmiId: "796211dd-710e-48a5-b124-ed2ec1dee136", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
-        public string? Locale { get; set; }
+        string? Locale { get; set; }
 
     }
 }

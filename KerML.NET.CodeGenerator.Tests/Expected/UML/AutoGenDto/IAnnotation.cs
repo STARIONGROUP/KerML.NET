@@ -1,4 +1,4 @@
-// -------------------------------------------------------------------------------------------------
+﻿// -------------------------------------------------------------------------------------------------
 // <copyright file="IAnnotation.cs" company="Starion Group S.A.">
 //
 //   Copyright (C) 2022-2025 Starion Group S.A.
@@ -28,7 +28,10 @@ namespace KerML.NET.DTO.Root.Annotations
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -46,7 +49,39 @@ namespace KerML.NET.DTO.Root.Annotations
         /// </summary>
         [Property(xmiId: "82d77c42-a20c-41ea-bb08-85e55ac59a26", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
-        public new string AnnotatedElement { get; set; }
+        string AnnotatedElement { get; set; }
+
+        /// <summary>
+        /// The AnnotatingElement that annotates the annotatedElement of this Annotation. This is always either
+        /// the ownedAnnotatingElement or the owningAnnotatingElement.
+        /// </summary>
+        [Property(xmiId: "05712626-eade-4016-9f1e-feec1c645bf8", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "cd83f43d-3885-4b41-8f03-f02255e6a5da")]
+        string GetAnnotatingElement { get; }
+
+        /// <summary>
+        /// The annotatingElement of this Annotation, when it is an ownedRelatedElement.
+        /// </summary>
+        [Property(xmiId: "299ed0ae-e1b6-45aa-9438-ab6d0009a01f", aggregation: AggregationKind.Composite, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "05712626-eade-4016-9f1e-feec1c645bf8")]
+        [SubsettedProperty(propertyName: "27fc72b3-57ec-4aa5-a656-1e902c5d768a")]
+        string? GetOwnedAnnotatingElement { get; }
+
+        /// <summary>
+        /// The annotatedElement of this Annotation, when it is also the owningRelatedElement.
+        /// </summary>
+        [Property(xmiId: "3289771d-4de4-4921-b95b-d7d8aacf20f2", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "82d77c42-a20c-41ea-bb08-85e55ac59a26")]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        string? GetOwningAnnotatedElement { get; }
+
+        /// <summary>
+        /// The annotatingElement of this Annotation, when it is the owningRelatedElement.
+        /// </summary>
+        [Property(xmiId: "dacbaa16-7f5e-49ff-8aec-43761baec776", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "05712626-eade-4016-9f1e-feec1c645bf8")]
+        [SubsettedProperty(propertyName: "c81d146c-d738-40a0-ab80-8526beac3673")]
+        string? GetOwningAnnotatingElement { get; }
 
     }
 }

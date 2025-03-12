@@ -28,7 +28,12 @@ namespace KerML.NET.DTO.Kernel.FeatureValues
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
     using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -50,17 +55,31 @@ namespace KerML.NET.DTO.Kernel.FeatureValues
     public partial interface IFeatureValue : IOwningMembership
     {
         /// <summary>
+        /// The Feature to be provided a value.
+        /// </summary>
+        [Property(xmiId: "f8d0aa12-273f-4fbb-ab50-efd089908555", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "67aded9a-ae8a-4191-8053-2df04cce9c8c")]
+        string GetFeatureWithValue { get; }
+
+        /// <summary>
         /// Whether this FeatureValue is a concrete specification of the bound or initial value of the
         /// featureWithValue, or just a default value that may be overridden.
         /// </summary>
         [Property(xmiId: "15505862-8264-4ecd-a907-c6646e788f34", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: "false")]
-        public bool IsDefault { get; set; }
+        bool IsDefault { get; set; }
 
         /// <summary>
         /// Whether this FeatureValue specifies a bound value or an initial value for the featureWithValue.
         /// </summary>
         [Property(xmiId: "5b913b24-a8c1-4b00-8af1-1d87bc5bb67c", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: "false")]
-        public bool IsInitial { get; set; }
+        bool IsInitial { get; set; }
+
+        /// <summary>
+        /// The Expression that provides the value as a result.
+        /// </summary>
+        [Property(xmiId: "b95fb21e-86ca-41e0-8297-af75480ea849", aggregation: AggregationKind.Composite, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "c23da327-2bed-4f05-9fa2-9749097c6eca")]
+        string GetValue { get; }
 
     }
 }

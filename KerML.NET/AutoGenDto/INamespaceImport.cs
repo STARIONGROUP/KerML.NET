@@ -28,7 +28,10 @@ namespace KerML.NET.DTO.Root.Namespaces
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
     using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -48,7 +51,7 @@ namespace KerML.NET.DTO.Root.Namespaces
         /// </summary>
         [Property(xmiId: "de500f4c-b51b-4aa3-96a9-5e3343d35538", aggregation: AggregationKind.None, lowerValue: 1, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: false, isDerivedUnion: false, isUnique: false, defaultValue: null)]
         [RedefinedProperty(propertyName: "4c7374f5-78f8-42ab-ae42-672ad9c80902")]
-        public new string ImportedNamespace { get; set; }
+        string ImportedNamespace { get; set; }
 
     }
 }

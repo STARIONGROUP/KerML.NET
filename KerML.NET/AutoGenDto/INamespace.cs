@@ -28,7 +28,10 @@ namespace KerML.NET.DTO.Root.Namespaces
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -49,6 +52,54 @@ namespace KerML.NET.DTO.Root.Namespaces
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface INamespace : IElement
     {
+        /// <summary>
+        /// The Memberships in this Namespace that result from the ownedImports of this Namespace.
+        /// </summary>
+        [Property(xmiId: "88e42ee1-8909-4ebd-b5df-cca0a4c44be4", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "596739a5-b42a-40d6-af0c-89cddf2d7768")]
+        List<string> GetImportedMembership { get; }
+
+        /// <summary>
+        /// The set of all member Elements of this Namespace, which are the memberElements of all memberships of
+        /// the Namespace.
+        /// </summary>
+        [Property(xmiId: "9098f21e-06d6-46cd-b1c6-3ccde8f5d8bb", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        List<string> GetMember { get; }
+
+        /// <summary>
+        /// All Memberships in this Namespace, including (at least) the union of ownedMemberships and
+        /// importedMemberships.
+        /// </summary>
+        [Property(xmiId: "596739a5-b42a-40d6-af0c-89cddf2d7768", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: true, isUnique: false, defaultValue: null)]
+        List<string> GetMembership { get; }
+
+        /// <summary>
+        /// The ownedRelationships of this Namespace that are Imports, for which the Namespace is the
+        /// importOwningNamespace.
+        /// </summary>
+        [Property(xmiId: "d382696c-18ad-4754-8872-cf777875c8c6", aggregation: AggregationKind.Composite, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "9a0cb697-5a6b-4fa8-806e-ea6c79d5ada9")]
+        [SubsettedProperty(propertyName: "fd194ed0-9544-4215-b3df-64c5423ec874")]
+        List<string> GetOwnedImport { get; }
+
+        /// <summary>
+        /// The owned members of this Namespace, which are the <cpde>ownedMemberElements of the ownedMemberships
+        /// of the Namespace.</cpde>
+        /// </summary>
+        [Property(xmiId: "e77d17fa-39f5-4493-b101-5630bea6df70", aggregation: AggregationKind.None, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "9098f21e-06d6-46cd-b1c6-3ccde8f5d8bb")]
+        List<string> GetOwnedMember { get; }
+
+        /// <summary>
+        /// The ownedRelationships of this Namespace that are Memberships, for which the Namespace is the
+        /// membershipOwningNamespace.
+        /// </summary>
+        [Property(xmiId: "fad0c25d-2a44-4e7a-9b06-bae16320cb4e", aggregation: AggregationKind.Composite, lowerValue: 0, upperValue: int.MaxValue, isOrdered: true, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [SubsettedProperty(propertyName: "596739a5-b42a-40d6-af0c-89cddf2d7768")]
+        [SubsettedProperty(propertyName: "fd194ed0-9544-4215-b3df-64c5423ec874")]
+        [SubsettedProperty(propertyName: "9a0cb697-5a6b-4fa8-806e-ea6c79d5ada9")]
+        List<string> GetOwnedMembership { get; }
+
     }
 }
 

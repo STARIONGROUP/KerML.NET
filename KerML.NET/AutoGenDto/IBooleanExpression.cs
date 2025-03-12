@@ -28,7 +28,14 @@ namespace KerML.NET.DTO.Kernel.Functions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.DTO.Core.Features;
+    using KerML.NET.DTO.Core.Types;
+    using KerML.NET.DTO.Kernel.Behaviors;
     using KerML.NET.DTO.Kernel.Functions;
+    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Root.Elements;
+    using KerML.NET.DTO.Root.Namespaces;
+
     using KerML.NET.Decorators;
     using KerML.NET.Namespaces;
     using KerML.NET.Types;
@@ -41,6 +48,13 @@ namespace KerML.NET.DTO.Kernel.Functions
     [GeneratedCode("KerML.NET", "latest")]
     public partial interface IBooleanExpression : IExpression
     {
+        /// <summary>
+        /// The Predicate that types the Expression.
+        /// </summary>
+        [Property(xmiId: "0532b96c-597f-4fd0-b50f-b980beb4a9b3", aggregation: AggregationKind.None, lowerValue: 0, upperValue: 1, isOrdered: false, isReadOnly: false, isDerived: true, isDerivedUnion: false, isUnique: false, defaultValue: null)]
+        [RedefinedProperty(propertyName: "2e507a50-ac61-442c-8efa-716bfc5e6ff9")]
+        string? GetPredicate { get; }
+
     }
 }
 
