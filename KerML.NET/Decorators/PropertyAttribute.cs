@@ -60,7 +60,7 @@ namespace KerML.NET.Decorators
             bool isDerived = false,
             bool isDerivedUnion = false,
             bool isUnique = true,
-            string defaultValue = null)
+            string? defaultValue = null)
         {
             this.XmiId = xmiId;
             this.Aggregation = aggregation;
@@ -122,6 +122,6 @@ namespace KerML.NET.Decorators
         /// <summary>
         /// Gets or sets the default value if any.
         /// </summary>
-        public string DefaultValue { get; set; }
+        public string? DefaultValue { get; set; }
     }
 }
