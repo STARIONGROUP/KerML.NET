@@ -4,12 +4,16 @@
         <TargetFramework>net9.0</TargetFramework>
         <Company>Starion Group S.A.</Company>
         <Authors>Sam Gerené</Authors>
-        <Description>Nunit test suite for the KerML.NET library</Description>
+        <Description>Nunit test suite for the KerML.NET.Serializer.Json</Description>
         <Copyright>Copyright © Starion Group S.A.</Copyright>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/STARIONGROUP/KerML.NET.git</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
+        <ImplicitUsings>false</ImplicitUsings>
         <Nullable>disable</Nullable>
         <IsPackable>false</IsPackable>
+        <PreserveCompilationContext>true</PreserveCompilationContext>
+        <SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
     </PropertyGroup>
 
     <ItemGroup>
@@ -30,9 +34,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\KerML.NET\KerML.NET.csproj" />
+      <ProjectReference Include="..\KerML.NET.Serializer.Json\KerML.NET.Serializer.Json.csproj" />
     </ItemGroup>
 
-  
+  <ItemGroup>
+    <Using Include="NUnit.Framework" />
+  </ItemGroup>
 
 </Project>

@@ -22,8 +22,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis" Version="4.13.0" />
-        <PackageReference Include="uml4net.HandleBars" Version="2.0.1" />
-        <PackageReference Include="uml4net.xmi" Version="2.0.1" />
+        <PackageReference Include="uml4net.HandleBars" Version="2.2.1" />
+        <PackageReference Include="uml4net.xmi" Version="2.2.2" />
     </ItemGroup>
 
     <ItemGroup>
