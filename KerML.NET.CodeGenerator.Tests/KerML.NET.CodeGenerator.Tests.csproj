@@ -17,6 +17,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Expected\UML\AutoGenDeSerializer\AnnotationDeSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenDeSerializer\CommentDeSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenDeSerializer\DependencyDeSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenDeSerializer\FeatureDeSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenDeSerializer\LiteralIntegerDeSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenDeSerializer\LiteralRationalDeSerializer.cs" />
       <Compile Remove="Expected\UML\AutoGenDto\Annotation.cs" />
       <Compile Remove="Expected\UML\AutoGenDto\Comment.cs" />
       <Compile Remove="Expected\UML\AutoGenDto\Dependency.cs" />
@@ -34,6 +40,12 @@
       <Compile Remove="Expected\UML\AutoGenDto\LiteralRational.cs" />
       <Compile Remove="Expected\UML\AutoGenEnum\FeatureDirectionKind.cs" />
       <Compile Remove="Expected\UML\AutoGenEnum\VisibilityKind.cs" />
+      <Compile Remove="Expected\UML\AutoGenSerializer\AnnotationSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenSerializer\CommentSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenSerializer\DependencySerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenSerializer\FeatureSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenSerializer\LiteralIntegerSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenSerializer\LiteralRationalSerializer.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -115,6 +127,45 @@
 
     <ItemGroup>
       <ProjectReference Include="..\KerML.NET.CodeGenerator\KerML.NET.CodeGenerator.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Include="Expected\UML\AutoGenDeSerializer\AnnotationDeSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenDeSerializer\CommentDeSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenDeSerializer\DependencyDeSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenDeSerializer\FeatureDeSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenDeSerializer\LiteralIntegerDeSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenDeSerializer\LiteralRationalDeSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenSerializer\AnnotationSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenSerializer\CommentSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenSerializer\DependencySerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenSerializer\FeatureSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenSerializer\LiteralIntegerSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenSerializer\LiteralRationalSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
