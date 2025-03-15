@@ -1,0 +1,219 @@
+﻿// -------------------------------------------------------------------------------------------------
+// <copyright file="{{this.Name}}.cs" company="Starion Group S.A.">
+//
+//   Copyright (C) 2022-2025 Starion Group S.A.
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+//
+// </copyright>
+// ------------------------------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------------------------------
+// --------THIS IS AN AUTOMATICALLY GENERATED FILE. ANY MANUAL CHANGES WILL BE OVERWRITTEN!--------
+// ------------------------------------------------------------------------------------------------
+
+namespace KerML.NET.Serializer.Json
+{
+    using System;
+    using System.Text.Json;
+
+    using {{ #Class.WriteFullyQualifiedNameSpace this }};
+
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Logging.Abstractions;
+
+    /// <summary>
+    /// The purpose of the <see cref="{{this.Name}}DeSerializer"/> is to provide deserialization capabilities
+    /// for the <see cref="I{{this.Name}}"/> interface
+    /// </summary>
+    public static class {{this.Name}}DeSerializer
+    {
+        /// <summary>
+        /// Deserializes an instance of <see cref="I{{this.Name}}"/> from the provided <see cref="JsonElement"/>
+        /// </summary>
+        /// <param name="jsonElement">
+        /// The <see cref="JsonElement"/> that contains the <see cref="I{{this.Name}}"/> json object
+        /// </param>
+        /// <param name="serializationModeKind">
+        /// enumeration specifying what kind of serialization shall be used
+        /// </param>
+        /// <param name="loggerFactory">
+        /// The <see cref="ILoggerFactory"/> used to set up logging
+        /// </param>
+        /// <returns>
+        /// an instance of <see cref="I{{this.Name}}"/>
+        /// </returns>
+        public static I{{this.Name}} DeSerialize(JsonElement jsonElement, SerializationModeKind serializationModeKind, ILoggerFactory? loggerFactory = null)
+        {
+            var logger = loggerFactory == null ? NullLogger.Instance : loggerFactory.CreateLogger("{{this.Name}}DeSerializer");
+
+            if (!jsonElement.TryGetProperty("@type"u8, out JsonElement type))
+            {
+                throw new InvalidOperationException("The @type property is not available, the {{this.Name}}DeSerializer cannot be used to deserialize this JsonElement");
+            }
+
+            if (type.GetString() != "{{this.Name}}")
+            {
+                throw new InvalidOperationException($"The {{this.Name}}DeSerializer can only be used to deserialize objects of type I{{this.Name}}, a {type.GetString()} was provided");
+            }
+
+            var dtoInstance = new {{ #Class.WriteFullyQualifiedName this }}();
+
+            if (jsonElement.TryGetProperty("@id"u8, out JsonElement idProperty))
+            {
+                var propertyValue = idProperty.GetString();
+                if (propertyValue == null)
+                {
+                    throw new JsonException("The @id property is not present, the {{ this.Name }} cannot be deserialized");
+                }
+                else
+                {
+                    dtoInstance.ElementId = propertyValue;
+                }
+            }
+
+            {{#with this as | UmlClass |}}
+            {{ #each (#Class.QueryAllProperties this) as | property | }}
+                {{#if (Property.IsRedefined property ../)}}
+                    if (jsonElement.TryGetProperty("{{ property.Name }}"u8, out _))
+                    {
+                        logger.LogDebug($"the {{ UmlClass.Name }}.{{String.CapitalizeFirstLetter property.Name }} property is Redefined property which should not be present in the JSON. It was found in {{ UmlClass.Name }}: {dtoInstance.ElementId}");
+                    }
+
+                {{else}}
+                    if (jsonElement.TryGetProperty("{{ property.Name }}"u8, out JsonElement {{ property.Name }}Property))
+                    {
+                        {{#if (Property.QueryIsReferenceProperty property)}}
+                            {{#if (Property.QueryIsEnumerable property)}}
+                                foreach (var arrayItem in {{ property.Name }}Property.EnumerateArray())
+                                {
+                                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement {{ property.Name }}IdProperty))
+                                    {
+                                        var propertyValue = {{ property.Name }}IdProperty.GetString();
+                                        if (propertyValue != null)
+                                        {
+                                            dtoInstance.{{ Property.WriteName property }}.Add(propertyValue);
+                                        }
+                                    }
+                                }
+                            {{ else }}
+                                if ({{ property.Name }}Property.ValueKind == JsonValueKind.Null)
+                                {
+                                    {{#if (Property.QueryIsNullable property) }}
+                                        dtoInstance.{{  Property.WriteName property }} = null;
+                                    {{else}}
+                                        dtoInstance.{{  Property.WriteName property }} = "-";
+                                        logger.LogDebug("the {{ UmlClass.Name }}.{{String.CapitalizeFirstLetter property.Name }} property was not found in the Json. The value is set to '-'");
+                                    {{/if}}
+                                }
+                                else
+                                {
+                                    if ({{ property.Name }}Property.TryGetProperty("@id"u8, out JsonElement {{ property.Name }}IdProperty))
+                                    {
+                                        var propertyValue = {{ property.Name }}IdProperty.GetString();
+                                        if (propertyValue != null)
+                                        {
+                                            dtoInstance.{{  Property.WriteName property }} = propertyValue;
+                                        }
+                                    }
+                                }
+                            {{/if}}
+                        {{ else }}
+                            {{#if (Property.QueryIsEnumerable property)}}
+                                foreach (var arrayItem in {{ property.Name }}Property.EnumerateArray())
+                                {
+                                    {{#if (Property.QueryIsBool property )}}
+                                        var propertyValue = arrayItem.GetBoolean();
+                                        if (propertyValue != null)
+                                        {
+                                            dtoInstance.{{  Property.WriteName property }}.Add(propertyValue);
+                                        }
+                                    {{else if (Property.QueryIsNumeric property )}}
+                                        {{#if (Property.QueryIsInteger property) }}
+                                            dtoInstance.{{  Property.WriteName property  }}.Add(arrayItem.GetInt32());
+                                        {{else if (Property.QueryIsDouble property) }}
+                                            dtoInstance.{{  Property.WriteName property }}.Add(arrayItem.GetDouble());
+                                        {{ else }}
+                                            throw new NotImplementedException("Enumerable Double - {{UmlClass.Name}}.{{property.Name}} is not yet supported");
+                                        {{/if}}
+                                    {{else if (Property.QueryIsEnum property )}}
+                                         throw new NotImplementedException("Enumerable Enum - {{UmlClass.Name}}.{{property.Name}} is not yet supported");
+                                    {{else}}
+                                        var propertyValue = arrayItem.GetString();
+                                        if (propertyValue != null)
+                                        {
+                                            dtoInstance.{{  Property.WriteName property }}.Add(propertyValue);
+                                        }
+                                    {{/if}}
+                                }
+                            {{ else if (Property.QueryIsNullable property) }}
+                                {{#if (Property.QueryIsBool property )}}
+                                    dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetBoolean();
+                                {{else if (Property.QueryIsNumeric property )}}
+                                    {{#if (Property.QueryIsInteger property) }}
+                                        dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetInt32();
+                                    {{else if (Property.QueryIsDouble property) }}
+                                        dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetDouble();
+                                    {{ else }}
+                                        new NotImplementedException("nullable - {{this.Name}}.{{property.Name}} is not yet supported");
+                                    {{/if}}
+                                {{else if (Property.QueryIsEnum property )}}
+                                    dtoInstance.{{  Property.WriteName property }} = {{ property.Type.Name }}DeSerializer.DeserializeNullable({{ property.Name }}Property.GetString());
+                                {{else}}
+                                    dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetString();
+                                {{/if}}
+                            {{ else if (Property.QueryIsScalar property) }}
+                                {{#if (Property.QueryIsBool property )}}
+                                    if ({{ property.Name }}Property.ValueKind != JsonValueKind.Null)
+                                    {
+                                        dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetBoolean();
+                                    }
+                                {{else if (Property.QueryIsNumeric property )}}
+                                    {{#if (Property.QueryIsInteger property) }}
+                                        dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetInt32();
+                                    {{else if (Property.QueryIsDouble property) }}
+                                        dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetDouble();
+                                    {{ else }}
+                                        new NotImplementedException("Scalar - {{UmlClass.Name}}.{{property.Name}} is not yet supported");
+                                    {{/if}}
+                                {{else if (Property.QueryIsEnum property )}}
+                                    dtoInstance.{{  Property.WriteName property }} = {{ property.EType.Name }}DeSerializer.Deserialize({{ property.Name }}Property.GetString());
+                                {{else}}
+                                    var propertyValue = {{property.Name }}Property.GetString();
+                                    if (propertyValue != null)
+                                    {
+                                        dtoInstance.{{  Property.WriteName property }} = propertyValue;
+                                    }
+                                {{/if}}
+                            {{ else }}
+                                throw new NotImplementedException("{{UmlClass.Name}}.{{property.Name}} is not supported");
+                            {{/if}}
+                        {{/if}}
+                    }
+                    else
+                    {
+                        logger.LogDebug($"the {{ property.Name }} Json property was not found in the {{ UmlClass.Name }}: { dtoInstance.ElementId }");
+                    }
+
+                {{/if}}
+            {{/each}}
+            {{/with}}
+
+            return dtoInstance;
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------------------------
+// --------THIS IS AN AUTOMATICALLY GENERATED FILE. ANY MANUAL CHANGES WILL BE OVERWRITTEN!--------
+// ------------------------------------------------------------------------------------------------

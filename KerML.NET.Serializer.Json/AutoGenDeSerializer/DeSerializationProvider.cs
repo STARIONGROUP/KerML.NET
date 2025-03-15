@@ -42,9 +42,13 @@ namespace KerML.NET.Serializer.Json
         /// </summary>
         private static readonly Dictionary<string, Func<JsonElement, SerializationModeKind, ILoggerFactory, IElement>> DeSerializerActionMap =  new Dictionary<string, Func<JsonElement, SerializationModeKind, ILoggerFactory, IElement>>
         {
-
+            { "Annotation", AnnotationDeSerializer.DeSerialize },
+            { "Comment", CommentDeSerializer.DeSerialize },
+            { "Dependency", DependencyDeSerializer.DeSerialize },
+            { "Feature", FeatureDeSerializer.DeSerialize },
+            { "LiteralInteger", LiteralIntegerDeSerializer.DeSerialize },
+            { "LiteralRational", LiteralRationalDeSerializer.DeSerialize },
         };
-
 
         /// <summary>
         /// Provides the delegate <see cref="Func{JsonElement, SerializationModeKind, ILoggerFactory, IData}"/> for the
@@ -76,7 +80,7 @@ namespace KerML.NET.Serializer.Json
         /// The name of the subject <see cref="System.Type"/> for which support is asserted
         /// </param>
         /// <returns></returns>
-        internal static bool IsTypeSupported(string typeName)
+        public static bool IsTypeSupported(string typeName)
         {
             return DeSerializerActionMap.ContainsKey(typeName);
         }

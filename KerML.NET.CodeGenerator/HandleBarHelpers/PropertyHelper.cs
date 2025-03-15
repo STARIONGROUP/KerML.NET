@@ -33,6 +33,8 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
     using uml4net.Classification;
     using uml4net.StructuredClassifiers;
 
+    using KerML.NET.CodeGenerator.Extensions;
+
     /// <summary>
     /// A handlebars block helper for the <see cref="IProperty"/> interface
     /// </summary>
@@ -46,6 +48,65 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
         /// </param>
         public static void RegisterPropertyHelper(this IHandlebars handlebars)
         {
+            handlebars.RegisterHelper("Property.QueryIsReferenceProperty", (_, arguments) =>
+            {
+                if (arguments.Length != 1)
+                {
+                    throw new HandlebarsException("{{#Property.QueryIsReferenceProperty}} helper must have exactly one argument");
+                }
+
+                var property = arguments.Single() as IProperty;
+
+                return property.QueryIsReferenceProperty();
+            });
+
+            handlebars.RegisterHelper("Property.QueryIsNullable", (_, arguments) =>
+            {
+                if (arguments.Length != 1)
+                {
+                    throw new HandlebarsException("{{#Property.QueryIsNullable}} helper must have exactly one argument");
+                }
+
+                var property = arguments.Single() as IProperty;
+
+                return property.QueryIsNullable();
+            });
+
+            handlebars.RegisterHelper("Property.QueryIsScalar", (_, arguments) =>
+            {
+                if (arguments.Length != 1)
+                {
+                    throw new HandlebarsException("{{#Property.QueryIsScalar}} helper must have exactly one argument");
+                }
+
+                var property = arguments.Single() as IProperty;
+
+                return property.QueryIsScalar();
+            });
+
+            handlebars.RegisterHelper("Property.WriteName", (writer, context, arguments) =>
+            {
+                if (arguments.Length != 1)
+                {
+                    throw new HandlebarsException("{{#Property.WriteName}} helper must have exactly one argument");
+                }
+
+                var property = arguments.Single() as IProperty;
+
+                string propertyName;
+
+                if (property.IsReadOnly || property.IsDerived || property.IsDerivedUnion)
+                {
+                    propertyName = $"Get{property.Name.CapitalizeFirstLetter()}";
+                }
+                else
+                {
+                    propertyName = property.Name.CapitalizeFirstLetter();
+                }
+
+                writer.WriteSafeString(propertyName);
+            });
+
             handlebars.RegisterHelper("Property.WriteForDTOInterface", (writer, context, _) =>
             {
                 if (!(context.Value is IProperty property))

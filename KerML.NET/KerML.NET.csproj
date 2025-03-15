@@ -36,6 +36,7 @@
       <Folder Include="AutoGenPoco\" />
       <Folder Include="Decorators\" />
       <Folder Include="Extend\" />
+      <Folder Include="Properties\" />
     </ItemGroup>
 
 </Project>

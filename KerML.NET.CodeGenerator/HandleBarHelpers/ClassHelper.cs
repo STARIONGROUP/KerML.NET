@@ -136,6 +136,34 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
                     writer.WriteSafeString($"using KerML.NET.DTO.{orderedNamespace} ;{Environment.NewLine}");
                 }
             });
+
+            handlebars.RegisterHelper("Class.WriteFullyQualifiedName", (writer, context, _) =>
+            {
+                if (!(context.Value is IClass @class))
+                {
+                    throw new ArgumentException("supposed to be IClass");
+                }
+
+                var qualifiedNameSpaces = @class.QualifiedName.Split("::");
+                var namespaces = qualifiedNameSpaces.Skip(1).Take(qualifiedNameSpaces.Length - 2);
+                var nameSpace = string.Join('.', namespaces);
+
+                writer.WriteSafeString($"KerML.NET.DTO.{nameSpace}.{@class.Name}");
+            });
+
+            handlebars.RegisterHelper("Class.WriteFullyQualifiedNameSpace", (writer, context, _) =>
+            {
+                if (!(context.Value is IClass @class))
+                {
+                    throw new ArgumentException("supposed to be IClass");
+                }
+
+                var qualifiedNameSpaces = @class.QualifiedName.Split("::");
+                var namespaces = qualifiedNameSpaces.Skip(1).Take(qualifiedNameSpaces.Length - 2);
+                var nameSpace = string.Join('.', namespaces);
+
+                writer.WriteSafeString($"KerML.NET.DTO.{nameSpace}");
+            });
         }
     }
 }
