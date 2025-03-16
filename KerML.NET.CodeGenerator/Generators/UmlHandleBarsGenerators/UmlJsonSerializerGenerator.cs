@@ -26,6 +26,7 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
     using System.Threading.Tasks;
 
     using uml4net.Extensions;
+    using uml4net.SimpleClassifiers;
     using uml4net.StructuredClassifiers;
     using uml4net.xmi.Readers;
 
@@ -35,11 +36,248 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
     public class UmlJsonSerializerGenerator : UmlHandleBarsGenerator
     {
         /// <summary>
-        /// A UML Handlebars based JsonSerializer code generator
+        /// Generates JSON Serializer for KerML classes and enumerations
         /// </summary>
-        public override Task GenerateAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <returns>
+        /// an awaitable <see cref="Task"/>
+        /// </returns>
+        public override async Task GenerateAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
         {
-            throw new NotImplementedException();
+            await this.GenerateEnumJsonSerializersAsync(xmiReaderResult, outputDirectory);
+            await this.GenerateDtoJsonSerializersAsync(xmiReaderResult, outputDirectory);
+            await this.GenerateSerializationProviderAsync(xmiReaderResult, outputDirectory);
+        }
+
+        /// <summary>
+        /// Generates JSON Serializer for KerML enumerations
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <returns>
+        /// an awaitable <see cref="Task"/>
+        /// </returns>
+        public Task GenerateEnumJsonSerializersAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        {
+            ArgumentNullException.ThrowIfNull(xmiReaderResult);
+
+            ArgumentNullException.ThrowIfNull(outputDirectory);
+
+            return this.GenerateEnumJsonSerializersInternalAsync(xmiReaderResult, outputDirectory);
+        }
+
+        /// <summary>
+        /// Generates JSON Serializer for KerML enumerations
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <returns>
+        /// an awaitable <see cref="Task"/>
+        /// </returns>
+        public async Task GenerateEnumJsonSerializersInternalAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        {
+            var template = this.Templates["json-enum-serializer-uml-template"];
+
+            var enumerations = xmiReaderResult.Root.QueryPackages()
+                .SelectMany(x => x.PackagedElement.OfType<IEnumeration>())
+                .ToList();
+
+            foreach (var enumeration in enumerations)
+            {
+                var generatedSerializer = template(enumeration);
+
+                generatedSerializer = CodeCleanup(generatedSerializer);
+
+                var fileName = $"{enumeration.Name.CapitalizeFirstLetter()}Serializer.cs";
+
+                await WriteAsync(generatedSerializer, outputDirectory, fileName);
+            }
+        }
+
+        /// <summary>
+        /// Generates JSON Serializer for KerML classes
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <returns>
+        /// an awaitable task
+        /// </returns>
+        public Task GenerateDtoJsonSerializersAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        {
+            ArgumentNullException.ThrowIfNull(xmiReaderResult);
+
+            ArgumentNullException.ThrowIfNull(outputDirectory);
+
+            return this.GenerateDtoJsonSerializersInternalAsync(xmiReaderResult, outputDirectory);
+        }
+
+        /// <summary>
+        /// Generates JSON Serializer for KerML classes
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <returns>
+        /// an awaitable task
+        /// </returns>
+        private async Task GenerateDtoJsonSerializersInternalAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        {
+            var template = this.Templates["json-serializer-uml-template"];
+
+            var classes = xmiReaderResult.Root.QueryPackages()
+                .SelectMany(x => x.PackagedElement.OfType<IClass>())
+                .Where(x => !x.IsAbstract)
+                .ToList();
+
+            foreach (var @class in classes)
+            {
+                var generatedSerializer = template(@class);
+
+                generatedSerializer = CodeCleanup(generatedSerializer);
+
+                var fileName = $"{@class.Name.CapitalizeFirstLetter()}Serializer.cs";
+
+                await WriteAsync(generatedSerializer, outputDirectory, fileName);
+            }
+        }
+
+        /// <summary>
+        /// Generates JSON Serializer for KerML class
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <param name="name">
+        /// The name of the DTO to generate
+        /// </param>
+        /// <returns>
+        /// an awaitable task
+        /// </returns>
+        public Task<string> GenerateJsonSerializerAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory, string name)
+        {
+            ArgumentNullException.ThrowIfNull(xmiReaderResult);
+
+            ArgumentNullException.ThrowIfNull(outputDirectory);
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException(nameof(name));
+            }
+
+            return this.GenerateJsonSerializerInternalAsync(xmiReaderResult, outputDirectory, name);
+        }
+
+        /// <summary>
+        /// Generates JSON Serializer for KerML class
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <param name="name">
+        /// The name of the DTO interface to generate
+        /// </param>
+        /// <returns>
+        /// an awaitable task
+        /// </returns>
+        private async Task<string> GenerateJsonSerializerInternalAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory, string name)
+        {
+            var template = this.Templates["json-serializer-uml-template"];
+
+            var classes = xmiReaderResult.Root.QueryPackages()
+                .SelectMany(x => x.PackagedElement.OfType<IClass>())
+                .ToList();
+
+            var @class = classes.Single(x => x.Name == name);
+
+            var generateJsonSerializer = template(@class);
+
+            generateJsonSerializer = CodeCleanup(generateJsonSerializer);
+
+            var fileName = $"{@class.Name.CapitalizeFirstLetter()}Serializer.cs";
+
+            await WriteAsync(generateJsonSerializer, outputDirectory, fileName);
+
+            return generateJsonSerializer;
+        }
+
+        /// <summary>
+        /// Generates Json SerializerProvider
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <returns>
+        /// an awaitable task
+        /// </returns>
+        public Task<string> GenerateSerializationProviderAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        {
+            ArgumentNullException.ThrowIfNull(xmiReaderResult);
+
+            ArgumentNullException.ThrowIfNull(outputDirectory);
+
+            return this.GenerateSerializationProviderInternalAsync(xmiReaderResult, outputDirectory);
+        }
+
+        /// <summary>
+        /// Generates Json SerializerProvider
+        /// </summary>
+        /// <param name="xmiReaderResult">
+        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
+        /// </param>
+        /// <param name="outputDirectory">
+        /// The target <see cref="DirectoryInfo"/>
+        /// </param>
+        /// <returns>
+        /// an awaitable task
+        /// </returns>
+        private async Task<string> GenerateSerializationProviderInternalAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        {
+            var template = this.Templates["json-serializer-provider-template"];
+
+            var classes = xmiReaderResult.Root.QueryPackages()
+                .SelectMany(x => x.PackagedElement.OfType<IClass>())
+                .Where(x => !x.IsAbstract)
+                .OrderBy(x => x.Name)
+                .ToList();
+
+            var generatedSerializationProvider = template(classes);
+
+            generatedSerializationProvider = CodeCleanup(generatedSerializationProvider);
+
+            var fileName = "SerializationProvider.cs";
+
+            await WriteAsync(generatedSerializationProvider, outputDirectory, fileName);
+
+            return generatedSerializationProvider;
         }
 
         /// <summary>
@@ -66,10 +304,9 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
         /// </summary>
         protected override void RegisterTemplates()
         {
-            this.RegisterTemplate("dto-interface-uml-template");
-            this.RegisterTemplate("dto-class-uml-template");
+            this.RegisterTemplate("json-enum-serializer-uml-template");
+            this.RegisterTemplate("json-serializer-uml-template");
+            this.RegisterTemplate("json-serializer-provider-template");
         }
-
-        
     }
 }

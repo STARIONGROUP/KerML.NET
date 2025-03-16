@@ -1,0 +1,168 @@
+﻿// -------------------------------------------------------------------------------------------------
+// <copyright file="{{ this.Name }}Serializer.cs" company="Starion Group S.A.">
+//
+//   Copyright 2022-2025 Starion Group S.A.
+//
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
+//
+//       http://www.apache.org/licenses/LICENSE-2.0
+//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
+//
+// </copyright>
+// ------------------------------------------------------------------------------------------------
+
+// ------------------------------------------------------------------------------------------------
+// --------THIS IS AN AUTOMATICALLY GENERATED FILE. ANY MANUAL CHANGES WILL BE OVERWRITTEN!--------
+// ------------------------------------------------------------------------------------------------
+
+namespace KerML.NET.Serializer.Json
+{
+    using System;
+    using System.Text.Json;
+
+    using {{ #NamedElement.WriteFullyQualifiedNameSpace this }};
+
+    /// <summary>
+    /// The purpose of the <see cref="{{ this.Name }}Serializer"/> is to provide serialization capabilities
+    /// for the <see cref="I{{ this.Name }}"/> interface
+    /// </summary>
+    public static class {{ this.Name }}Serializer
+    {
+        /// <summary>
+        /// Serializes an instance of <see cref="I{{ this.Name }}"/> using an <see cref="Utf8JsonWriter"/>
+        /// </summary>
+        /// <param name="obj">
+        /// The <see cref="I{{ this.Name }}"/> to serialize
+        /// </param>
+        /// <param name="writer">
+        /// The target <see cref="Utf8JsonWriter"/>
+        /// </param>
+        /// <param name="serializationModeKind">
+        /// enumeration specifying what kind of serialization shall be used
+        /// </param>
+        /// <param name="includeDerived">
+        /// A value indicating whether derived properties shall be serialized or not
+        /// </param>
+        public static void Serialize(object obj, Utf8JsonWriter writer, SerializationModeKind serializationModeKind, bool includeDerived)
+        {
+            if (!(obj is I{{ this.Name }} i{{this.Name }}))
+            {
+                throw new ArgumentException("The object shall be an I{{ this.Name }}", nameof(obj));
+            }
+
+            writer.WriteStartObject();
+
+            writer.WritePropertyName("@type"u8);
+            writer.WriteStringValue("{{ this.Name }}"u8);
+
+            writer.WritePropertyName("@id"u8);
+            writer.WriteStringValue(i{{this.Name }}.ElementId);
+
+            {{#with this as | umlClass |}}
+            {{ #each (#Class.QueryAllProperties this) as | property | }}
+                {{#unless property.IsID }}
+                    {{#if (Property.IsRedefined property ../)}}
+                        // The {{ UmlClass.Name }}.{{String.CapitalizeFirstLetter property.Name }} property is a Redefined property and will not be serialized.
+
+                    {{else}}
+                        {{#if (Property.QueryIsDerivedOrDerivedUnionOrReadOnly property) }}
+                            if (includeDerived)
+                            {
+                        {{/if}}
+                        {{#if (Property.QueryIsEnumerable property)}}
+                            writer.WriteStartArray("{{String.LowerCaseFirstLetter property.Name }}"u8);
+                            foreach (var item in i{{umlClass.Name}}.{{ Property.WriteName property }})
+                            {
+                                {{#if (Property.QueryIsReferenceProperty property)}}
+                                    writer.WriteStartObject();
+                                    writer.WritePropertyName("@id"u8);
+                                    writer.WriteStringValue(item);
+                                    writer.WriteEndObject();
+                                {{else if (Property.QueryIsBool property )}}
+                                    writer.WriteBooleanValue(item);
+
+                                {{else if (Property.QueryIsNumeric property )}}
+                                    writer.WriteNumberValue(item);
+
+                                {{else if (Property.QueryIsEnum property )}}
+                                    writer.WriteStringValue(item).ToString().ToLower());
+
+                                {{else}}
+                                    writer.WriteStringValue(item);
+
+                                {{/if}}
+                            }
+                            writer.WriteEndArray();
+
+                        {{ else if (Property.QueryIsNullable property)}}
+                            writer.WritePropertyName("{{ String.LowerCaseFirstLetter property.Name }}"u8);
+                            if (i{{umlClass.Name}}.{{ Property.WriteName property }} != null)
+                            {
+                                {{#if (Property.QueryIsReferenceProperty property)}}
+                                    writer.WriteStartObject();
+                                    writer.WritePropertyName("@id"u8);
+                                    writer.WriteStringValue(i{{umlClass.Name}}.{{ Property.WriteName property }});
+                                    writer.WriteEndObject();
+                                {{else if (Property.QueryIsBool property )}}
+                                    writer.WriteBooleanValue(i{{umlClass.Name}}.{{ Property.WriteName property }});
+                                {{else if (Property.QueryIsNumeric property )}}
+                                    writer.WriteNumberValue(i{{umlClass.Name}}.{{ Property.WriteName property }});
+                                {{else if (Property.QueryIsEnum property )}}
+                                    writer.WriteStringValue(i{{umlClass.Name}}.{{ Property.WriteName property }}.ToString().ToLower());
+                                {{else}}
+                                    writer.WriteStringValue(i{{umlClass.Name}}.{{ Property.WriteName property }});
+                                {{/if}}
+                            }
+                            else
+                            {
+                                writer.WriteNullValue();
+                            }
+
+                        {{ else if (Property.QueryIsScalar property)}}
+                            writer.WritePropertyName("{{ String.LowerCaseFirstLetter property.Name }}"u8);
+                            {{#if (Property.QueryIsReferenceProperty property)}}
+                                writer.WriteStartObject();
+                                writer.WritePropertyName("@id"u8);
+                                writer.WriteStringValue(i{{umlClass.Name}}.{{ Property.WriteName property }});
+                                writer.WriteEndObject();
+
+                            {{else if (Property.QueryIsBool property )}}
+                                writer.WriteBooleanValue(i{{umlClass.Name}}.{{ Property.WriteName property }});
+
+                            {{else if (Property.QueryIsString property )}}
+                                writer.WriteStringValue(i{{umlClass.Name}}.{{ Property.WriteName property }});
+
+                            {{else if (Property.QueryIsNumeric property )}}
+                                writer.WriteNumberValue(i{{umlClass.Name}}.{{ Property.WriteName property }});
+
+                            {{else if (Property.QueryIsEnum property )}}
+                                writer.WriteStringValue(i{{umlClass.Name}}.{{ Property.WriteName property }}.ToString().ToLower());
+
+                            {{else}}
+                                writer.WriteStringValue(i{{umlClass.Name}}.{{ Property.WriteName property }});
+
+                            {{/if}}
+                        {{/if}}
+                        {{#if (Property.QueryIsDerivedOrDerivedUnionOrReadOnly property) }}
+                            }
+
+                        {{/if}}
+                    {{/if}}
+                {{/unless}}
+            {{/each}}
+            {{/with}}
+            writer.WriteEndObject();
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------------------------
+// --------THIS IS AN AUTOMATICALLY GENERATED FILE. ANY MANUAL CHANGES WILL BE OVERWRITTEN!--------
+// ------------------------------------------------------------------------------------------------

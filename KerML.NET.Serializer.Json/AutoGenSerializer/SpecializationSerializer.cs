@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="AnnotationSerializer.cs" company="Starion Group S.A.">
+// <copyright file="SpecializationSerializer.cs" company="Starion Group S.A.">
 //
 //   Copyright 2022-2025 Starion Group S.A.
 //
@@ -27,19 +27,19 @@ namespace KerML.NET.Serializer.Json
     using System;
     using System.Text.Json;
 
-    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Core.Types;
 
     /// <summary>
-    /// The purpose of the <see cref="AnnotationSerializer"/> is to provide serialization capabilities
-    /// for the <see cref="IAnnotation"/> interface
+    /// The purpose of the <see cref="SpecializationSerializer"/> is to provide serialization capabilities
+    /// for the <see cref="ISpecialization"/> interface
     /// </summary>
-    public static class AnnotationSerializer
+    public static class SpecializationSerializer
     {
         /// <summary>
-        /// Serializes an instance of <see cref="IAnnotation"/> using an <see cref="Utf8JsonWriter"/>
+        /// Serializes an instance of <see cref="ISpecialization"/> using an <see cref="Utf8JsonWriter"/>
         /// </summary>
         /// <param name="obj">
-        /// The <see cref="IAnnotation"/> to serialize
+        /// The <see cref="ISpecialization"/> to serialize
         /// </param>
         /// <param name="writer">
         /// The target <see cref="Utf8JsonWriter"/>
@@ -52,47 +52,31 @@ namespace KerML.NET.Serializer.Json
         /// </param>
         public static void Serialize(object obj, Utf8JsonWriter writer, SerializationModeKind serializationModeKind, bool includeDerived)
         {
-            if (!(obj is IAnnotation iAnnotation))
+            if (!(obj is ISpecialization iSpecialization))
             {
-                throw new ArgumentException("The object shall be an IAnnotation", nameof(obj));
+                throw new ArgumentException("The object shall be an ISpecialization", nameof(obj));
             }
 
             writer.WriteStartObject();
 
             writer.WritePropertyName("@type"u8);
-            writer.WriteStringValue("Annotation"u8);
+            writer.WriteStringValue("Specialization"u8);
 
             writer.WritePropertyName("@id"u8);
-            writer.WriteStringValue(iAnnotation.ElementId);
+            writer.WriteStringValue(iSpecialization.ElementId);
 
             writer.WriteStartArray("aliasIds"u8);
-            foreach (var item in iAnnotation.AliasIds)
+            foreach (var item in iSpecialization.AliasIds)
             {
                 writer.WriteStringValue(item);
 
             }
             writer.WriteEndArray();
 
-            writer.WritePropertyName("annotatedElement"u8);
-            writer.WriteStartObject();
-            writer.WritePropertyName("@id"u8);
-            writer.WriteStringValue(iAnnotation.AnnotatedElement);
-            writer.WriteEndObject();
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("annotatingElement"u8);
-                writer.WriteStartObject();
-                writer.WritePropertyName("@id"u8);
-                writer.WriteStringValue(iAnnotation.GetAnnotatingElement);
-                writer.WriteEndObject();
-
-            }
-
             writer.WritePropertyName("declaredName"u8);
-            if (iAnnotation.DeclaredName != null)
+            if (iSpecialization.DeclaredName != null)
             {
-                writer.WriteStringValue(iAnnotation.DeclaredName);
+                writer.WriteStringValue(iSpecialization.DeclaredName);
             }
             else
             {
@@ -100,9 +84,9 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WritePropertyName("declaredShortName"u8);
-            if (iAnnotation.DeclaredShortName != null)
+            if (iSpecialization.DeclaredShortName != null)
             {
-                writer.WriteStringValue(iAnnotation.DeclaredShortName);
+                writer.WriteStringValue(iSpecialization.DeclaredShortName);
             }
             else
             {
@@ -112,7 +96,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("documentation"u8);
-                foreach (var item in iAnnotation.GetDocumentation)
+                foreach (var item in iSpecialization.GetDocumentation)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -123,42 +107,31 @@ namespace KerML.NET.Serializer.Json
 
             }
 
+            writer.WritePropertyName("general"u8);
+            writer.WriteStartObject();
+            writer.WritePropertyName("@id"u8);
+            writer.WriteStringValue(iSpecialization.General);
+            writer.WriteEndObject();
+
             writer.WritePropertyName("isImplied"u8);
-            writer.WriteBooleanValue(iAnnotation.IsImplied);
+            writer.WriteBooleanValue(iSpecialization.IsImplied);
 
             writer.WritePropertyName("isImpliedIncluded"u8);
-            writer.WriteBooleanValue(iAnnotation.IsImpliedIncluded);
+            writer.WriteBooleanValue(iSpecialization.IsImpliedIncluded);
 
             if (includeDerived)
             {
                 writer.WritePropertyName("isLibraryElement"u8);
-                writer.WriteBooleanValue(iAnnotation.GetIsLibraryElement);
+                writer.WriteBooleanValue(iSpecialization.GetIsLibraryElement);
 
             }
 
             if (includeDerived)
             {
                 writer.WritePropertyName("name"u8);
-                if (iAnnotation.GetName != null)
+                if (iSpecialization.GetName != null)
                 {
-                    writer.WriteStringValue(iAnnotation.GetName);
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("ownedAnnotatingElement"u8);
-                if (iAnnotation.GetOwnedAnnotatingElement != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwnedAnnotatingElement);
-                    writer.WriteEndObject();
+                    writer.WriteStringValue(iSpecialization.GetName);
                 }
                 else
                 {
@@ -170,7 +143,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedAnnotation"u8);
-                foreach (var item in iAnnotation.GetOwnedAnnotation)
+                foreach (var item in iSpecialization.GetOwnedAnnotation)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -184,7 +157,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedElement"u8);
-                foreach (var item in iAnnotation.GetOwnedElement)
+                foreach (var item in iSpecialization.GetOwnedElement)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -196,7 +169,7 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WriteStartArray("ownedRelatedElement"u8);
-            foreach (var item in iAnnotation.OwnedRelatedElement)
+            foreach (var item in iSpecialization.OwnedRelatedElement)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
@@ -206,7 +179,7 @@ namespace KerML.NET.Serializer.Json
             writer.WriteEndArray();
 
             writer.WriteStartArray("ownedRelationship"u8);
-            foreach (var item in iAnnotation.OwnedRelationship)
+            foreach (var item in iSpecialization.OwnedRelationship)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
@@ -218,45 +191,11 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("owner"u8);
-                if (iAnnotation.GetOwner != null)
+                if (iSpecialization.GetOwner != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwner);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("owningAnnotatedElement"u8);
-                if (iAnnotation.GetOwningAnnotatedElement != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwningAnnotatedElement);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("owningAnnotatingElement"u8);
-                if (iAnnotation.GetOwningAnnotatingElement != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwningAnnotatingElement);
+                    writer.WriteStringValue(iSpecialization.GetOwner);
                     writer.WriteEndObject();
                 }
                 else
@@ -269,11 +208,11 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("owningMembership"u8);
-                if (iAnnotation.GetOwningMembership != null)
+                if (iSpecialization.GetOwningMembership != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwningMembership);
+                    writer.WriteStringValue(iSpecialization.GetOwningMembership);
                     writer.WriteEndObject();
                 }
                 else
@@ -286,11 +225,11 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("owningNamespace"u8);
-                if (iAnnotation.GetOwningNamespace != null)
+                if (iSpecialization.GetOwningNamespace != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwningNamespace);
+                    writer.WriteStringValue(iSpecialization.GetOwningNamespace);
                     writer.WriteEndObject();
                 }
                 else
@@ -301,11 +240,11 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WritePropertyName("owningRelatedElement"u8);
-            if (iAnnotation.OwningRelatedElement != null)
+            if (iSpecialization.OwningRelatedElement != null)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
-                writer.WriteStringValue(iAnnotation.OwningRelatedElement);
+                writer.WriteStringValue(iSpecialization.OwningRelatedElement);
                 writer.WriteEndObject();
             }
             else
@@ -314,11 +253,11 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WritePropertyName("owningRelationship"u8);
-            if (iAnnotation.OwningRelationship != null)
+            if (iSpecialization.OwningRelationship != null)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
-                writer.WriteStringValue(iAnnotation.OwningRelationship);
+                writer.WriteStringValue(iSpecialization.OwningRelationship);
                 writer.WriteEndObject();
             }
             else
@@ -328,10 +267,27 @@ namespace KerML.NET.Serializer.Json
 
             if (includeDerived)
             {
-                writer.WritePropertyName("qualifiedName"u8);
-                if (iAnnotation.GetQualifiedName != null)
+                writer.WritePropertyName("owningType"u8);
+                if (iSpecialization.GetOwningType != null)
                 {
-                    writer.WriteStringValue(iAnnotation.GetQualifiedName);
+                    writer.WriteStartObject();
+                    writer.WritePropertyName("@id"u8);
+                    writer.WriteStringValue(iSpecialization.GetOwningType);
+                    writer.WriteEndObject();
+                }
+                else
+                {
+                    writer.WriteNullValue();
+                }
+
+            }
+
+            if (includeDerived)
+            {
+                writer.WritePropertyName("qualifiedName"u8);
+                if (iSpecialization.GetQualifiedName != null)
+                {
+                    writer.WriteStringValue(iSpecialization.GetQualifiedName);
                 }
                 else
                 {
@@ -343,7 +299,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("relatedElement"u8);
-                foreach (var item in iAnnotation.GetRelatedElement)
+                foreach (var item in iSpecialization.GetRelatedElement)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -357,9 +313,9 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("shortName"u8);
-                if (iAnnotation.GetShortName != null)
+                if (iSpecialization.GetShortName != null)
                 {
-                    writer.WriteStringValue(iAnnotation.GetShortName);
+                    writer.WriteStringValue(iSpecialization.GetShortName);
                 }
                 else
                 {
@@ -368,14 +324,20 @@ namespace KerML.NET.Serializer.Json
 
             }
 
-            // The Annotation.Source property is a Redefined property and will not be serialized.
+            // The Specialization.Source property is a Redefined property and will not be serialized.
 
-            // The Annotation.Target property is a Redefined property and will not be serialized.
+            writer.WritePropertyName("specific"u8);
+            writer.WriteStartObject();
+            writer.WritePropertyName("@id"u8);
+            writer.WriteStringValue(iSpecialization.Specific);
+            writer.WriteEndObject();
+
+            // The Specialization.Target property is a Redefined property and will not be serialized.
 
             if (includeDerived)
             {
                 writer.WriteStartArray("textualRepresentation"u8);
-                foreach (var item in iAnnotation.GetTextualRepresentation)
+                foreach (var item in iSpecialization.GetTextualRepresentation)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);

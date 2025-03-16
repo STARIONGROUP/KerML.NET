@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="AnnotationSerializer.cs" company="Starion Group S.A.">
+// <copyright file="CrossSubsettingSerializer.cs" company="Starion Group S.A.">
 //
 //   Copyright 2022-2025 Starion Group S.A.
 //
@@ -27,19 +27,19 @@ namespace KerML.NET.Serializer.Json
     using System;
     using System.Text.Json;
 
-    using KerML.NET.DTO.Root.Annotations;
+    using KerML.NET.DTO.Core.Features;
 
     /// <summary>
-    /// The purpose of the <see cref="AnnotationSerializer"/> is to provide serialization capabilities
-    /// for the <see cref="IAnnotation"/> interface
+    /// The purpose of the <see cref="CrossSubsettingSerializer"/> is to provide serialization capabilities
+    /// for the <see cref="ICrossSubsetting"/> interface
     /// </summary>
-    public static class AnnotationSerializer
+    public static class CrossSubsettingSerializer
     {
         /// <summary>
-        /// Serializes an instance of <see cref="IAnnotation"/> using an <see cref="Utf8JsonWriter"/>
+        /// Serializes an instance of <see cref="ICrossSubsetting"/> using an <see cref="Utf8JsonWriter"/>
         /// </summary>
         /// <param name="obj">
-        /// The <see cref="IAnnotation"/> to serialize
+        /// The <see cref="ICrossSubsetting"/> to serialize
         /// </param>
         /// <param name="writer">
         /// The target <see cref="Utf8JsonWriter"/>
@@ -52,47 +52,47 @@ namespace KerML.NET.Serializer.Json
         /// </param>
         public static void Serialize(object obj, Utf8JsonWriter writer, SerializationModeKind serializationModeKind, bool includeDerived)
         {
-            if (!(obj is IAnnotation iAnnotation))
+            if (!(obj is ICrossSubsetting iCrossSubsetting))
             {
-                throw new ArgumentException("The object shall be an IAnnotation", nameof(obj));
+                throw new ArgumentException("The object shall be an ICrossSubsetting", nameof(obj));
             }
 
             writer.WriteStartObject();
 
             writer.WritePropertyName("@type"u8);
-            writer.WriteStringValue("Annotation"u8);
+            writer.WriteStringValue("CrossSubsetting"u8);
 
             writer.WritePropertyName("@id"u8);
-            writer.WriteStringValue(iAnnotation.ElementId);
+            writer.WriteStringValue(iCrossSubsetting.ElementId);
 
             writer.WriteStartArray("aliasIds"u8);
-            foreach (var item in iAnnotation.AliasIds)
+            foreach (var item in iCrossSubsetting.AliasIds)
             {
                 writer.WriteStringValue(item);
 
             }
             writer.WriteEndArray();
 
-            writer.WritePropertyName("annotatedElement"u8);
+            writer.WritePropertyName("crossedFeature"u8);
             writer.WriteStartObject();
             writer.WritePropertyName("@id"u8);
-            writer.WriteStringValue(iAnnotation.AnnotatedElement);
+            writer.WriteStringValue(iCrossSubsetting.CrossedFeature);
             writer.WriteEndObject();
 
             if (includeDerived)
             {
-                writer.WritePropertyName("annotatingElement"u8);
+                writer.WritePropertyName("crossingFeature"u8);
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
-                writer.WriteStringValue(iAnnotation.GetAnnotatingElement);
+                writer.WriteStringValue(iCrossSubsetting.GetCrossingFeature);
                 writer.WriteEndObject();
 
             }
 
             writer.WritePropertyName("declaredName"u8);
-            if (iAnnotation.DeclaredName != null)
+            if (iCrossSubsetting.DeclaredName != null)
             {
-                writer.WriteStringValue(iAnnotation.DeclaredName);
+                writer.WriteStringValue(iCrossSubsetting.DeclaredName);
             }
             else
             {
@@ -100,9 +100,9 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WritePropertyName("declaredShortName"u8);
-            if (iAnnotation.DeclaredShortName != null)
+            if (iCrossSubsetting.DeclaredShortName != null)
             {
-                writer.WriteStringValue(iAnnotation.DeclaredShortName);
+                writer.WriteStringValue(iCrossSubsetting.DeclaredShortName);
             }
             else
             {
@@ -112,7 +112,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("documentation"u8);
-                foreach (var item in iAnnotation.GetDocumentation)
+                foreach (var item in iCrossSubsetting.GetDocumentation)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -123,42 +123,27 @@ namespace KerML.NET.Serializer.Json
 
             }
 
+            // The CrossSubsetting.General property is a Redefined property and will not be serialized.
+
             writer.WritePropertyName("isImplied"u8);
-            writer.WriteBooleanValue(iAnnotation.IsImplied);
+            writer.WriteBooleanValue(iCrossSubsetting.IsImplied);
 
             writer.WritePropertyName("isImpliedIncluded"u8);
-            writer.WriteBooleanValue(iAnnotation.IsImpliedIncluded);
+            writer.WriteBooleanValue(iCrossSubsetting.IsImpliedIncluded);
 
             if (includeDerived)
             {
                 writer.WritePropertyName("isLibraryElement"u8);
-                writer.WriteBooleanValue(iAnnotation.GetIsLibraryElement);
+                writer.WriteBooleanValue(iCrossSubsetting.GetIsLibraryElement);
 
             }
 
             if (includeDerived)
             {
                 writer.WritePropertyName("name"u8);
-                if (iAnnotation.GetName != null)
+                if (iCrossSubsetting.GetName != null)
                 {
-                    writer.WriteStringValue(iAnnotation.GetName);
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("ownedAnnotatingElement"u8);
-                if (iAnnotation.GetOwnedAnnotatingElement != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwnedAnnotatingElement);
-                    writer.WriteEndObject();
+                    writer.WriteStringValue(iCrossSubsetting.GetName);
                 }
                 else
                 {
@@ -170,7 +155,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedAnnotation"u8);
-                foreach (var item in iAnnotation.GetOwnedAnnotation)
+                foreach (var item in iCrossSubsetting.GetOwnedAnnotation)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -184,7 +169,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedElement"u8);
-                foreach (var item in iAnnotation.GetOwnedElement)
+                foreach (var item in iCrossSubsetting.GetOwnedElement)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -196,7 +181,7 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WriteStartArray("ownedRelatedElement"u8);
-            foreach (var item in iAnnotation.OwnedRelatedElement)
+            foreach (var item in iCrossSubsetting.OwnedRelatedElement)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
@@ -206,7 +191,7 @@ namespace KerML.NET.Serializer.Json
             writer.WriteEndArray();
 
             writer.WriteStartArray("ownedRelationship"u8);
-            foreach (var item in iAnnotation.OwnedRelationship)
+            foreach (var item in iCrossSubsetting.OwnedRelationship)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
@@ -218,11 +203,11 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("owner"u8);
-                if (iAnnotation.GetOwner != null)
+                if (iCrossSubsetting.GetOwner != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwner);
+                    writer.WriteStringValue(iCrossSubsetting.GetOwner);
                     writer.WriteEndObject();
                 }
                 else
@@ -232,48 +217,16 @@ namespace KerML.NET.Serializer.Json
 
             }
 
-            if (includeDerived)
-            {
-                writer.WritePropertyName("owningAnnotatedElement"u8);
-                if (iAnnotation.GetOwningAnnotatedElement != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwningAnnotatedElement);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("owningAnnotatingElement"u8);
-                if (iAnnotation.GetOwningAnnotatingElement != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwningAnnotatingElement);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
+            // The CrossSubsetting.OwningFeature property is a Redefined property and will not be serialized.
 
             if (includeDerived)
             {
                 writer.WritePropertyName("owningMembership"u8);
-                if (iAnnotation.GetOwningMembership != null)
+                if (iCrossSubsetting.GetOwningMembership != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwningMembership);
+                    writer.WriteStringValue(iCrossSubsetting.GetOwningMembership);
                     writer.WriteEndObject();
                 }
                 else
@@ -286,11 +239,11 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("owningNamespace"u8);
-                if (iAnnotation.GetOwningNamespace != null)
+                if (iCrossSubsetting.GetOwningNamespace != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iAnnotation.GetOwningNamespace);
+                    writer.WriteStringValue(iCrossSubsetting.GetOwningNamespace);
                     writer.WriteEndObject();
                 }
                 else
@@ -301,11 +254,11 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WritePropertyName("owningRelatedElement"u8);
-            if (iAnnotation.OwningRelatedElement != null)
+            if (iCrossSubsetting.OwningRelatedElement != null)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
-                writer.WriteStringValue(iAnnotation.OwningRelatedElement);
+                writer.WriteStringValue(iCrossSubsetting.OwningRelatedElement);
                 writer.WriteEndObject();
             }
             else
@@ -314,11 +267,11 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WritePropertyName("owningRelationship"u8);
-            if (iAnnotation.OwningRelationship != null)
+            if (iCrossSubsetting.OwningRelationship != null)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
-                writer.WriteStringValue(iAnnotation.OwningRelationship);
+                writer.WriteStringValue(iCrossSubsetting.OwningRelationship);
                 writer.WriteEndObject();
             }
             else
@@ -326,12 +279,14 @@ namespace KerML.NET.Serializer.Json
                 writer.WriteNullValue();
             }
 
+            // The CrossSubsetting.OwningType property is a Redefined property and will not be serialized.
+
             if (includeDerived)
             {
                 writer.WritePropertyName("qualifiedName"u8);
-                if (iAnnotation.GetQualifiedName != null)
+                if (iCrossSubsetting.GetQualifiedName != null)
                 {
-                    writer.WriteStringValue(iAnnotation.GetQualifiedName);
+                    writer.WriteStringValue(iCrossSubsetting.GetQualifiedName);
                 }
                 else
                 {
@@ -343,7 +298,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("relatedElement"u8);
-                foreach (var item in iAnnotation.GetRelatedElement)
+                foreach (var item in iCrossSubsetting.GetRelatedElement)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -357,9 +312,9 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("shortName"u8);
-                if (iAnnotation.GetShortName != null)
+                if (iCrossSubsetting.GetShortName != null)
                 {
-                    writer.WriteStringValue(iAnnotation.GetShortName);
+                    writer.WriteStringValue(iCrossSubsetting.GetShortName);
                 }
                 else
                 {
@@ -368,14 +323,20 @@ namespace KerML.NET.Serializer.Json
 
             }
 
-            // The Annotation.Source property is a Redefined property and will not be serialized.
+            // The CrossSubsetting.Source property is a Redefined property and will not be serialized.
 
-            // The Annotation.Target property is a Redefined property and will not be serialized.
+            // The CrossSubsetting.Specific property is a Redefined property and will not be serialized.
+
+            // The CrossSubsetting.SubsettedFeature property is a Redefined property and will not be serialized.
+
+            // The CrossSubsetting.SubsettingFeature property is a Redefined property and will not be serialized.
+
+            // The CrossSubsetting.Target property is a Redefined property and will not be serialized.
 
             if (includeDerived)
             {
                 writer.WriteStartArray("textualRepresentation"u8);
-                foreach (var item in iAnnotation.GetTextualRepresentation)
+                foreach (var item in iCrossSubsetting.GetTextualRepresentation)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);

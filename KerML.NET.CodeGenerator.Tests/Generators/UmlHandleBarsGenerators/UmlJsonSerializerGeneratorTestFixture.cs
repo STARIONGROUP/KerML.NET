@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="UmlJsonDeSerializerGeneratorTestFixture.cs" company="Starion Group S.A.">
+// <copyright file="UmlJsonSerializerGeneratorTestFixture.cs" company="Starion Group S.A.">
 // 
 //    Copyright 2022-2025 Starion Group S.A.
 // 
@@ -36,11 +36,11 @@ namespace KerML.NET.CodeGenerator.Tests.Generators.UmlHandleBarsGenerators
     using uml4net.xmi.Readers;
 
     [TestFixture]
-    public class UmlJsonDeSerializerGeneratorTestFixture
+    public class UmlJsonSerializerGeneratorTestFixture
     {
-        private DirectoryInfo jsonDeSerializerDirectoryInfo;
+        private DirectoryInfo jsonSerializerDirectoryInfo;
 
-        private UmlJsonDeSerializerGenerator umlJsonDeSerializerGenerator;
+        private UmlJsonSerializerGenerator umlJsonSerializerGenerator;
 
         private ILoggerFactory loggerFactory;
 
@@ -79,18 +79,11 @@ namespace KerML.NET.CodeGenerator.Tests.Generators.UmlHandleBarsGenerators
 
             var directoryInfo = new DirectoryInfo(TestContext.CurrentContext.TestDirectory);
 
-            var path = Path.Combine("UML", "_KerML2.AutoGenDeSerializer");
+            var path = Path.Combine("UML", "_KerML2.AutoGenSerializer");
 
-            this.jsonDeSerializerDirectoryInfo = directoryInfo.CreateSubdirectory(path);
+            this.jsonSerializerDirectoryInfo = directoryInfo.CreateSubdirectory(path);
 
-            this.umlJsonDeSerializerGenerator = new UmlJsonDeSerializerGenerator();
-        }
-
-        [Test]
-        public void verify_deserializers_are_generated()
-        {
-            Assert.That(async () => await this.umlJsonDeSerializerGenerator.GenerateAsync(xmiReaderResult, this.jsonDeSerializerDirectoryInfo),
-                Throws.Nothing);
+            this.umlJsonSerializerGenerator = new UmlJsonSerializerGenerator();
         }
 
         [Test]
@@ -98,40 +91,23 @@ namespace KerML.NET.CodeGenerator.Tests.Generators.UmlHandleBarsGenerators
             [Values("Annotation", "Comment", "Dependency", "Feature",
                 "LiteralInteger", "LiteralRational")] string className)
         {
-            var generatedCode = await this.umlJsonDeSerializerGenerator.GenerateJsonDeSerializerAsync(xmiReaderResult,
-                this.jsonDeSerializerDirectoryInfo,
+            var generatedCode = await this.umlJsonSerializerGenerator.GenerateJsonSerializerAsync(xmiReaderResult,
+                this.jsonSerializerDirectoryInfo,
                 className);
 
             var expected = await File.ReadAllTextAsync(Path.Combine(TestContext.CurrentContext.TestDirectory,
-                $"Expected/UML/AutoGenDeSerializer/{className}DeSerializer.cs"));
+                $"Expected/UML/AutoGenSerializer/{className}Serializer.cs"));
 
             Assert.That(generatedCode, Is.EqualTo(expected));
         }
 
         [Test]
-        public void verify_enum_deserializers_are_generated()
+        public void Verify_that_JsonSerializers_are_generated()
         {
-            Assert.That(async () => await this.umlJsonDeSerializerGenerator.GenerateEnumJsonDeSerializersAsync(xmiReaderResult, this.jsonDeSerializerDirectoryInfo),
+            Assert.That(async () => await this.umlJsonSerializerGenerator.GenerateDtoJsonSerializersAsync(
+                    xmiReaderResult,
+                    this.jsonSerializerDirectoryInfo),
                 Throws.Nothing);
-        }
-
-        [Test]
-        public void Verify_That_GenerateDtoJsonDeSerializersAsync_does_not_Throw()
-        {
-            Assert.That(async () => await this.umlJsonDeSerializerGenerator.GenerateDtoJsonDeSerializersAsync(xmiReaderResult, this.jsonDeSerializerDirectoryInfo),
-                Throws.Nothing);
-
-        }
-
-        [Test]
-        public async Task Verify_that_GenerateDeSerializationProviderAsync_generates_expected_code()
-        {
-            var generatedCode = await this.umlJsonDeSerializerGenerator.GenerateDeSerializationProviderAsync(xmiReaderResult, this.jsonDeSerializerDirectoryInfo);
-
-            var expected = await File.ReadAllTextAsync(Path.Combine(TestContext.CurrentContext.TestDirectory,
-                "Expected/UML/AutoGenDeSerializer/DeSerializationProvider.cs"));
-
-            Assert.That(generatedCode, Is.EqualTo(expected));
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="LiteralIntegerSerializer.cs" company="Starion Group S.A.">
+// <copyright file="MetaclassSerializer.cs" company="Starion Group S.A.">
 //
 //   Copyright 2022-2025 Starion Group S.A.
 //
@@ -27,19 +27,19 @@ namespace KerML.NET.Serializer.Json
     using System;
     using System.Text.Json;
 
-    using KerML.NET.DTO.Kernel.Expressions;
+    using KerML.NET.DTO.Kernel.Metadata;
 
     /// <summary>
-    /// The purpose of the <see cref="LiteralIntegerSerializer"/> is to provide serialization capabilities
-    /// for the <see cref="ILiteralInteger"/> interface
+    /// The purpose of the <see cref="MetaclassSerializer"/> is to provide serialization capabilities
+    /// for the <see cref="IMetaclass"/> interface
     /// </summary>
-    public static class LiteralIntegerSerializer
+    public static class MetaclassSerializer
     {
         /// <summary>
-        /// Serializes an instance of <see cref="ILiteralInteger"/> using an <see cref="Utf8JsonWriter"/>
+        /// Serializes an instance of <see cref="IMetaclass"/> using an <see cref="Utf8JsonWriter"/>
         /// </summary>
         /// <param name="obj">
-        /// The <see cref="ILiteralInteger"/> to serialize
+        /// The <see cref="IMetaclass"/> to serialize
         /// </param>
         /// <param name="writer">
         /// The target <see cref="Utf8JsonWriter"/>
@@ -52,64 +52,31 @@ namespace KerML.NET.Serializer.Json
         /// </param>
         public static void Serialize(object obj, Utf8JsonWriter writer, SerializationModeKind serializationModeKind, bool includeDerived)
         {
-            if (!(obj is ILiteralInteger iLiteralInteger))
+            if (!(obj is IMetaclass iMetaclass))
             {
-                throw new ArgumentException("The object shall be an ILiteralInteger", nameof(obj));
+                throw new ArgumentException("The object shall be an IMetaclass", nameof(obj));
             }
 
             writer.WriteStartObject();
 
             writer.WritePropertyName("@type"u8);
-            writer.WriteStringValue("LiteralInteger"u8);
+            writer.WriteStringValue("Metaclass"u8);
 
             writer.WritePropertyName("@id"u8);
-            writer.WriteStringValue(iLiteralInteger.ElementId);
+            writer.WriteStringValue(iMetaclass.ElementId);
 
             writer.WriteStartArray("aliasIds"u8);
-            foreach (var item in iLiteralInteger.AliasIds)
+            foreach (var item in iMetaclass.AliasIds)
             {
                 writer.WriteStringValue(item);
 
             }
             writer.WriteEndArray();
 
-            // The LiteralInteger.Behavior property is a Redefined property and will not be serialized.
-
-            if (includeDerived)
-            {
-                writer.WriteStartArray("chainingFeature"u8);
-                foreach (var item in iLiteralInteger.GetChainingFeature)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(item);
-                    writer.WriteEndObject();
-                }
-                writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("crossFeature"u8);
-                if (iLiteralInteger.GetCrossFeature != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetCrossFeature);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
-
             writer.WritePropertyName("declaredName"u8);
-            if (iLiteralInteger.DeclaredName != null)
+            if (iMetaclass.DeclaredName != null)
             {
-                writer.WriteStringValue(iLiteralInteger.DeclaredName);
+                writer.WriteStringValue(iMetaclass.DeclaredName);
             }
             else
             {
@@ -117,9 +84,9 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WritePropertyName("declaredShortName"u8);
-            if (iLiteralInteger.DeclaredShortName != null)
+            if (iMetaclass.DeclaredShortName != null)
             {
-                writer.WriteStringValue(iLiteralInteger.DeclaredShortName);
+                writer.WriteStringValue(iMetaclass.DeclaredShortName);
             }
             else
             {
@@ -129,7 +96,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("differencingType"u8);
-                foreach (var item in iLiteralInteger.GetDifferencingType)
+                foreach (var item in iMetaclass.GetDifferencingType)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -140,22 +107,24 @@ namespace KerML.NET.Serializer.Json
 
             }
 
-            // The LiteralInteger.DirectedFeature property is a Redefined property and will not be serialized.
+            if (includeDerived)
+            {
+                writer.WriteStartArray("directedFeature"u8);
+                foreach (var item in iMetaclass.GetDirectedFeature)
+                {
+                    writer.WriteStartObject();
+                    writer.WritePropertyName("@id"u8);
+                    writer.WriteStringValue(item);
+                    writer.WriteEndObject();
+                }
+                writer.WriteEndArray();
 
-            writer.WritePropertyName("direction"u8);
-            if (iLiteralInteger.Direction != null)
-            {
-                writer.WriteStringValue(iLiteralInteger.Direction.ToString().ToLower());
-            }
-            else
-            {
-                writer.WriteNullValue();
             }
 
             if (includeDerived)
             {
                 writer.WriteStartArray("documentation"u8);
-                foreach (var item in iLiteralInteger.GetDocumentation)
+                foreach (var item in iMetaclass.GetDocumentation)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -169,7 +138,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("endFeature"u8);
-                foreach (var item in iLiteralInteger.GetEndFeature)
+                foreach (var item in iMetaclass.GetEndFeature)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -182,25 +151,8 @@ namespace KerML.NET.Serializer.Json
 
             if (includeDerived)
             {
-                writer.WritePropertyName("endOwningType"u8);
-                if (iLiteralInteger.GetEndOwningType != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetEndOwningType);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
-
-            if (includeDerived)
-            {
                 writer.WriteStartArray("feature"u8);
-                foreach (var item in iLiteralInteger.GetFeature)
+                foreach (var item in iMetaclass.GetFeature)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -214,7 +166,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("featureMembership"u8);
-                foreach (var item in iLiteralInteger.GetFeatureMembership)
+                foreach (var item in iMetaclass.GetFeatureMembership)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -222,54 +174,13 @@ namespace KerML.NET.Serializer.Json
                     writer.WriteEndObject();
                 }
                 writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("featureTarget"u8);
-                writer.WriteStartObject();
-                writer.WritePropertyName("@id"u8);
-                writer.WriteStringValue(iLiteralInteger.GetFeatureTarget);
-                writer.WriteEndObject();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WriteStartArray("featuringType"u8);
-                foreach (var item in iLiteralInteger.GetFeaturingType)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(item);
-                    writer.WriteEndObject();
-                }
-                writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("function"u8);
-                if (iLiteralInteger.GetFunction != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetFunction);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
 
             }
 
             if (includeDerived)
             {
                 writer.WriteStartArray("importedMembership"u8);
-                foreach (var item in iLiteralInteger.GetImportedMembership)
+                foreach (var item in iMetaclass.GetImportedMembership)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -283,7 +194,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("inheritedFeature"u8);
-                foreach (var item in iLiteralInteger.GetInheritedFeature)
+                foreach (var item in iMetaclass.GetInheritedFeature)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -297,7 +208,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("inheritedMembership"u8);
-                foreach (var item in iLiteralInteger.GetInheritedMembership)
+                foreach (var item in iMetaclass.GetInheritedMembership)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -311,7 +222,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("input"u8);
-                foreach (var item in iLiteralInteger.GetInput)
+                foreach (var item in iMetaclass.GetInput)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -325,7 +236,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("intersectingType"u8);
-                foreach (var item in iLiteralInteger.GetIntersectingType)
+                foreach (var item in iMetaclass.GetIntersectingType)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -337,60 +248,32 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WritePropertyName("isAbstract"u8);
-            writer.WriteBooleanValue(iLiteralInteger.IsAbstract);
-
-            writer.WritePropertyName("isComposite"u8);
-            writer.WriteBooleanValue(iLiteralInteger.IsComposite);
+            writer.WriteBooleanValue(iMetaclass.IsAbstract);
 
             if (includeDerived)
             {
                 writer.WritePropertyName("isConjugated"u8);
-                writer.WriteBooleanValue(iLiteralInteger.GetIsConjugated);
+                writer.WriteBooleanValue(iMetaclass.GetIsConjugated);
 
             }
 
-            writer.WritePropertyName("isDerived"u8);
-            writer.WriteBooleanValue(iLiteralInteger.IsDerived);
-
-            writer.WritePropertyName("isEnd"u8);
-            writer.WriteBooleanValue(iLiteralInteger.IsEnd);
-
             writer.WritePropertyName("isImpliedIncluded"u8);
-            writer.WriteBooleanValue(iLiteralInteger.IsImpliedIncluded);
+            writer.WriteBooleanValue(iMetaclass.IsImpliedIncluded);
 
             if (includeDerived)
             {
                 writer.WritePropertyName("isLibraryElement"u8);
-                writer.WriteBooleanValue(iLiteralInteger.GetIsLibraryElement);
+                writer.WriteBooleanValue(iMetaclass.GetIsLibraryElement);
 
             }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("isModelLevelEvaluable"u8);
-                writer.WriteBooleanValue(iLiteralInteger.GetIsModelLevelEvaluable);
-
-            }
-
-            writer.WritePropertyName("isOrdered"u8);
-            writer.WriteBooleanValue(iLiteralInteger.IsOrdered);
-
-            writer.WritePropertyName("isPortion"u8);
-            writer.WriteBooleanValue(iLiteralInteger.IsPortion);
-
-            writer.WritePropertyName("isReadOnly"u8);
-            writer.WriteBooleanValue(iLiteralInteger.IsReadOnly);
 
             writer.WritePropertyName("isSufficient"u8);
-            writer.WriteBooleanValue(iLiteralInteger.IsSufficient);
-
-            writer.WritePropertyName("isUnique"u8);
-            writer.WriteBooleanValue(iLiteralInteger.IsUnique);
+            writer.WriteBooleanValue(iMetaclass.IsSufficient);
 
             if (includeDerived)
             {
                 writer.WriteStartArray("member"u8);
-                foreach (var item in iLiteralInteger.GetMember)
+                foreach (var item in iMetaclass.GetMember)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -404,7 +287,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("membership"u8);
-                foreach (var item in iLiteralInteger.GetMembership)
+                foreach (var item in iMetaclass.GetMembership)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -418,11 +301,11 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("multiplicity"u8);
-                if (iLiteralInteger.GetMultiplicity != null)
+                if (iMetaclass.GetMultiplicity != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetMultiplicity);
+                    writer.WriteStringValue(iMetaclass.GetMultiplicity);
                     writer.WriteEndObject();
                 }
                 else
@@ -435,9 +318,9 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("name"u8);
-                if (iLiteralInteger.GetName != null)
+                if (iMetaclass.GetName != null)
                 {
-                    writer.WriteStringValue(iLiteralInteger.GetName);
+                    writer.WriteStringValue(iMetaclass.GetName);
                 }
                 else
                 {
@@ -449,7 +332,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("output"u8);
-                foreach (var item in iLiteralInteger.GetOutput)
+                foreach (var item in iMetaclass.GetOutput)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -463,7 +346,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedAnnotation"u8);
-                foreach (var item in iLiteralInteger.GetOwnedAnnotation)
+                foreach (var item in iMetaclass.GetOwnedAnnotation)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -477,28 +360,11 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("ownedConjugator"u8);
-                if (iLiteralInteger.GetOwnedConjugator != null)
+                if (iMetaclass.GetOwnedConjugator != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetOwnedConjugator);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("ownedCrossSubsetting"u8);
-                if (iLiteralInteger.GetOwnedCrossSubsetting != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetOwnedCrossSubsetting);
+                    writer.WriteStringValue(iMetaclass.GetOwnedConjugator);
                     writer.WriteEndObject();
                 }
                 else
@@ -511,7 +377,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedDifferencing"u8);
-                foreach (var item in iLiteralInteger.GetOwnedDifferencing)
+                foreach (var item in iMetaclass.GetOwnedDifferencing)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -525,7 +391,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedDisjoining"u8);
-                foreach (var item in iLiteralInteger.GetOwnedDisjoining)
+                foreach (var item in iMetaclass.GetOwnedDisjoining)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -539,7 +405,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedElement"u8);
-                foreach (var item in iLiteralInteger.GetOwnedElement)
+                foreach (var item in iMetaclass.GetOwnedElement)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -553,7 +419,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedEndFeature"u8);
-                foreach (var item in iLiteralInteger.GetOwnedEndFeature)
+                foreach (var item in iMetaclass.GetOwnedEndFeature)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -567,35 +433,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedFeature"u8);
-                foreach (var item in iLiteralInteger.GetOwnedFeature)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(item);
-                    writer.WriteEndObject();
-                }
-                writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WriteStartArray("ownedFeatureChaining"u8);
-                foreach (var item in iLiteralInteger.GetOwnedFeatureChaining)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(item);
-                    writer.WriteEndObject();
-                }
-                writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WriteStartArray("ownedFeatureInverting"u8);
-                foreach (var item in iLiteralInteger.GetOwnedFeatureInverting)
+                foreach (var item in iMetaclass.GetOwnedFeature)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -609,7 +447,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedFeatureMembership"u8);
-                foreach (var item in iLiteralInteger.GetOwnedFeatureMembership)
+                foreach (var item in iMetaclass.GetOwnedFeatureMembership)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -623,7 +461,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedImport"u8);
-                foreach (var item in iLiteralInteger.GetOwnedImport)
+                foreach (var item in iMetaclass.GetOwnedImport)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -637,7 +475,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedIntersecting"u8);
-                foreach (var item in iLiteralInteger.GetOwnedIntersecting)
+                foreach (var item in iMetaclass.GetOwnedIntersecting)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -651,7 +489,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedMember"u8);
-                foreach (var item in iLiteralInteger.GetOwnedMember)
+                foreach (var item in iMetaclass.GetOwnedMember)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -665,7 +503,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedMembership"u8);
-                foreach (var item in iLiteralInteger.GetOwnedMembership)
+                foreach (var item in iMetaclass.GetOwnedMembership)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -673,42 +511,11 @@ namespace KerML.NET.Serializer.Json
                     writer.WriteEndObject();
                 }
                 writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WriteStartArray("ownedRedefinition"u8);
-                foreach (var item in iLiteralInteger.GetOwnedRedefinition)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(item);
-                    writer.WriteEndObject();
-                }
-                writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("ownedReferenceSubsetting"u8);
-                if (iLiteralInteger.GetOwnedReferenceSubsetting != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetOwnedReferenceSubsetting);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
 
             }
 
             writer.WriteStartArray("ownedRelationship"u8);
-            foreach (var item in iLiteralInteger.OwnedRelationship)
+            foreach (var item in iMetaclass.OwnedRelationship)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
@@ -720,7 +527,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedSpecialization"u8);
-                foreach (var item in iLiteralInteger.GetOwnedSpecialization)
+                foreach (var item in iMetaclass.GetOwnedSpecialization)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -733,36 +540,8 @@ namespace KerML.NET.Serializer.Json
 
             if (includeDerived)
             {
-                writer.WriteStartArray("ownedSubsetting"u8);
-                foreach (var item in iLiteralInteger.GetOwnedSubsetting)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(item);
-                    writer.WriteEndObject();
-                }
-                writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WriteStartArray("ownedTypeFeaturing"u8);
-                foreach (var item in iLiteralInteger.GetOwnedTypeFeaturing)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(item);
-                    writer.WriteEndObject();
-                }
-                writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WriteStartArray("ownedTyping"u8);
-                foreach (var item in iLiteralInteger.GetOwnedTyping)
+                writer.WriteStartArray("ownedSubclassification"u8);
+                foreach (var item in iMetaclass.GetOwnedSubclassification)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -776,7 +555,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("ownedUnioning"u8);
-                foreach (var item in iLiteralInteger.GetOwnedUnioning)
+                foreach (var item in iMetaclass.GetOwnedUnioning)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -790,28 +569,11 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("owner"u8);
-                if (iLiteralInteger.GetOwner != null)
+                if (iMetaclass.GetOwner != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetOwner);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("owningFeatureMembership"u8);
-                if (iLiteralInteger.GetOwningFeatureMembership != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetOwningFeatureMembership);
+                    writer.WriteStringValue(iMetaclass.GetOwner);
                     writer.WriteEndObject();
                 }
                 else
@@ -824,11 +586,11 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("owningMembership"u8);
-                if (iLiteralInteger.GetOwningMembership != null)
+                if (iMetaclass.GetOwningMembership != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetOwningMembership);
+                    writer.WriteStringValue(iMetaclass.GetOwningMembership);
                     writer.WriteEndObject();
                 }
                 else
@@ -841,11 +603,11 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WritePropertyName("owningNamespace"u8);
-                if (iLiteralInteger.GetOwningNamespace != null)
+                if (iMetaclass.GetOwningNamespace != null)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetOwningNamespace);
+                    writer.WriteStringValue(iMetaclass.GetOwningNamespace);
                     writer.WriteEndObject();
                 }
                 else
@@ -856,11 +618,11 @@ namespace KerML.NET.Serializer.Json
             }
 
             writer.WritePropertyName("owningRelationship"u8);
-            if (iLiteralInteger.OwningRelationship != null)
+            if (iMetaclass.OwningRelationship != null)
             {
                 writer.WriteStartObject();
                 writer.WritePropertyName("@id"u8);
-                writer.WriteStringValue(iLiteralInteger.OwningRelationship);
+                writer.WriteStringValue(iMetaclass.OwningRelationship);
                 writer.WriteEndObject();
             }
             else
@@ -870,65 +632,24 @@ namespace KerML.NET.Serializer.Json
 
             if (includeDerived)
             {
-                writer.WritePropertyName("owningType"u8);
-                if (iLiteralInteger.GetOwningType != null)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(iLiteralInteger.GetOwningType);
-                    writer.WriteEndObject();
-                }
-                else
-                {
-                    writer.WriteNullValue();
-                }
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WriteStartArray("parameter"u8);
-                foreach (var item in iLiteralInteger.GetParameter)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(item);
-                    writer.WriteEndObject();
-                }
-                writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
                 writer.WritePropertyName("qualifiedName"u8);
-                if (iLiteralInteger.GetQualifiedName != null)
+                if (iMetaclass.GetQualifiedName != null)
                 {
-                    writer.WriteStringValue(iLiteralInteger.GetQualifiedName);
+                    writer.WriteStringValue(iMetaclass.GetQualifiedName);
                 }
                 else
                 {
                     writer.WriteNullValue();
                 }
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WritePropertyName("result"u8);
-                writer.WriteStartObject();
-                writer.WritePropertyName("@id"u8);
-                writer.WriteStringValue(iLiteralInteger.GetResult);
-                writer.WriteEndObject();
 
             }
 
             if (includeDerived)
             {
                 writer.WritePropertyName("shortName"u8);
-                if (iLiteralInteger.GetShortName != null)
+                if (iMetaclass.GetShortName != null)
                 {
-                    writer.WriteStringValue(iLiteralInteger.GetShortName);
+                    writer.WriteStringValue(iMetaclass.GetShortName);
                 }
                 else
                 {
@@ -940,21 +661,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("textualRepresentation"u8);
-                foreach (var item in iLiteralInteger.GetTextualRepresentation)
-                {
-                    writer.WriteStartObject();
-                    writer.WritePropertyName("@id"u8);
-                    writer.WriteStringValue(item);
-                    writer.WriteEndObject();
-                }
-                writer.WriteEndArray();
-
-            }
-
-            if (includeDerived)
-            {
-                writer.WriteStartArray("type"u8);
-                foreach (var item in iLiteralInteger.GetType)
+                foreach (var item in iMetaclass.GetTextualRepresentation)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -968,7 +675,7 @@ namespace KerML.NET.Serializer.Json
             if (includeDerived)
             {
                 writer.WriteStartArray("unioningType"u8);
-                foreach (var item in iLiteralInteger.GetUnioningType)
+                foreach (var item in iMetaclass.GetUnioningType)
                 {
                     writer.WriteStartObject();
                     writer.WritePropertyName("@id"u8);
@@ -978,9 +685,6 @@ namespace KerML.NET.Serializer.Json
                 writer.WriteEndArray();
 
             }
-
-            writer.WritePropertyName("value"u8);
-            writer.WriteNumberValue(iLiteralInteger.Value);
 
             writer.WriteEndObject();
         }

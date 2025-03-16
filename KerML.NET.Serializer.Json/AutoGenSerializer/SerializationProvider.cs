@@ -23,31 +23,36 @@ namespace KerML.NET.Serializer.Json
     using System;
     using System.Collections.Generic;
     using System.Text.Json;
-
+    
     /// <summary>
     /// Delegate provider for the appropriate serialization method to serialize a <see cref="Type" />
     /// </summary>
     public class SerializationProvider
     {
-        private static readonly Dictionary<System.Type, Action<object, Utf8JsonWriter, SerializationModeKind>> SerializerActionMap = new Dictionary<System.Type, Action<object, Utf8JsonWriter, SerializationModeKind>>
+        private static readonly Dictionary<System.Type, Action<object, Utf8JsonWriter, SerializationModeKind, bool>> SerializerActionMap = new Dictionary<System.Type, Action<object, Utf8JsonWriter, SerializationModeKind, bool>>
         {
-
+            { typeof(KerML.NET.DTO.Root.Annotations.Annotation), AnnotationSerializer.Serialize },
+            { typeof(KerML.NET.DTO.Root.Annotations.Comment), CommentSerializer.Serialize },
+            { typeof(KerML.NET.DTO.Root.Dependencies.Dependency), DependencySerializer.Serialize },
+            { typeof(KerML.NET.DTO.Core.Features.Feature), FeatureSerializer.Serialize },
+            { typeof(KerML.NET.DTO.Kernel.Expressions.LiteralInteger), LiteralIntegerSerializer.Serialize },
+            { typeof(KerML.NET.DTO.Kernel.Expressions.LiteralRational), LiteralRationalSerializer.Serialize },
         };
 
         /// <summary>
-        /// Provides the delegate <see cref="Action{object, Utf8JsonWriter, SerializationModeKind}"/> for the
+        /// Provides the delegate <see cref="Action{object, Utf8JsonWriter, SerializationModeKind,bool}"/> for the
         /// <see cref="System.Type"/> that is to be serialized
         /// </summary>
         /// <param name="type">
         /// The subject <see cref="System.Type"/> that is to be serialized
         /// </param>
         /// <returns>
-        /// A Delegate of <see cref="Action{object, Utf8JsonWriter, SerializationModeKind}"/>
+        /// A Delegate of <see cref="Action{object, Utf8JsonWriter, SerializationModeKind,bool}"/>
         /// </returns>
         /// <exception cref="NotSupportedException">
         /// Thrown when the <see cref="System.Type"/> is not supported.
         /// </exception>
-        public static Action<object, Utf8JsonWriter, SerializationModeKind> Provide(System.Type type)
+        public static Action<object, Utf8JsonWriter, SerializationModeKind, bool> Provide(System.Type type)
         {
             if (!SerializerActionMap.TryGetValue(type, out var action))
             {

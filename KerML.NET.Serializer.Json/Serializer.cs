@@ -43,13 +43,16 @@ namespace KerML.NET.Serializer.Json
         /// <param name="serializationModeKind">
         /// The <see cref="SerializationModeKind"/> to use
         /// </param>
+        /// <param name="includeDerived">
+        /// A value indicating whether derived properties shall be serialized or not
+        /// </param>
         /// <param name="stream">
         /// The target <see cref="Stream"/>
         /// </param>
         /// <param name="jsonWriterOptions">
         /// The <see cref="JsonWriterOptions"/> to use
         /// </param>
-        public void Serialize(IEnumerable<IElement> elements, SerializationModeKind serializationModeKind, Stream stream, JsonWriterOptions jsonWriterOptions)
+        public void Serialize(IEnumerable<IElement> elements, SerializationModeKind serializationModeKind, bool includeDerived, Stream stream, JsonWriterOptions jsonWriterOptions)
         {
             using var writer = new Utf8JsonWriter(stream, jsonWriterOptions);
 
@@ -58,7 +61,7 @@ namespace KerML.NET.Serializer.Json
             foreach (var element in elements)
             {
                 var serializationAction = SerializationProvider.Provide(element.GetType());
-                serializationAction(element, writer, serializationModeKind);
+                serializationAction(element, writer, serializationModeKind, includeDerived);
                 writer.Flush();
             }
 
@@ -76,17 +79,20 @@ namespace KerML.NET.Serializer.Json
         /// <param name="serializationModeKind">
         /// The <see cref="SerializationModeKind"/> to use
         /// </param>
+        /// <param name="includeDerived">
+        /// A value indicating whether derived properties shall be serialized or not
+        /// </param>
         /// <param name="stream">
         /// The target <see cref="Stream"/>
         /// </param>
         /// <param name="jsonWriterOptions">
         /// The <see cref="JsonWriterOptions"/> to use
         /// </param>
-        public void Serialize(IElement element, SerializationModeKind serializationModeKind, Stream stream, JsonWriterOptions jsonWriterOptions)
+        public void Serialize(IElement element, SerializationModeKind serializationModeKind, bool includeDerived, Stream stream, JsonWriterOptions jsonWriterOptions)
         {
             using var writer = new Utf8JsonWriter(stream, jsonWriterOptions);
             var serializationAction = SerializationProvider.Provide(element.GetType());
-            serializationAction(element, writer, serializationModeKind);
+            serializationAction(element, writer, serializationModeKind, includeDerived);
             writer.Flush();
         }
 
@@ -99,6 +105,9 @@ namespace KerML.NET.Serializer.Json
         /// <param name="serializationModeKind">
         /// The <see cref="SerializationModeKind"/> to use
         /// </param>
+        /// <param name="includeDerived">
+        /// A value indicating whether derived properties shall be serialized or not
+        /// </param>
         /// <param name="stream">
         /// The target <see cref="Stream"/>
         /// </param>
@@ -108,7 +117,7 @@ namespace KerML.NET.Serializer.Json
         /// <param name="cancellationToken">
         /// The <see cref="CancellationToken"/> used to cancel the operation
         /// </param>
-        public async Task SerializeAsync(IEnumerable<IElement> elements, SerializationModeKind serializationModeKind, Stream stream, JsonWriterOptions jsonWriterOptions, CancellationToken cancellationToken)
+        public async Task SerializeAsync(IEnumerable<IElement> elements, SerializationModeKind serializationModeKind, bool includeDerived, Stream stream, JsonWriterOptions jsonWriterOptions, CancellationToken cancellationToken)
         {
             await using var writer = new Utf8JsonWriter(stream, jsonWriterOptions);
             writer.WriteStartArray();
@@ -116,7 +125,7 @@ namespace KerML.NET.Serializer.Json
             foreach (var element in elements)
             {
                 var serializationAction = SerializationProvider.Provide(element.GetType());
-                serializationAction(element, writer, serializationModeKind);
+                serializationAction(element, writer, serializationModeKind, includeDerived);
                 await writer.FlushAsync(cancellationToken);
                     
             }
@@ -135,6 +144,9 @@ namespace KerML.NET.Serializer.Json
         /// <param name="serializationModeKind">
         /// The <see cref="SerializationModeKind"/> to use
         /// </param>
+        /// <param name="includeDerived">
+        /// A value indicating whether derived properties shall be serialized or not
+        /// </param>
         /// <param name="stream">
         /// The target <see cref="Stream"/>
         /// </param>
@@ -144,11 +156,11 @@ namespace KerML.NET.Serializer.Json
         /// <param name="cancellationToken">
         /// The <see cref="CancellationToken"/> used to cancel the operation
         /// </param>
-        public async Task SerializeAsync(IElement element, SerializationModeKind serializationModeKind, Stream stream, JsonWriterOptions jsonWriterOptions, CancellationToken cancellationToken)
+        public async Task SerializeAsync(IElement element, SerializationModeKind serializationModeKind, bool includeDerived, Stream stream, JsonWriterOptions jsonWriterOptions, CancellationToken cancellationToken)
         {
             await using var writer = new Utf8JsonWriter(stream, jsonWriterOptions);
             var serializationAction = SerializationProvider.Provide(element.GetType());
-            serializationAction(element, writer, serializationModeKind);
+            serializationAction(element, writer, serializationModeKind, includeDerived);
             await writer.FlushAsync(cancellationToken);
         }
     }

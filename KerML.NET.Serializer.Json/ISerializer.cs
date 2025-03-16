@@ -43,13 +43,16 @@ namespace KerML.NET.Serializer.Json
         /// <param name="serializationModeKind">
         /// The <see cref="SerializationModeKind"/> to use
         /// </param>
+        /// <param name="includeDerived">
+        /// A value indicating whether derived properties shall be serialized or not
+        /// </param>
         /// <param name="stream">
         /// The target <see cref="Stream"/>
         /// </param>
         /// <param name="jsonWriterOptions">
         /// The <see cref="JsonWriterOptions"/> to use
         /// </param>
-        void Serialize(IEnumerable<IElement> elements, SerializationModeKind serializationModeKind, Stream stream, JsonWriterOptions jsonWriterOptions);
+        void Serialize(IEnumerable<IElement> elements, SerializationModeKind serializationModeKind, bool includeDerived, Stream stream, JsonWriterOptions jsonWriterOptions);
 
         /// <summary>
         /// Serialize an <see cref="IElement"/> as JSON to a target <see cref="Stream"/>
@@ -60,13 +63,16 @@ namespace KerML.NET.Serializer.Json
         /// <param name="serializationModeKind">
         /// The <see cref="SerializationModeKind"/> to use
         /// </param>
+        /// <param name="includeDerived">
+        /// A value indicating whether derived properties shall be serialized or not
+        /// </param>
         /// <param name="stream">
         /// The target <see cref="Stream"/>
         /// </param>
         /// <param name="jsonWriterOptions">
         /// The <see cref="JsonWriterOptions"/> to use
         /// </param>
-        void Serialize(IElement element, SerializationModeKind serializationModeKind, Stream stream, JsonWriterOptions jsonWriterOptions);
+        void Serialize(IElement element, SerializationModeKind serializationModeKind, bool includeDerived, Stream stream, JsonWriterOptions jsonWriterOptions);
 
         /// <summary>
         /// Asynchronously serialize an <see cref="IEnumerable{IElement}"/> as JSON to a target <see cref="Stream"/>
@@ -77,6 +83,9 @@ namespace KerML.NET.Serializer.Json
         /// <param name="serializationModeKind">
         /// The <see cref="SerializationModeKind"/> to use
         /// </param>
+        /// <param name="includeDerived">
+        /// A value indicating whether derived properties shall be serialized or not
+        /// </param>
         /// <param name="stream">
         /// The target <see cref="Stream"/>
         /// </param>
@@ -86,7 +95,7 @@ namespace KerML.NET.Serializer.Json
         /// <param name="cancellationToken">
         /// The <see cref="CancellationToken"/> used to cancel the operation
         /// </param>
-        Task SerializeAsync(IEnumerable<IElement> elements, SerializationModeKind serializationModeKind, Stream stream, JsonWriterOptions jsonWriterOptions, CancellationToken cancellationToken);
+        Task SerializeAsync(IEnumerable<IElement> elements, SerializationModeKind serializationModeKind, bool includeDerived, Stream stream, JsonWriterOptions jsonWriterOptions, CancellationToken cancellationToken);
 
         /// <summary>
         /// Asynchronously serialize an <see cref="IElement"/> as JSON to a target <see cref="Stream"/>
@@ -97,6 +106,9 @@ namespace KerML.NET.Serializer.Json
         /// <param name="serializationModeKind">
         /// The <see cref="SerializationModeKind"/> to use
         /// </param>
+        /// <param name="includeDerived">
+        /// A value indicating whether derived properties shall be serialized or not
+        /// </param>
         /// <param name="stream">
         /// The target <see cref="Stream"/>
         /// </param>
@@ -106,6 +118,6 @@ namespace KerML.NET.Serializer.Json
         /// <param name="cancellationToken">
         /// The <see cref="CancellationToken"/> used to cancel the operation
         /// </param>
-        Task SerializeAsync(IElement element, SerializationModeKind serializationModeKind, Stream stream, JsonWriterOptions jsonWriterOptions, CancellationToken cancellationToken);
+        Task SerializeAsync(IElement element, SerializationModeKind serializationModeKind, bool includeDerived, Stream stream, JsonWriterOptions jsonWriterOptions, CancellationToken cancellationToken);
     }
 }
