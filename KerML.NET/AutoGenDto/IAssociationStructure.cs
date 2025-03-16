@@ -38,8 +38,6 @@ namespace KerML.NET.DTO.Kernel.Associations
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// An AssociationStructure is an Association that is also a Structure, classifying link objects that

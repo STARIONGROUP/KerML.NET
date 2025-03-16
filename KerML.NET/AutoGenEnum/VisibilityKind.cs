@@ -22,7 +22,7 @@
 // --------THIS IS AN AUTOMATICALLY GENERATED FILE. ANY MANUAL CHANGES WILL BE OVERWRITTEN!--------
 // ------------------------------------------------------------------------------------------------
 
-namespace KerML.NET.Namespaces
+namespace KerML.NET.Root.Namespaces
 {
     /// <summary>
     /// VisibilityKind is an enumeration whose literals specify the visibility of a Membership of an Element

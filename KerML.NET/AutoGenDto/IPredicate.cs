@@ -38,8 +38,6 @@ namespace KerML.NET.DTO.Kernel.Functions
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Predicate is a Function whose result parameter has type Boolean and multiplicity 1..1.

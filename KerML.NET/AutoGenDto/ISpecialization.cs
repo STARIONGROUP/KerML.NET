@@ -34,8 +34,6 @@ namespace KerML.NET.DTO.Core.Types
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// Specialization is a Relationship between two Types that requires all instances of the specific type

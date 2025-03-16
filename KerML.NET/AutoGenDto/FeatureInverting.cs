@@ -34,8 +34,6 @@ namespace KerML.NET.DTO.Core.Features
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A FeatureInverting is a Relationship between Features asserting that their interpretations

@@ -33,8 +33,6 @@ namespace KerML.NET.DTO.Root.Annotations
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// An Annotation is a Relationship between an AnnotatingElement and the Element that is annotated by

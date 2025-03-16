@@ -38,8 +38,6 @@ namespace KerML.NET.DTO.Kernel.Behaviors
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Behavior coordinates occurrences of other Behaviors, as well as changes in objects. Behaviors can

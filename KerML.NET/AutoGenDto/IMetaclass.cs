@@ -37,8 +37,6 @@ namespace KerML.NET.DTO.Kernel.Metadata
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Metaclass is a Structure used to type MetadataFeatures.

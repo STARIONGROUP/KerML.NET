@@ -28,11 +28,10 @@ namespace KerML.NET.DTO.{{ #NamedElement.WriteNameSpace this }}
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    {{ #Class.WriteEnumerationNameSpaces this}}
     {{ #Class.WriteDTONameSpaces this}}
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     {{ #Documentation this }}
     {{ #Decorator.WriteClassAttribute this }}

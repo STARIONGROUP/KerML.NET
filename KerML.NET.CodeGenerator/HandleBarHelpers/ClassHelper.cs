@@ -102,6 +102,31 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
                 }
             });
 
+            handlebars.RegisterHelper("Class.WriteEnumerationNameSpaces", (writer, context, _) =>
+            {
+                if (!(context.Value is IClass @class))
+                {
+                    throw new ArgumentException("supposed to be IClass");
+                }
+
+                var uniqueNamespaces = new HashSet<string>();
+
+                var allProperties = @class.QueryAllProperties();
+                foreach (var prop in allProperties.Where(x => x.QueryIsEnum()))
+                {
+                    var qualifiedNameSpaces = prop.Type.QualifiedName.Split("::");
+                    var namespaces = qualifiedNameSpaces.Skip(1).Take(qualifiedNameSpaces.Length - 2);
+                    var nameSpace = string.Join('.', namespaces);
+                    uniqueNamespaces.Add(nameSpace);
+                }
+
+                var orderedNamespaces = uniqueNamespaces.Order().ToList();
+                foreach (var orderedNamespace in orderedNamespaces)
+                {
+                    writer.WriteSafeString($"using KerML.NET.{orderedNamespace} ;{Environment.NewLine}");
+                }
+            });
+
             handlebars.RegisterHelper("Class.WriteDTONameSpaces", (writer, context, _) =>
             {
                 if (!(context.Value is IClass @class))
@@ -149,20 +174,6 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
                 var nameSpace = string.Join('.', namespaces);
 
                 writer.WriteSafeString($"KerML.NET.DTO.{nameSpace}.{@class.Name}");
-            });
-
-            handlebars.RegisterHelper("Class.WriteFullyQualifiedNameSpace", (writer, context, _) =>
-            {
-                if (!(context.Value is IClass @class))
-                {
-                    throw new ArgumentException("supposed to be IClass");
-                }
-
-                var qualifiedNameSpaces = @class.QualifiedName.Split("::");
-                var namespaces = qualifiedNameSpaces.Skip(1).Take(qualifiedNameSpaces.Length - 2);
-                var nameSpace = string.Join('.', namespaces);
-
-                writer.WriteSafeString($"KerML.NET.DTO.{nameSpace}");
             });
         }
     }

@@ -30,9 +30,11 @@ namespace KerML.NET.CodeGenerator.Tests.Generators.UmlHandleBarsGenerators
     using Serilog;
 
     using KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators;
-
+    using uml4net.Extensions;
+    using uml4net.StructuredClassifiers;
     using uml4net.xmi;
     using uml4net.xmi.Readers;
+    using System.Linq;
 
     [TestFixture]
     public class UmlJsonDeSerializerGeneratorTestFixture
@@ -98,6 +100,21 @@ namespace KerML.NET.CodeGenerator.Tests.Generators.UmlHandleBarsGenerators
                 $"Expected/UML/AutoGenDeSerializer/{className}DeSerializer.cs"));
 
             Assert.That(generatedCode, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void verify_enum_deserializers_are_generated()
+        {
+            Assert.That(async () => await this.umlJsonDeSerializerGenerator.GenerateEnumJsonDeSerializersAsync(xmiReaderResult, this.jsonDeSerializerDirectoryInfo),
+                Throws.Nothing);
+        }
+
+        [Test]
+        public void Verify_That_GenerateDtoJsonDeSerializersAsync_does_not_Throw()
+        {
+            Assert.That(async () => await this.umlJsonDeSerializerGenerator.GenerateDtoJsonDeSerializersAsync(xmiReaderResult, this.jsonDeSerializerDirectoryInfo),
+                Throws.Nothing);
+
         }
     }
 }

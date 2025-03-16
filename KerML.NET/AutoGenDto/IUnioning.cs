@@ -34,8 +34,6 @@ namespace KerML.NET.DTO.Core.Types
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// Unioning is a Relationship that makes its unioningType one of the unioningTypes of its typeUnioned.

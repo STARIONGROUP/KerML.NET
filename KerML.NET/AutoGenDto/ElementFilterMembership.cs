@@ -28,14 +28,13 @@ namespace KerML.NET.DTO.Kernel.Packages
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.Root.Namespaces;
     using KerML.NET.DTO.Kernel.Functions;
     using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// ElementFilterMembership is a Membership between a Namespace and a model-level evaluable

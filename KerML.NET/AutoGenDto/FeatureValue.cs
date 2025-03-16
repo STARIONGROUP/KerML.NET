@@ -28,6 +28,7 @@ namespace KerML.NET.DTO.Kernel.FeatureValues
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.Root.Namespaces;
     using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Kernel.Functions;
     using KerML.NET.DTO.Root.Annotations;
@@ -35,8 +36,6 @@ namespace KerML.NET.DTO.Kernel.FeatureValues
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A FeatureValue is a Membership that identifies a particular member Expression that provides the

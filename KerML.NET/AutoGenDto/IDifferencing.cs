@@ -34,8 +34,6 @@ namespace KerML.NET.DTO.Core.Types
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// Differencing is a Relationship that makes its differencingType one of the differencingTypes of its

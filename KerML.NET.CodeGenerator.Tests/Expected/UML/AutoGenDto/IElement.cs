@@ -33,8 +33,6 @@ namespace KerML.NET.DTO.Root.Elements
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// An Element is a constituent of a model that is uniquely identified relative to all other Elements.

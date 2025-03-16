@@ -37,8 +37,6 @@ namespace KerML.NET.DTO.Kernel.Structures
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Structure is a Class of objects in the modeled universe that are primarily structural in nature.

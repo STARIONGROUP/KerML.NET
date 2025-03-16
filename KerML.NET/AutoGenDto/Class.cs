@@ -36,8 +36,6 @@ namespace KerML.NET.DTO.Kernel.Classes
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Class is a Classifier of things (in the universe) that can be distinguished without regard to how

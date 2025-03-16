@@ -61,6 +61,27 @@ namespace KerML.NET.CodeGenerator.HandleBarHelpers
 
                 writer.WriteSafeString(nameSpace);
             });
+
+            handlebars.RegisterHelper("NamedElement.WriteFullyQualifiedNameSpace", (writer, context, _) =>
+            {
+                if (!(context.Value is INamedElement namedElement))
+                {
+                    throw new ArgumentException("supposed to be INamedElement");
+                }
+
+                var qualifiedNameSpaces = namedElement.QualifiedName.Split("::");
+                var namespaces = qualifiedNameSpaces.Skip(1).Take(qualifiedNameSpaces.Length - 2);
+                var nameSpace = string.Join('.', namespaces);
+
+                if (namedElement is IEnumeration)
+                {
+                    writer.WriteSafeString($"KerML.{nameSpace}");
+                }
+                else
+                {
+                    writer.WriteSafeString($"KerML.NET.DTO.{nameSpace}");
+                }
+            });
         }
     }
 }

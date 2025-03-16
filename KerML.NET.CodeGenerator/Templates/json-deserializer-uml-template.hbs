@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="{{this.Name}}.cs" company="Starion Group S.A.">
+// <copyright file="{{this.Name}}DeSerializer.cs" company="Starion Group S.A.">
 //
 //   Copyright (C) 2022-2025 Starion Group S.A.
 //
@@ -27,7 +27,7 @@ namespace KerML.NET.Serializer.Json
     using System;
     using System.Text.Json;
 
-    using {{ #Class.WriteFullyQualifiedNameSpace this }};
+    using {{ #NamedElement.WriteFullyQualifiedNameSpace this }};
 
     using Microsoft.Extensions.Logging;
     using Microsoft.Extensions.Logging.Abstractions;
@@ -91,15 +91,15 @@ namespace KerML.NET.Serializer.Json
                     }
 
                 {{else}}
-                    if (jsonElement.TryGetProperty("{{ property.Name }}"u8, out JsonElement {{ property.Name }}Property))
+                    if (jsonElement.TryGetProperty("{{ property.Name }}"u8, out JsonElement {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property))
                     {
                         {{#if (Property.QueryIsReferenceProperty property)}}
                             {{#if (Property.QueryIsEnumerable property)}}
-                                foreach (var arrayItem in {{ property.Name }}Property.EnumerateArray())
+                                foreach (var arrayItem in {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.EnumerateArray())
                                 {
-                                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement {{ property.Name }}IdProperty))
+                                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement {{ String.LowerCaseFirstLetter (Property.WriteName property) }}AtIdProperty))
                                     {
-                                        var propertyValue = {{ property.Name }}IdProperty.GetString();
+                                        var propertyValue = {{ String.LowerCaseFirstLetter (Property.WriteName property) }}AtIdProperty.GetString();
                                         if (propertyValue != null)
                                         {
                                             dtoInstance.{{ Property.WriteName property }}.Add(propertyValue);
@@ -107,7 +107,7 @@ namespace KerML.NET.Serializer.Json
                                     }
                                 }
                             {{ else }}
-                                if ({{ property.Name }}Property.ValueKind == JsonValueKind.Null)
+                                if ({{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.ValueKind == JsonValueKind.Null)
                                 {
                                     {{#if (Property.QueryIsNullable property) }}
                                         dtoInstance.{{  Property.WriteName property }} = null;
@@ -118,9 +118,9 @@ namespace KerML.NET.Serializer.Json
                                 }
                                 else
                                 {
-                                    if ({{ property.Name }}Property.TryGetProperty("@id"u8, out JsonElement {{ property.Name }}IdProperty))
+                                    if ({{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.TryGetProperty("@id"u8, out JsonElement {{ String.LowerCaseFirstLetter (Property.WriteName property) }}AtIdProperty))
                                     {
-                                        var propertyValue = {{ property.Name }}IdProperty.GetString();
+                                        var propertyValue = {{ String.LowerCaseFirstLetter (Property.WriteName property) }}AtIdProperty.GetString();
                                         if (propertyValue != null)
                                         {
                                             dtoInstance.{{  Property.WriteName property }} = propertyValue;
@@ -130,7 +130,7 @@ namespace KerML.NET.Serializer.Json
                             {{/if}}
                         {{ else }}
                             {{#if (Property.QueryIsEnumerable property)}}
-                                foreach (var arrayItem in {{ property.Name }}Property.EnumerateArray())
+                                foreach (var arrayItem in {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.EnumerateArray())
                                 {
                                     {{#if (Property.QueryIsBool property )}}
                                         var propertyValue = arrayItem.GetBoolean();
@@ -158,38 +158,38 @@ namespace KerML.NET.Serializer.Json
                                 }
                             {{ else if (Property.QueryIsNullable property) }}
                                 {{#if (Property.QueryIsBool property )}}
-                                    dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetBoolean();
+                                    dtoInstance.{{  Property.WriteName property }} = {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.GetBoolean();
                                 {{else if (Property.QueryIsNumeric property )}}
                                     {{#if (Property.QueryIsInteger property) }}
-                                        dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetInt32();
+                                        dtoInstance.{{  Property.WriteName property }} = {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.GetInt32();
                                     {{else if (Property.QueryIsDouble property) }}
-                                        dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetDouble();
+                                        dtoInstance.{{  Property.WriteName property }} = {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.GetDouble();
                                     {{ else }}
                                         new NotImplementedException("nullable - {{this.Name}}.{{property.Name}} is not yet supported");
                                     {{/if}}
                                 {{else if (Property.QueryIsEnum property )}}
-                                    dtoInstance.{{  Property.WriteName property }} = {{ property.Type.Name }}DeSerializer.DeserializeNullable({{ property.Name }}Property.GetString());
+                                    dtoInstance.{{  Property.WriteName property }} = {{ property.Type.Name }}DeSerializer.DeserializeNullable({{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.GetString());
                                 {{else}}
-                                    dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetString();
+                                    dtoInstance.{{  Property.WriteName property }} = {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.GetString();
                                 {{/if}}
                             {{ else if (Property.QueryIsScalar property) }}
                                 {{#if (Property.QueryIsBool property )}}
-                                    if ({{ property.Name }}Property.ValueKind != JsonValueKind.Null)
+                                    if ({{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.ValueKind != JsonValueKind.Null)
                                     {
-                                        dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetBoolean();
+                                        dtoInstance.{{  Property.WriteName property }} = {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.GetBoolean();
                                     }
                                 {{else if (Property.QueryIsNumeric property )}}
                                     {{#if (Property.QueryIsInteger property) }}
-                                        dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetInt32();
+                                        dtoInstance.{{  Property.WriteName property }} = {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.GetInt32();
                                     {{else if (Property.QueryIsDouble property) }}
-                                        dtoInstance.{{  Property.WriteName property }} = {{ property.Name }}Property.GetDouble();
+                                        dtoInstance.{{  Property.WriteName property }} = {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.GetDouble();
                                     {{ else }}
                                         new NotImplementedException("Scalar - {{UmlClass.Name}}.{{property.Name}} is not yet supported");
                                     {{/if}}
                                 {{else if (Property.QueryIsEnum property )}}
-                                    dtoInstance.{{  Property.WriteName property }} = {{ property.EType.Name }}DeSerializer.Deserialize({{ property.Name }}Property.GetString());
+                                    dtoInstance.{{  Property.WriteName property }} = {{ property.Type.Name }}DeSerializer.Deserialize({{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.GetString());
                                 {{else}}
-                                    var propertyValue = {{property.Name }}Property.GetString();
+                                    var propertyValue = {{ String.LowerCaseFirstLetter (Property.WriteName property) }}Property.GetString();
                                     if (propertyValue != null)
                                     {
                                         dtoInstance.{{  Property.WriteName property }} = propertyValue;

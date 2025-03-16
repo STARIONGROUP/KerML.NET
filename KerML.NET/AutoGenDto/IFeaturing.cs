@@ -35,8 +35,6 @@ namespace KerML.NET.DTO.Core.Features
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// Featuring is a Relationship between a Type and a Feature that is featured by that Type. It asserts

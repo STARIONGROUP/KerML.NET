@@ -34,8 +34,6 @@ namespace KerML.NET.DTO.Core.Types
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// Conjugation is a Relationship between two types in which the conjugatedType inherits all the

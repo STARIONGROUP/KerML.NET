@@ -33,8 +33,6 @@ namespace KerML.NET.DTO.Root.Annotations
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A TextualRepresentation is an AnnotatingElement whose body represents the representedElement in a

@@ -1,5 +1,5 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// <copyright file="Feature.cs" company="Starion Group S.A.">
+// <copyright file="FeatureDeSerializer.cs" company="Starion Group S.A.">
 //
 //   Copyright (C) 2022-2025 Starion Group S.A.
 //
@@ -98,13 +98,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the aliasIds Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("chainingFeature"u8, out JsonElement chainingFeatureProperty))
+            if (jsonElement.TryGetProperty("chainingFeature"u8, out JsonElement getChainingFeatureProperty))
             {
-                foreach (var arrayItem in chainingFeatureProperty.EnumerateArray())
+                foreach (var arrayItem in getChainingFeatureProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement chainingFeatureIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getChainingFeatureAtIdProperty))
                     {
-                        var propertyValue = chainingFeatureIdProperty.GetString();
+                        var propertyValue = getChainingFeatureAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetChainingFeature.Add(propertyValue);
@@ -117,17 +117,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the chainingFeature Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("crossFeature"u8, out JsonElement crossFeatureProperty))
+            if (jsonElement.TryGetProperty("crossFeature"u8, out JsonElement getCrossFeatureProperty))
             {
-                if (crossFeatureProperty.ValueKind == JsonValueKind.Null)
+                if (getCrossFeatureProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetCrossFeature = null;
                 }
                 else
                 {
-                    if (crossFeatureProperty.TryGetProperty("@id"u8, out JsonElement crossFeatureIdProperty))
+                    if (getCrossFeatureProperty.TryGetProperty("@id"u8, out JsonElement getCrossFeatureAtIdProperty))
                     {
-                        var propertyValue = crossFeatureIdProperty.GetString();
+                        var propertyValue = getCrossFeatureAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetCrossFeature = propertyValue;
@@ -158,13 +158,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the declaredShortName Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("differencingType"u8, out JsonElement differencingTypeProperty))
+            if (jsonElement.TryGetProperty("differencingType"u8, out JsonElement getDifferencingTypeProperty))
             {
-                foreach (var arrayItem in differencingTypeProperty.EnumerateArray())
+                foreach (var arrayItem in getDifferencingTypeProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement differencingTypeIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getDifferencingTypeAtIdProperty))
                     {
-                        var propertyValue = differencingTypeIdProperty.GetString();
+                        var propertyValue = getDifferencingTypeAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetDifferencingType.Add(propertyValue);
@@ -177,13 +177,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the differencingType Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("directedFeature"u8, out JsonElement directedFeatureProperty))
+            if (jsonElement.TryGetProperty("directedFeature"u8, out JsonElement getDirectedFeatureProperty))
             {
-                foreach (var arrayItem in directedFeatureProperty.EnumerateArray())
+                foreach (var arrayItem in getDirectedFeatureProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement directedFeatureIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getDirectedFeatureAtIdProperty))
                     {
-                        var propertyValue = directedFeatureIdProperty.GetString();
+                        var propertyValue = getDirectedFeatureAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetDirectedFeature.Add(propertyValue);
@@ -205,13 +205,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the direction Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("documentation"u8, out JsonElement documentationProperty))
+            if (jsonElement.TryGetProperty("documentation"u8, out JsonElement getDocumentationProperty))
             {
-                foreach (var arrayItem in documentationProperty.EnumerateArray())
+                foreach (var arrayItem in getDocumentationProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement documentationIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getDocumentationAtIdProperty))
                     {
-                        var propertyValue = documentationIdProperty.GetString();
+                        var propertyValue = getDocumentationAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetDocumentation.Add(propertyValue);
@@ -237,13 +237,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the elementId Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("endFeature"u8, out JsonElement endFeatureProperty))
+            if (jsonElement.TryGetProperty("endFeature"u8, out JsonElement getEndFeatureProperty))
             {
-                foreach (var arrayItem in endFeatureProperty.EnumerateArray())
+                foreach (var arrayItem in getEndFeatureProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement endFeatureIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getEndFeatureAtIdProperty))
                     {
-                        var propertyValue = endFeatureIdProperty.GetString();
+                        var propertyValue = getEndFeatureAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetEndFeature.Add(propertyValue);
@@ -256,17 +256,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the endFeature Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("endOwningType"u8, out JsonElement endOwningTypeProperty))
+            if (jsonElement.TryGetProperty("endOwningType"u8, out JsonElement getEndOwningTypeProperty))
             {
-                if (endOwningTypeProperty.ValueKind == JsonValueKind.Null)
+                if (getEndOwningTypeProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetEndOwningType = null;
                 }
                 else
                 {
-                    if (endOwningTypeProperty.TryGetProperty("@id"u8, out JsonElement endOwningTypeIdProperty))
+                    if (getEndOwningTypeProperty.TryGetProperty("@id"u8, out JsonElement getEndOwningTypeAtIdProperty))
                     {
-                        var propertyValue = endOwningTypeIdProperty.GetString();
+                        var propertyValue = getEndOwningTypeAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetEndOwningType = propertyValue;
@@ -279,13 +279,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the endOwningType Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("feature"u8, out JsonElement featureProperty))
+            if (jsonElement.TryGetProperty("feature"u8, out JsonElement getFeatureProperty))
             {
-                foreach (var arrayItem in featureProperty.EnumerateArray())
+                foreach (var arrayItem in getFeatureProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement featureIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getFeatureAtIdProperty))
                     {
-                        var propertyValue = featureIdProperty.GetString();
+                        var propertyValue = getFeatureAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetFeature.Add(propertyValue);
@@ -298,13 +298,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the feature Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("featureMembership"u8, out JsonElement featureMembershipProperty))
+            if (jsonElement.TryGetProperty("featureMembership"u8, out JsonElement getFeatureMembershipProperty))
             {
-                foreach (var arrayItem in featureMembershipProperty.EnumerateArray())
+                foreach (var arrayItem in getFeatureMembershipProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement featureMembershipIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getFeatureMembershipAtIdProperty))
                     {
-                        var propertyValue = featureMembershipIdProperty.GetString();
+                        var propertyValue = getFeatureMembershipAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetFeatureMembership.Add(propertyValue);
@@ -317,18 +317,18 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the featureMembership Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("featureTarget"u8, out JsonElement featureTargetProperty))
+            if (jsonElement.TryGetProperty("featureTarget"u8, out JsonElement getFeatureTargetProperty))
             {
-                if (featureTargetProperty.ValueKind == JsonValueKind.Null)
+                if (getFeatureTargetProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetFeatureTarget = "-";
                     logger.LogDebug("the Feature.FeatureTarget property was not found in the Json. The value is set to '-'");
                 }
                 else
                 {
-                    if (featureTargetProperty.TryGetProperty("@id"u8, out JsonElement featureTargetIdProperty))
+                    if (getFeatureTargetProperty.TryGetProperty("@id"u8, out JsonElement getFeatureTargetAtIdProperty))
                     {
-                        var propertyValue = featureTargetIdProperty.GetString();
+                        var propertyValue = getFeatureTargetAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetFeatureTarget = propertyValue;
@@ -341,13 +341,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the featureTarget Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("featuringType"u8, out JsonElement featuringTypeProperty))
+            if (jsonElement.TryGetProperty("featuringType"u8, out JsonElement getFeaturingTypeProperty))
             {
-                foreach (var arrayItem in featuringTypeProperty.EnumerateArray())
+                foreach (var arrayItem in getFeaturingTypeProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement featuringTypeIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getFeaturingTypeAtIdProperty))
                     {
-                        var propertyValue = featuringTypeIdProperty.GetString();
+                        var propertyValue = getFeaturingTypeAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetFeaturingType.Add(propertyValue);
@@ -360,13 +360,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the featuringType Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("importedMembership"u8, out JsonElement importedMembershipProperty))
+            if (jsonElement.TryGetProperty("importedMembership"u8, out JsonElement getImportedMembershipProperty))
             {
-                foreach (var arrayItem in importedMembershipProperty.EnumerateArray())
+                foreach (var arrayItem in getImportedMembershipProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement importedMembershipIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getImportedMembershipAtIdProperty))
                     {
-                        var propertyValue = importedMembershipIdProperty.GetString();
+                        var propertyValue = getImportedMembershipAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetImportedMembership.Add(propertyValue);
@@ -379,13 +379,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the importedMembership Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("inheritedFeature"u8, out JsonElement inheritedFeatureProperty))
+            if (jsonElement.TryGetProperty("inheritedFeature"u8, out JsonElement getInheritedFeatureProperty))
             {
-                foreach (var arrayItem in inheritedFeatureProperty.EnumerateArray())
+                foreach (var arrayItem in getInheritedFeatureProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement inheritedFeatureIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getInheritedFeatureAtIdProperty))
                     {
-                        var propertyValue = inheritedFeatureIdProperty.GetString();
+                        var propertyValue = getInheritedFeatureAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetInheritedFeature.Add(propertyValue);
@@ -398,13 +398,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the inheritedFeature Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("inheritedMembership"u8, out JsonElement inheritedMembershipProperty))
+            if (jsonElement.TryGetProperty("inheritedMembership"u8, out JsonElement getInheritedMembershipProperty))
             {
-                foreach (var arrayItem in inheritedMembershipProperty.EnumerateArray())
+                foreach (var arrayItem in getInheritedMembershipProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement inheritedMembershipIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getInheritedMembershipAtIdProperty))
                     {
-                        var propertyValue = inheritedMembershipIdProperty.GetString();
+                        var propertyValue = getInheritedMembershipAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetInheritedMembership.Add(propertyValue);
@@ -417,13 +417,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the inheritedMembership Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("input"u8, out JsonElement inputProperty))
+            if (jsonElement.TryGetProperty("input"u8, out JsonElement getInputProperty))
             {
-                foreach (var arrayItem in inputProperty.EnumerateArray())
+                foreach (var arrayItem in getInputProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement inputIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getInputAtIdProperty))
                     {
-                        var propertyValue = inputIdProperty.GetString();
+                        var propertyValue = getInputAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetInput.Add(propertyValue);
@@ -436,13 +436,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the input Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("intersectingType"u8, out JsonElement intersectingTypeProperty))
+            if (jsonElement.TryGetProperty("intersectingType"u8, out JsonElement getIntersectingTypeProperty))
             {
-                foreach (var arrayItem in intersectingTypeProperty.EnumerateArray())
+                foreach (var arrayItem in getIntersectingTypeProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement intersectingTypeIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getIntersectingTypeAtIdProperty))
                     {
-                        var propertyValue = intersectingTypeIdProperty.GetString();
+                        var propertyValue = getIntersectingTypeAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetIntersectingType.Add(propertyValue);
@@ -479,11 +479,11 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the isComposite Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("isConjugated"u8, out JsonElement isConjugatedProperty))
+            if (jsonElement.TryGetProperty("isConjugated"u8, out JsonElement getIsConjugatedProperty))
             {
-                if (isConjugatedProperty.ValueKind != JsonValueKind.Null)
+                if (getIsConjugatedProperty.ValueKind != JsonValueKind.Null)
                 {
-                    dtoInstance.GetIsConjugated = isConjugatedProperty.GetBoolean();
+                    dtoInstance.GetIsConjugated = getIsConjugatedProperty.GetBoolean();
                 }
             }
             else
@@ -527,11 +527,11 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the isImpliedIncluded Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("isLibraryElement"u8, out JsonElement isLibraryElementProperty))
+            if (jsonElement.TryGetProperty("isLibraryElement"u8, out JsonElement getIsLibraryElementProperty))
             {
-                if (isLibraryElementProperty.ValueKind != JsonValueKind.Null)
+                if (getIsLibraryElementProperty.ValueKind != JsonValueKind.Null)
                 {
-                    dtoInstance.GetIsLibraryElement = isLibraryElementProperty.GetBoolean();
+                    dtoInstance.GetIsLibraryElement = getIsLibraryElementProperty.GetBoolean();
                 }
             }
             else
@@ -599,13 +599,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the isUnique Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("member"u8, out JsonElement memberProperty))
+            if (jsonElement.TryGetProperty("member"u8, out JsonElement getMemberProperty))
             {
-                foreach (var arrayItem in memberProperty.EnumerateArray())
+                foreach (var arrayItem in getMemberProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement memberIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getMemberAtIdProperty))
                     {
-                        var propertyValue = memberIdProperty.GetString();
+                        var propertyValue = getMemberAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetMember.Add(propertyValue);
@@ -618,13 +618,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the member Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("membership"u8, out JsonElement membershipProperty))
+            if (jsonElement.TryGetProperty("membership"u8, out JsonElement getMembershipProperty))
             {
-                foreach (var arrayItem in membershipProperty.EnumerateArray())
+                foreach (var arrayItem in getMembershipProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement membershipIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getMembershipAtIdProperty))
                     {
-                        var propertyValue = membershipIdProperty.GetString();
+                        var propertyValue = getMembershipAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetMembership.Add(propertyValue);
@@ -637,17 +637,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the membership Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("multiplicity"u8, out JsonElement multiplicityProperty))
+            if (jsonElement.TryGetProperty("multiplicity"u8, out JsonElement getMultiplicityProperty))
             {
-                if (multiplicityProperty.ValueKind == JsonValueKind.Null)
+                if (getMultiplicityProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetMultiplicity = null;
                 }
                 else
                 {
-                    if (multiplicityProperty.TryGetProperty("@id"u8, out JsonElement multiplicityIdProperty))
+                    if (getMultiplicityProperty.TryGetProperty("@id"u8, out JsonElement getMultiplicityAtIdProperty))
                     {
-                        var propertyValue = multiplicityIdProperty.GetString();
+                        var propertyValue = getMultiplicityAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetMultiplicity = propertyValue;
@@ -660,22 +660,22 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the multiplicity Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("name"u8, out JsonElement nameProperty))
+            if (jsonElement.TryGetProperty("name"u8, out JsonElement getNameProperty))
             {
-                dtoInstance.GetName = nameProperty.GetString();
+                dtoInstance.GetName = getNameProperty.GetString();
             }
             else
             {
                 logger.LogDebug($"the name Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("output"u8, out JsonElement outputProperty))
+            if (jsonElement.TryGetProperty("output"u8, out JsonElement getOutputProperty))
             {
-                foreach (var arrayItem in outputProperty.EnumerateArray())
+                foreach (var arrayItem in getOutputProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement outputIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOutputAtIdProperty))
                     {
-                        var propertyValue = outputIdProperty.GetString();
+                        var propertyValue = getOutputAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOutput.Add(propertyValue);
@@ -688,13 +688,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the output Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedAnnotation"u8, out JsonElement ownedAnnotationProperty))
+            if (jsonElement.TryGetProperty("ownedAnnotation"u8, out JsonElement getOwnedAnnotationProperty))
             {
-                foreach (var arrayItem in ownedAnnotationProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedAnnotationProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedAnnotationIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedAnnotationAtIdProperty))
                     {
-                        var propertyValue = ownedAnnotationIdProperty.GetString();
+                        var propertyValue = getOwnedAnnotationAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedAnnotation.Add(propertyValue);
@@ -707,17 +707,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedAnnotation Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedConjugator"u8, out JsonElement ownedConjugatorProperty))
+            if (jsonElement.TryGetProperty("ownedConjugator"u8, out JsonElement getOwnedConjugatorProperty))
             {
-                if (ownedConjugatorProperty.ValueKind == JsonValueKind.Null)
+                if (getOwnedConjugatorProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetOwnedConjugator = null;
                 }
                 else
                 {
-                    if (ownedConjugatorProperty.TryGetProperty("@id"u8, out JsonElement ownedConjugatorIdProperty))
+                    if (getOwnedConjugatorProperty.TryGetProperty("@id"u8, out JsonElement getOwnedConjugatorAtIdProperty))
                     {
-                        var propertyValue = ownedConjugatorIdProperty.GetString();
+                        var propertyValue = getOwnedConjugatorAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedConjugator = propertyValue;
@@ -730,17 +730,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedConjugator Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedCrossSubsetting"u8, out JsonElement ownedCrossSubsettingProperty))
+            if (jsonElement.TryGetProperty("ownedCrossSubsetting"u8, out JsonElement getOwnedCrossSubsettingProperty))
             {
-                if (ownedCrossSubsettingProperty.ValueKind == JsonValueKind.Null)
+                if (getOwnedCrossSubsettingProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetOwnedCrossSubsetting = null;
                 }
                 else
                 {
-                    if (ownedCrossSubsettingProperty.TryGetProperty("@id"u8, out JsonElement ownedCrossSubsettingIdProperty))
+                    if (getOwnedCrossSubsettingProperty.TryGetProperty("@id"u8, out JsonElement getOwnedCrossSubsettingAtIdProperty))
                     {
-                        var propertyValue = ownedCrossSubsettingIdProperty.GetString();
+                        var propertyValue = getOwnedCrossSubsettingAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedCrossSubsetting = propertyValue;
@@ -753,13 +753,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedCrossSubsetting Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedDifferencing"u8, out JsonElement ownedDifferencingProperty))
+            if (jsonElement.TryGetProperty("ownedDifferencing"u8, out JsonElement getOwnedDifferencingProperty))
             {
-                foreach (var arrayItem in ownedDifferencingProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedDifferencingProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedDifferencingIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedDifferencingAtIdProperty))
                     {
-                        var propertyValue = ownedDifferencingIdProperty.GetString();
+                        var propertyValue = getOwnedDifferencingAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedDifferencing.Add(propertyValue);
@@ -772,13 +772,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedDifferencing Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedDisjoining"u8, out JsonElement ownedDisjoiningProperty))
+            if (jsonElement.TryGetProperty("ownedDisjoining"u8, out JsonElement getOwnedDisjoiningProperty))
             {
-                foreach (var arrayItem in ownedDisjoiningProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedDisjoiningProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedDisjoiningIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedDisjoiningAtIdProperty))
                     {
-                        var propertyValue = ownedDisjoiningIdProperty.GetString();
+                        var propertyValue = getOwnedDisjoiningAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedDisjoining.Add(propertyValue);
@@ -791,13 +791,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedDisjoining Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedElement"u8, out JsonElement ownedElementProperty))
+            if (jsonElement.TryGetProperty("ownedElement"u8, out JsonElement getOwnedElementProperty))
             {
-                foreach (var arrayItem in ownedElementProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedElementProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedElementIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedElementAtIdProperty))
                     {
-                        var propertyValue = ownedElementIdProperty.GetString();
+                        var propertyValue = getOwnedElementAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedElement.Add(propertyValue);
@@ -810,13 +810,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedElement Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedEndFeature"u8, out JsonElement ownedEndFeatureProperty))
+            if (jsonElement.TryGetProperty("ownedEndFeature"u8, out JsonElement getOwnedEndFeatureProperty))
             {
-                foreach (var arrayItem in ownedEndFeatureProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedEndFeatureProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedEndFeatureIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedEndFeatureAtIdProperty))
                     {
-                        var propertyValue = ownedEndFeatureIdProperty.GetString();
+                        var propertyValue = getOwnedEndFeatureAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedEndFeature.Add(propertyValue);
@@ -829,13 +829,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedEndFeature Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedFeature"u8, out JsonElement ownedFeatureProperty))
+            if (jsonElement.TryGetProperty("ownedFeature"u8, out JsonElement getOwnedFeatureProperty))
             {
-                foreach (var arrayItem in ownedFeatureProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedFeatureProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedFeatureIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedFeatureAtIdProperty))
                     {
-                        var propertyValue = ownedFeatureIdProperty.GetString();
+                        var propertyValue = getOwnedFeatureAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedFeature.Add(propertyValue);
@@ -848,13 +848,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedFeature Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedFeatureChaining"u8, out JsonElement ownedFeatureChainingProperty))
+            if (jsonElement.TryGetProperty("ownedFeatureChaining"u8, out JsonElement getOwnedFeatureChainingProperty))
             {
-                foreach (var arrayItem in ownedFeatureChainingProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedFeatureChainingProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedFeatureChainingIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedFeatureChainingAtIdProperty))
                     {
-                        var propertyValue = ownedFeatureChainingIdProperty.GetString();
+                        var propertyValue = getOwnedFeatureChainingAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedFeatureChaining.Add(propertyValue);
@@ -867,13 +867,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedFeatureChaining Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedFeatureInverting"u8, out JsonElement ownedFeatureInvertingProperty))
+            if (jsonElement.TryGetProperty("ownedFeatureInverting"u8, out JsonElement getOwnedFeatureInvertingProperty))
             {
-                foreach (var arrayItem in ownedFeatureInvertingProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedFeatureInvertingProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedFeatureInvertingIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedFeatureInvertingAtIdProperty))
                     {
-                        var propertyValue = ownedFeatureInvertingIdProperty.GetString();
+                        var propertyValue = getOwnedFeatureInvertingAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedFeatureInverting.Add(propertyValue);
@@ -886,13 +886,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedFeatureInverting Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedFeatureMembership"u8, out JsonElement ownedFeatureMembershipProperty))
+            if (jsonElement.TryGetProperty("ownedFeatureMembership"u8, out JsonElement getOwnedFeatureMembershipProperty))
             {
-                foreach (var arrayItem in ownedFeatureMembershipProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedFeatureMembershipProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedFeatureMembershipIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedFeatureMembershipAtIdProperty))
                     {
-                        var propertyValue = ownedFeatureMembershipIdProperty.GetString();
+                        var propertyValue = getOwnedFeatureMembershipAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedFeatureMembership.Add(propertyValue);
@@ -905,13 +905,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedFeatureMembership Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedImport"u8, out JsonElement ownedImportProperty))
+            if (jsonElement.TryGetProperty("ownedImport"u8, out JsonElement getOwnedImportProperty))
             {
-                foreach (var arrayItem in ownedImportProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedImportProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedImportIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedImportAtIdProperty))
                     {
-                        var propertyValue = ownedImportIdProperty.GetString();
+                        var propertyValue = getOwnedImportAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedImport.Add(propertyValue);
@@ -924,13 +924,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedImport Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedIntersecting"u8, out JsonElement ownedIntersectingProperty))
+            if (jsonElement.TryGetProperty("ownedIntersecting"u8, out JsonElement getOwnedIntersectingProperty))
             {
-                foreach (var arrayItem in ownedIntersectingProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedIntersectingProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedIntersectingIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedIntersectingAtIdProperty))
                     {
-                        var propertyValue = ownedIntersectingIdProperty.GetString();
+                        var propertyValue = getOwnedIntersectingAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedIntersecting.Add(propertyValue);
@@ -943,13 +943,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedIntersecting Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedMember"u8, out JsonElement ownedMemberProperty))
+            if (jsonElement.TryGetProperty("ownedMember"u8, out JsonElement getOwnedMemberProperty))
             {
-                foreach (var arrayItem in ownedMemberProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedMemberProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedMemberIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedMemberAtIdProperty))
                     {
-                        var propertyValue = ownedMemberIdProperty.GetString();
+                        var propertyValue = getOwnedMemberAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedMember.Add(propertyValue);
@@ -962,13 +962,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedMember Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedMembership"u8, out JsonElement ownedMembershipProperty))
+            if (jsonElement.TryGetProperty("ownedMembership"u8, out JsonElement getOwnedMembershipProperty))
             {
-                foreach (var arrayItem in ownedMembershipProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedMembershipProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedMembershipIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedMembershipAtIdProperty))
                     {
-                        var propertyValue = ownedMembershipIdProperty.GetString();
+                        var propertyValue = getOwnedMembershipAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedMembership.Add(propertyValue);
@@ -981,13 +981,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedMembership Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedRedefinition"u8, out JsonElement ownedRedefinitionProperty))
+            if (jsonElement.TryGetProperty("ownedRedefinition"u8, out JsonElement getOwnedRedefinitionProperty))
             {
-                foreach (var arrayItem in ownedRedefinitionProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedRedefinitionProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedRedefinitionIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedRedefinitionAtIdProperty))
                     {
-                        var propertyValue = ownedRedefinitionIdProperty.GetString();
+                        var propertyValue = getOwnedRedefinitionAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedRedefinition.Add(propertyValue);
@@ -1000,17 +1000,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedRedefinition Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedReferenceSubsetting"u8, out JsonElement ownedReferenceSubsettingProperty))
+            if (jsonElement.TryGetProperty("ownedReferenceSubsetting"u8, out JsonElement getOwnedReferenceSubsettingProperty))
             {
-                if (ownedReferenceSubsettingProperty.ValueKind == JsonValueKind.Null)
+                if (getOwnedReferenceSubsettingProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetOwnedReferenceSubsetting = null;
                 }
                 else
                 {
-                    if (ownedReferenceSubsettingProperty.TryGetProperty("@id"u8, out JsonElement ownedReferenceSubsettingIdProperty))
+                    if (getOwnedReferenceSubsettingProperty.TryGetProperty("@id"u8, out JsonElement getOwnedReferenceSubsettingAtIdProperty))
                     {
-                        var propertyValue = ownedReferenceSubsettingIdProperty.GetString();
+                        var propertyValue = getOwnedReferenceSubsettingAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedReferenceSubsetting = propertyValue;
@@ -1027,9 +1027,9 @@ namespace KerML.NET.Serializer.Json
             {
                 foreach (var arrayItem in ownedRelationshipProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedRelationshipIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedRelationshipAtIdProperty))
                     {
-                        var propertyValue = ownedRelationshipIdProperty.GetString();
+                        var propertyValue = ownedRelationshipAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.OwnedRelationship.Add(propertyValue);
@@ -1042,13 +1042,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedRelationship Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedSpecialization"u8, out JsonElement ownedSpecializationProperty))
+            if (jsonElement.TryGetProperty("ownedSpecialization"u8, out JsonElement getOwnedSpecializationProperty))
             {
-                foreach (var arrayItem in ownedSpecializationProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedSpecializationProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedSpecializationIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedSpecializationAtIdProperty))
                     {
-                        var propertyValue = ownedSpecializationIdProperty.GetString();
+                        var propertyValue = getOwnedSpecializationAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedSpecialization.Add(propertyValue);
@@ -1061,13 +1061,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedSpecialization Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedSubsetting"u8, out JsonElement ownedSubsettingProperty))
+            if (jsonElement.TryGetProperty("ownedSubsetting"u8, out JsonElement getOwnedSubsettingProperty))
             {
-                foreach (var arrayItem in ownedSubsettingProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedSubsettingProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedSubsettingIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedSubsettingAtIdProperty))
                     {
-                        var propertyValue = ownedSubsettingIdProperty.GetString();
+                        var propertyValue = getOwnedSubsettingAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedSubsetting.Add(propertyValue);
@@ -1080,13 +1080,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedSubsetting Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedTypeFeaturing"u8, out JsonElement ownedTypeFeaturingProperty))
+            if (jsonElement.TryGetProperty("ownedTypeFeaturing"u8, out JsonElement getOwnedTypeFeaturingProperty))
             {
-                foreach (var arrayItem in ownedTypeFeaturingProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedTypeFeaturingProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedTypeFeaturingIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedTypeFeaturingAtIdProperty))
                     {
-                        var propertyValue = ownedTypeFeaturingIdProperty.GetString();
+                        var propertyValue = getOwnedTypeFeaturingAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedTypeFeaturing.Add(propertyValue);
@@ -1099,13 +1099,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedTypeFeaturing Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedTyping"u8, out JsonElement ownedTypingProperty))
+            if (jsonElement.TryGetProperty("ownedTyping"u8, out JsonElement getOwnedTypingProperty))
             {
-                foreach (var arrayItem in ownedTypingProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedTypingProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedTypingIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedTypingAtIdProperty))
                     {
-                        var propertyValue = ownedTypingIdProperty.GetString();
+                        var propertyValue = getOwnedTypingAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedTyping.Add(propertyValue);
@@ -1118,13 +1118,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedTyping Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("ownedUnioning"u8, out JsonElement ownedUnioningProperty))
+            if (jsonElement.TryGetProperty("ownedUnioning"u8, out JsonElement getOwnedUnioningProperty))
             {
-                foreach (var arrayItem in ownedUnioningProperty.EnumerateArray())
+                foreach (var arrayItem in getOwnedUnioningProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement ownedUnioningIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getOwnedUnioningAtIdProperty))
                     {
-                        var propertyValue = ownedUnioningIdProperty.GetString();
+                        var propertyValue = getOwnedUnioningAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwnedUnioning.Add(propertyValue);
@@ -1137,17 +1137,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the ownedUnioning Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("owner"u8, out JsonElement ownerProperty))
+            if (jsonElement.TryGetProperty("owner"u8, out JsonElement getOwnerProperty))
             {
-                if (ownerProperty.ValueKind == JsonValueKind.Null)
+                if (getOwnerProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetOwner = null;
                 }
                 else
                 {
-                    if (ownerProperty.TryGetProperty("@id"u8, out JsonElement ownerIdProperty))
+                    if (getOwnerProperty.TryGetProperty("@id"u8, out JsonElement getOwnerAtIdProperty))
                     {
-                        var propertyValue = ownerIdProperty.GetString();
+                        var propertyValue = getOwnerAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwner = propertyValue;
@@ -1160,17 +1160,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the owner Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("owningFeatureMembership"u8, out JsonElement owningFeatureMembershipProperty))
+            if (jsonElement.TryGetProperty("owningFeatureMembership"u8, out JsonElement getOwningFeatureMembershipProperty))
             {
-                if (owningFeatureMembershipProperty.ValueKind == JsonValueKind.Null)
+                if (getOwningFeatureMembershipProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetOwningFeatureMembership = null;
                 }
                 else
                 {
-                    if (owningFeatureMembershipProperty.TryGetProperty("@id"u8, out JsonElement owningFeatureMembershipIdProperty))
+                    if (getOwningFeatureMembershipProperty.TryGetProperty("@id"u8, out JsonElement getOwningFeatureMembershipAtIdProperty))
                     {
-                        var propertyValue = owningFeatureMembershipIdProperty.GetString();
+                        var propertyValue = getOwningFeatureMembershipAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwningFeatureMembership = propertyValue;
@@ -1183,17 +1183,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the owningFeatureMembership Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("owningMembership"u8, out JsonElement owningMembershipProperty))
+            if (jsonElement.TryGetProperty("owningMembership"u8, out JsonElement getOwningMembershipProperty))
             {
-                if (owningMembershipProperty.ValueKind == JsonValueKind.Null)
+                if (getOwningMembershipProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetOwningMembership = null;
                 }
                 else
                 {
-                    if (owningMembershipProperty.TryGetProperty("@id"u8, out JsonElement owningMembershipIdProperty))
+                    if (getOwningMembershipProperty.TryGetProperty("@id"u8, out JsonElement getOwningMembershipAtIdProperty))
                     {
-                        var propertyValue = owningMembershipIdProperty.GetString();
+                        var propertyValue = getOwningMembershipAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwningMembership = propertyValue;
@@ -1206,17 +1206,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the owningMembership Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("owningNamespace"u8, out JsonElement owningNamespaceProperty))
+            if (jsonElement.TryGetProperty("owningNamespace"u8, out JsonElement getOwningNamespaceProperty))
             {
-                if (owningNamespaceProperty.ValueKind == JsonValueKind.Null)
+                if (getOwningNamespaceProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetOwningNamespace = null;
                 }
                 else
                 {
-                    if (owningNamespaceProperty.TryGetProperty("@id"u8, out JsonElement owningNamespaceIdProperty))
+                    if (getOwningNamespaceProperty.TryGetProperty("@id"u8, out JsonElement getOwningNamespaceAtIdProperty))
                     {
-                        var propertyValue = owningNamespaceIdProperty.GetString();
+                        var propertyValue = getOwningNamespaceAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwningNamespace = propertyValue;
@@ -1237,9 +1237,9 @@ namespace KerML.NET.Serializer.Json
                 }
                 else
                 {
-                    if (owningRelationshipProperty.TryGetProperty("@id"u8, out JsonElement owningRelationshipIdProperty))
+                    if (owningRelationshipProperty.TryGetProperty("@id"u8, out JsonElement owningRelationshipAtIdProperty))
                     {
-                        var propertyValue = owningRelationshipIdProperty.GetString();
+                        var propertyValue = owningRelationshipAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.OwningRelationship = propertyValue;
@@ -1252,17 +1252,17 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the owningRelationship Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("owningType"u8, out JsonElement owningTypeProperty))
+            if (jsonElement.TryGetProperty("owningType"u8, out JsonElement getOwningTypeProperty))
             {
-                if (owningTypeProperty.ValueKind == JsonValueKind.Null)
+                if (getOwningTypeProperty.ValueKind == JsonValueKind.Null)
                 {
                     dtoInstance.GetOwningType = null;
                 }
                 else
                 {
-                    if (owningTypeProperty.TryGetProperty("@id"u8, out JsonElement owningTypeIdProperty))
+                    if (getOwningTypeProperty.TryGetProperty("@id"u8, out JsonElement getOwningTypeAtIdProperty))
                     {
-                        var propertyValue = owningTypeIdProperty.GetString();
+                        var propertyValue = getOwningTypeAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetOwningType = propertyValue;
@@ -1275,31 +1275,31 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the owningType Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("qualifiedName"u8, out JsonElement qualifiedNameProperty))
+            if (jsonElement.TryGetProperty("qualifiedName"u8, out JsonElement getQualifiedNameProperty))
             {
-                dtoInstance.GetQualifiedName = qualifiedNameProperty.GetString();
+                dtoInstance.GetQualifiedName = getQualifiedNameProperty.GetString();
             }
             else
             {
                 logger.LogDebug($"the qualifiedName Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("shortName"u8, out JsonElement shortNameProperty))
+            if (jsonElement.TryGetProperty("shortName"u8, out JsonElement getShortNameProperty))
             {
-                dtoInstance.GetShortName = shortNameProperty.GetString();
+                dtoInstance.GetShortName = getShortNameProperty.GetString();
             }
             else
             {
                 logger.LogDebug($"the shortName Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("textualRepresentation"u8, out JsonElement textualRepresentationProperty))
+            if (jsonElement.TryGetProperty("textualRepresentation"u8, out JsonElement getTextualRepresentationProperty))
             {
-                foreach (var arrayItem in textualRepresentationProperty.EnumerateArray())
+                foreach (var arrayItem in getTextualRepresentationProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement textualRepresentationIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getTextualRepresentationAtIdProperty))
                     {
-                        var propertyValue = textualRepresentationIdProperty.GetString();
+                        var propertyValue = getTextualRepresentationAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetTextualRepresentation.Add(propertyValue);
@@ -1312,13 +1312,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the textualRepresentation Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("type"u8, out JsonElement typeProperty))
+            if (jsonElement.TryGetProperty("type"u8, out JsonElement getTypeProperty))
             {
-                foreach (var arrayItem in typeProperty.EnumerateArray())
+                foreach (var arrayItem in getTypeProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement typeIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getTypeAtIdProperty))
                     {
-                        var propertyValue = typeIdProperty.GetString();
+                        var propertyValue = getTypeAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetType.Add(propertyValue);
@@ -1331,13 +1331,13 @@ namespace KerML.NET.Serializer.Json
                 logger.LogDebug($"the type Json property was not found in the Feature: {dtoInstance.ElementId}");
             }
 
-            if (jsonElement.TryGetProperty("unioningType"u8, out JsonElement unioningTypeProperty))
+            if (jsonElement.TryGetProperty("unioningType"u8, out JsonElement getUnioningTypeProperty))
             {
-                foreach (var arrayItem in unioningTypeProperty.EnumerateArray())
+                foreach (var arrayItem in getUnioningTypeProperty.EnumerateArray())
                 {
-                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement unioningTypeIdProperty))
+                    if (arrayItem.TryGetProperty("@id"u8, out JsonElement getUnioningTypeAtIdProperty))
                     {
-                        var propertyValue = unioningTypeIdProperty.GetString();
+                        var propertyValue = getUnioningTypeAtIdProperty.GetString();
                         if (propertyValue != null)
                         {
                             dtoInstance.GetUnioningType.Add(propertyValue);

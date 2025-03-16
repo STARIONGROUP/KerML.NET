@@ -35,8 +35,6 @@ namespace KerML.NET.DTO.Core.Features
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// CrossSubsetting is a kind of Subsetting for end Features, as identified by crossingFeature, to

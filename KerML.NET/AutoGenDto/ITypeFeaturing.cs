@@ -35,8 +35,6 @@ namespace KerML.NET.DTO.Core.Features
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A TypeFeaturing is a Featuring Relationship in which the featureOfType is the source and the

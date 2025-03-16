@@ -35,8 +35,6 @@ namespace KerML.NET.DTO.Core.Features
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// Redefinition is a kind of Subsetting that requires the redefinedFeature and the redefiningFeature to

@@ -28,6 +28,7 @@ namespace KerML.NET.DTO.Kernel.Functions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.Core.Types;
     using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Core.Types;
     using KerML.NET.DTO.Kernel.Behaviors;
@@ -37,8 +38,6 @@ namespace KerML.NET.DTO.Kernel.Functions
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A BooleanExpression is a Boolean-valued Expression whose type is a Predicate. It represents a

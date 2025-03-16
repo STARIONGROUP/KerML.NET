@@ -22,7 +22,7 @@
 // --------THIS IS AN AUTOMATICALLY GENERATED FILE. ANY MANUAL CHANGES WILL BE OVERWRITTEN!--------
 // ------------------------------------------------------------------------------------------------
 
-namespace KerML.NET.Types
+namespace KerML.NET.Core.Types
 {
     /// <summary>
     /// FeatureDirectionKind enumerates the possible kinds of direction that a Feature may be given as a

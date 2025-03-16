@@ -28,6 +28,7 @@ namespace KerML.NET.DTO.Kernel.Interactions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.Core.Types;
     using KerML.NET.DTO.Core.Classifiers;
     using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Core.Types;
@@ -41,8 +42,6 @@ namespace KerML.NET.DTO.Kernel.Interactions
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A SuccessionItemFlow is an ItemFlow that also provides temporal ordering. It classifies Transfers

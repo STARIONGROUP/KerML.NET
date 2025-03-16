@@ -38,8 +38,6 @@ namespace KerML.NET.DTO.Kernel.Functions
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Function is a Behavior that has an out parameter that is identified as its result. A Function

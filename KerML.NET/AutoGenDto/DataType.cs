@@ -36,8 +36,6 @@ namespace KerML.NET.DTO.Kernel.DataTypes
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A DataType is a Classifier of things (in the universe) that can only be distinguished by how they

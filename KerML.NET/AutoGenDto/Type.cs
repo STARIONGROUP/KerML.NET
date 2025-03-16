@@ -35,8 +35,6 @@ namespace KerML.NET.DTO.Core.Types
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Type is a Namespace that is the most general kind of Element supporting the semantics of

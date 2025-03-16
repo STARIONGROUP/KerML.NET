@@ -28,8 +28,7 @@ namespace KerML.NET.Serializer.Json
     using System.Text.Json;
     using System.Threading;
     using System.Threading.Tasks;
-    
-    
+
     using KerML.NET.DTO.Root.Elements;
     
     using Microsoft.Extensions.Logging;
@@ -171,8 +170,9 @@ namespace KerML.NET.Serializer.Json
                 var typeName = typeElement.GetString();
                 Func<JsonElement, SerializationModeKind, ILoggerFactory, IElement> func;
 
-                func = DeSerializationProvider.Provide(typeName);
-                return func(jsonObject, serializationModeKind, this.loggerFactory);
+                // TODO: uncomment
+                // func = DeSerializationProvider.Provide(typeName);
+                // return func(jsonObject, serializationModeKind, this.loggerFactory);
             }
 
             throw new SerializationException("The @type Json property is not available, the DeSerializer cannot be used to deserialize this JsonElement");

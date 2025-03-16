@@ -36,8 +36,6 @@ namespace KerML.NET.DTO.Core.Classifiers
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Classifier is a Type that classifies:<ul>	<li>Things (in the universe) regardless of how Features

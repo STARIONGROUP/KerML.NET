@@ -33,8 +33,6 @@ namespace KerML.NET.DTO.Root.Namespaces
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Namespace is an Element that contains other Elements, known as its members, via Membership

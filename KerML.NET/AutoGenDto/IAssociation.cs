@@ -36,8 +36,6 @@ namespace KerML.NET.DTO.Kernel.Associations
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// An Association is a Relationship and a Classifier to enable classification of links between things

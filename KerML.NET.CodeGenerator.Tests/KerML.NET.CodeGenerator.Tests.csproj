@@ -21,6 +21,7 @@
       <Compile Remove="Expected\UML\AutoGenDeSerializer\CommentDeSerializer.cs" />
       <Compile Remove="Expected\UML\AutoGenDeSerializer\DependencyDeSerializer.cs" />
       <Compile Remove="Expected\UML\AutoGenDeSerializer\FeatureDeSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenDeSerializer\FeatureDirectionKindDeSerializer.cs" />
       <Compile Remove="Expected\UML\AutoGenDeSerializer\LiteralIntegerDeSerializer.cs" />
       <Compile Remove="Expected\UML\AutoGenDeSerializer\LiteralRationalDeSerializer.cs" />
       <Compile Remove="Expected\UML\AutoGenDto\Annotation.cs" />
@@ -140,6 +141,9 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Include="Expected\UML\AutoGenDeSerializer\FeatureDeSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenDeSerializer\FeatureDirectionKindDeSerializer.cs">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Include="Expected\UML\AutoGenDeSerializer\LiteralIntegerDeSerializer.cs">

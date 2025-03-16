@@ -28,6 +28,7 @@ namespace KerML.NET.DTO.Core.Types
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.Root.Namespaces;
     using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Core.Types;
     using KerML.NET.DTO.Root.Annotations;
@@ -35,8 +36,6 @@ namespace KerML.NET.DTO.Core.Types
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A FeatureMembership is an OwningMembership between a Feature in an owningType that is also a

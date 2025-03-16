@@ -35,8 +35,6 @@ namespace KerML.NET.DTO.Core.Classifiers
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// Subclassification is Specialization in which both the specific and general Types are Classifier.

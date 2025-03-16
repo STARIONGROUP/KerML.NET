@@ -38,8 +38,6 @@ namespace KerML.NET.DTO.Kernel.Interactions
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// An Interaction is a Behavior that is also an Association, providing a context for multiple objects

@@ -34,8 +34,6 @@ namespace KerML.NET.DTO.Kernel.Packages
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Package is a Namespace used to group Elements, without any instance-level semantics. It may have

@@ -33,8 +33,6 @@ namespace KerML.NET.DTO.Root.Dependencies
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A Dependency is a Relationship that indicates that one or more client Elements require one more

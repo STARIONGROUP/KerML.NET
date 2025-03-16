@@ -28,13 +28,12 @@ namespace KerML.NET.DTO.Root.Namespaces
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.Root.Namespaces;
     using KerML.NET.DTO.Root.Annotations;
     using KerML.NET.DTO.Root.Elements;
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A NamespaceImport is an Import that imports Memberships from its importedNamespace into the

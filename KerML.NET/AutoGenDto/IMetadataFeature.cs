@@ -28,6 +28,7 @@ namespace KerML.NET.DTO.Kernel.Metadata
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.Core.Types;
     using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Core.Types;
     using KerML.NET.DTO.Kernel.Metadata;
@@ -36,8 +37,6 @@ namespace KerML.NET.DTO.Kernel.Metadata
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A MetadataFeature is a Feature that is an AnnotatingElement used to annotate another Element with

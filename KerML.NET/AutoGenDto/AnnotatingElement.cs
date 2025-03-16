@@ -33,8 +33,6 @@ namespace KerML.NET.DTO.Root.Annotations
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// An AnnotatingElement is an Element that provides additional description of or metadata on some other

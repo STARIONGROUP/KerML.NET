@@ -35,8 +35,6 @@ namespace KerML.NET.DTO.Kernel.Packages
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// A LibraryPackage is a Package that is the container for a model library. A LibraryPackage is itself

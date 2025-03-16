@@ -28,6 +28,7 @@ namespace KerML.NET.DTO.Core.Features
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.Root.Namespaces;
     using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Core.Types;
     using KerML.NET.DTO.Root.Annotations;
@@ -35,8 +36,6 @@ namespace KerML.NET.DTO.Core.Features
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// EndFeatureMembership is a FeatureMembership that requires its memberFeature be owned and have isEnd

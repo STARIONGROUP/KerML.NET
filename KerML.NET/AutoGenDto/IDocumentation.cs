@@ -33,8 +33,6 @@ namespace KerML.NET.DTO.Root.Annotations
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// Documentation is a Comment that specifically documents a documentedElement, which must be its owner.

@@ -28,6 +28,7 @@ namespace KerML.NET.DTO.Kernel.Interactions
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
 
+    using KerML.NET.Core.Types;
     using KerML.NET.DTO.Core.Features;
     using KerML.NET.DTO.Core.Types;
     using KerML.NET.DTO.Root.Annotations;
@@ -35,8 +36,6 @@ namespace KerML.NET.DTO.Kernel.Interactions
     using KerML.NET.DTO.Root.Namespaces;
 
     using KerML.NET.Decorators;
-    using KerML.NET.Namespaces;
-    using KerML.NET.Types;
 
     /// <summary>
     /// An ItemFeature is the ownedFeature of an ItemFlow that identifies the things carried by the kinds of

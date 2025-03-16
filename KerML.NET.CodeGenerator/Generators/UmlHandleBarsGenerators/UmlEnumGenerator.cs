@@ -177,6 +177,8 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
             uml4net.HandleBars.StringHelper.RegisterStringHelper(this.Handlebars);
             uml4net.HandleBars.DocumentationHelper.RegisteredDocumentationHelper(this.Handlebars);
             uml4net.HandleBars.EnumHelper.RegisterEnumHelper(this.Handlebars);
+
+            KerML.NET.CodeGenerator.HandleBarHelpers.NamedElementHelper.RegisterNamedElementHelper(this.Handlebars);
         }
 
         /// <summary>
