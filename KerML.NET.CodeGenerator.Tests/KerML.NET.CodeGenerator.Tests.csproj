@@ -48,6 +48,7 @@
       <Compile Remove="Expected\UML\AutoGenSerializer\FeatureSerializer.cs" />
       <Compile Remove="Expected\UML\AutoGenSerializer\LiteralIntegerSerializer.cs" />
       <Compile Remove="Expected\UML\AutoGenSerializer\LiteralRationalSerializer.cs" />
+      <Compile Remove="Expected\UML\AutoGenSerializer\SerializationProvider.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -172,6 +173,9 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Include="Expected\UML\AutoGenSerializer\LiteralRationalSerializer.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+      <None Include="Expected\UML\AutoGenSerializer\SerializationProvider.cs">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>

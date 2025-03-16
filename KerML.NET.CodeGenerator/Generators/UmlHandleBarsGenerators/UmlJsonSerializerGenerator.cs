@@ -49,62 +49,8 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
         /// </returns>
         public override async Task GenerateAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
         {
-            await this.GenerateEnumJsonSerializersAsync(xmiReaderResult, outputDirectory);
             await this.GenerateDtoJsonSerializersAsync(xmiReaderResult, outputDirectory);
             await this.GenerateSerializationProviderAsync(xmiReaderResult, outputDirectory);
-        }
-
-        /// <summary>
-        /// Generates JSON Serializer for KerML enumerations
-        /// </summary>
-        /// <param name="xmiReaderResult">
-        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
-        /// </param>
-        /// <param name="outputDirectory">
-        /// The target <see cref="DirectoryInfo"/>
-        /// </param>
-        /// <returns>
-        /// an awaitable <see cref="Task"/>
-        /// </returns>
-        public Task GenerateEnumJsonSerializersAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
-        {
-            ArgumentNullException.ThrowIfNull(xmiReaderResult);
-
-            ArgumentNullException.ThrowIfNull(outputDirectory);
-
-            return this.GenerateEnumJsonSerializersInternalAsync(xmiReaderResult, outputDirectory);
-        }
-
-        /// <summary>
-        /// Generates JSON Serializer for KerML enumerations
-        /// </summary>
-        /// <param name="xmiReaderResult">
-        /// the <see cref="XmiReaderResult"/> that contains the UML model to generate from
-        /// </param>
-        /// <param name="outputDirectory">
-        /// The target <see cref="DirectoryInfo"/>
-        /// </param>
-        /// <returns>
-        /// an awaitable <see cref="Task"/>
-        /// </returns>
-        public async Task GenerateEnumJsonSerializersInternalAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
-        {
-            var template = this.Templates["json-enum-serializer-uml-template"];
-
-            var enumerations = xmiReaderResult.Root.QueryPackages()
-                .SelectMany(x => x.PackagedElement.OfType<IEnumeration>())
-                .ToList();
-
-            foreach (var enumeration in enumerations)
-            {
-                var generatedSerializer = template(enumeration);
-
-                generatedSerializer = CodeCleanup(generatedSerializer);
-
-                var fileName = $"{enumeration.Name.CapitalizeFirstLetter()}Serializer.cs";
-
-                await WriteAsync(generatedSerializer, outputDirectory, fileName);
-            }
         }
 
         /// <summary>
@@ -304,7 +250,6 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
         /// </summary>
         protected override void RegisterTemplates()
         {
-            this.RegisterTemplate("json-enum-serializer-uml-template");
             this.RegisterTemplate("json-serializer-uml-template");
             this.RegisterTemplate("json-serializer-provider-template");
         }
