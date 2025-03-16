@@ -22,15 +22,8 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.CodeAnalysis" Version="4.13.0" />
-
-        <!--
-        <PackageReference Include="uml4net.HandleBars" Version="2.2.1" />
-        <PackageReference Include="uml4net.xmi" Version="2.2.2" />
-        -->
-
-        <ProjectReference Include="..\..\..\uml4net\uml4net\uml4net.Extensions\uml4net.Extensions.csproj" />
-        <ProjectReference Include="..\..\..\uml4net\uml4net\uml4net.xmi\uml4net.xmi.csproj" />
-        <ProjectReference Include="..\..\..\uml4net\uml4net\uml4net.HandleBars\uml4net.HandleBars.csproj" />
+        <PackageReference Include="uml4net.HandleBars" Version="3.0.0" />
+        <PackageReference Include="uml4net.xmi" Version="3.0.0" />
     </ItemGroup>
 
     <ItemGroup>
