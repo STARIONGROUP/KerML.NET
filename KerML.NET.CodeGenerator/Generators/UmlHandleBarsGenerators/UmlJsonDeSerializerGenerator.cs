@@ -238,7 +238,7 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
         /// <returns>
         /// an awaitable task
         /// </returns>
-        public Task GenerateDeSerializationProviderAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        public Task<string> GenerateDeSerializationProviderAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
         {
             ArgumentNullException.ThrowIfNull(xmiReaderResult);
 
@@ -259,9 +259,25 @@ namespace KerML.NET.CodeGenerator.Generators.UmlHandleBarsGenerators
         /// <returns>
         /// an awaitable task
         /// </returns>
-        private async Task GenerateDeSerializationProviderInternalAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
+        private async Task<string> GenerateDeSerializationProviderInternalAsync(XmiReaderResult xmiReaderResult, DirectoryInfo outputDirectory)
         {
-            throw new NotImplementedException();
+            var template = this.Templates["json-deserializer-provider-template"];
+
+            var classes = xmiReaderResult.Root.QueryPackages()
+                .SelectMany(x => x.PackagedElement.OfType<IClass>())
+                .Where(x => !x.IsAbstract)
+                .OrderBy(x => x.Name)
+                .ToList();
+
+            var generatedDeSerializationProvider = template(classes);
+
+            generatedDeSerializationProvider = CodeCleanup(generatedDeSerializationProvider);
+
+            var fileName = "DeSerializationProvider.cs";
+
+            await WriteAsync(generatedDeSerializationProvider, outputDirectory, fileName);
+
+            return generatedDeSerializationProvider;
         }
 
         /// <summary>

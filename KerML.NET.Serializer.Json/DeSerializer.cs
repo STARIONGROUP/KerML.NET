@@ -36,12 +36,12 @@ namespace KerML.NET.Serializer.Json
 
     /// <summary>
     /// The purpose of the <see cref="DeSerializer"/> is to deserialize a JSON <see cref="Stream"/> to
-    /// an <see cref="IElement"/> and <see cref="IEnumerable{IData}"/>
+    /// an <see cref="IElement"/> and <see cref="IEnumerable{IElement}"/>
     /// </summary>
     public class DeSerializer : IDeSerializer
     {
         /// <summary>
-        /// The (injected) <see cref="ILoggerFactory"/> used to setup logging
+        /// The (injected) <see cref="ILoggerFactory"/> used to set up logging
         /// </summary>
         private readonly ILoggerFactory loggerFactory;
 
@@ -54,9 +54,9 @@ namespace KerML.NET.Serializer.Json
         /// Initializes a new instance of the <see cref="DeSerializer"/> class.
         /// </summary>
         /// <param name="loggerFactory">
-        /// The (injected) <see cref="ILoggerFactory"/> used to set-up logging
+        /// The (injected) <see cref="ILoggerFactory"/> used to set up logging
         /// </param>
-        public DeSerializer(ILoggerFactory loggerFactory = null)
+        public DeSerializer(ILoggerFactory? loggerFactory = null)
         {
             this.loggerFactory = loggerFactory;
 
@@ -103,7 +103,7 @@ namespace KerML.NET.Serializer.Json
         }
 
         /// <summary>
-        /// Asynchronously deserializes the JSON stream to an <see cref="IEnumerable{IData}"/>
+        /// Asynchronously deserializes the JSON stream to an <see cref="IEnumerable{IElement}"/>
         /// </summary>
         /// <param name="stream">
         /// the JSON input stream
@@ -115,7 +115,7 @@ namespace KerML.NET.Serializer.Json
         /// The <see cref="CancellationToken"/> used to cancel the operation
         /// </param>
         /// <returns>
-        /// an <see cref="IEnumerable{IData}"/>
+        /// an <see cref="IEnumerable{IElement}"/>
         /// </returns>
         public async Task<IEnumerable<IElement>> DeSerializeAsync(Stream stream, SerializationModeKind serializationModeKind, CancellationToken cancellationToken)
         {
@@ -147,7 +147,7 @@ namespace KerML.NET.Serializer.Json
         }
 
         /// <summary>
-        /// Deserializes an <see cref="JsonElement"/> of type <see cref="JsonValueKind.Object"/> to an <see cref="IData"/> object
+        /// Deserializes an <see cref="JsonElement"/> of type <see cref="JsonValueKind.Object"/> to an <see cref="IElement"/> object
         /// </summary>
         /// <param name="jsonObject">
         /// the subject <see cref="JsonElement"/>
@@ -170,16 +170,15 @@ namespace KerML.NET.Serializer.Json
                 var typeName = typeElement.GetString();
                 Func<JsonElement, SerializationModeKind, ILoggerFactory, IElement> func;
 
-                // TODO: uncomment
-                // func = DeSerializationProvider.Provide(typeName);
-                // return func(jsonObject, serializationModeKind, this.loggerFactory);
+                func = DeSerializationProvider.Provide(typeName);
+                return func(jsonObject, serializationModeKind, this.loggerFactory);
             }
 
             throw new SerializationException("The @type Json property is not available, the DeSerializer cannot be used to deserialize this JsonElement");
         }
 
         /// <summary>
-        /// Deserializes an <see cref="JsonElement"/> of type <see cref="JsonValueKind.Array"/> to an <see cref="IEnumerable{IData}"/> object
+        /// Deserializes an <see cref="JsonElement"/> of type <see cref="JsonValueKind.Array"/> to an <see cref="IEnumerable{IElement}"/> object
         /// </summary>
         /// <param name="jsonArray">
         /// the subject <see cref="JsonElement"/>
@@ -188,7 +187,7 @@ namespace KerML.NET.Serializer.Json
         /// The <see cref="SerializationModeKind"/> to use
         /// </param>
         /// <returns>
-        /// an <see cref="IEnumerable{IData}"/>
+        /// an <see cref="IEnumerable{IElement}"/>
         /// </returns>
         private IEnumerable<IElement> DeserializeArray(JsonElement jsonArray, SerializationModeKind serializationModeKind)
         {

@@ -88,6 +88,13 @@ namespace KerML.NET.CodeGenerator.Tests.Generators.UmlHandleBarsGenerators
         }
 
         [Test]
+        public void verify_deserializers_are_generated()
+        {
+            Assert.That(async () => await this.umlJsonDeSerializerGenerator.GenerateAsync(xmiReaderResult, this.jsonDeSerializerDirectoryInfo),
+                Throws.Nothing);
+        }
+
+        [Test]
         public async Task Verify_that_expected_Classes_are_generated(
             [Values("Annotation", "Comment", "Dependency", "Feature",
                 "LiteralInteger", "LiteralRational")] string className)
@@ -115,6 +122,17 @@ namespace KerML.NET.CodeGenerator.Tests.Generators.UmlHandleBarsGenerators
             Assert.That(async () => await this.umlJsonDeSerializerGenerator.GenerateDtoJsonDeSerializersAsync(xmiReaderResult, this.jsonDeSerializerDirectoryInfo),
                 Throws.Nothing);
 
+        }
+
+        [Test]
+        public async Task Verify_that_GenerateDeSerializationProviderAsync_generates_expected_code()
+        {
+            var generatedCode = await this.umlJsonDeSerializerGenerator.GenerateDeSerializationProviderAsync(xmiReaderResult, this.jsonDeSerializerDirectoryInfo);
+
+            var expected = await File.ReadAllTextAsync(Path.Combine(TestContext.CurrentContext.TestDirectory,
+                "Expected/UML/AutoGenDeSerializer/DeSerializationProvider.cs"));
+
+            Assert.That(generatedCode, Is.EqualTo(expected));
         }
     }
 }
